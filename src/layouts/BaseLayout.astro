@@ -8,7 +8,7 @@ const { title = 'Madlen Wulffen', description = 'Thinking Space' } = Astro.props
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href={`${Astro.site.base}/styles.css`}>
   </head>
   <body>
     <slot name="header" />
