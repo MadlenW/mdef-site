@@ -1,11 +1,13 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/header.astro'
+import Footer from '../components/footer.astro'
 ---
-
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Willkommen, zu meinem Thinking Space" description="Explorationen zu Wohnen, Ökologie, zirkulären Städten & gesellschaftlichem Wandel.">
+  <Header slot="header" />
+  <section class="hero">
+    <h1>Willkommen, zu meinem Thinking Space</h1>
+    <p>Eine Erkundung von Zuhause, Ökologie, zirkulären Städten, Systeminnovation und gesellschaftlicher Transformation.</p>
+  </section>
+  <Footer slot="footer" />
+</BaseLayout>
