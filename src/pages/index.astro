@@ -5,9 +5,13 @@ import Footer from '../components/Footer.astro'
 ---
 <BaseLayout title="Willkommen, zu meinem Thinking Space" description="Explorationen zu Wohnen, Ökologie, zirkulären Städten & gesellschaftlichem Wandel.">
   <Header slot="header" />
-  <section class="hero">
-    <h1>Home.</h1>
-    <p>This is an exploration of the home in the realms of ecological thinking, circular cities, systemic innovation, future living and social transformation. This space is an imagination on how we inhabit our homes, live in our societies and sustain life on this planet.</p>
-  </section>
+ <section class="hero py-16 md:py-24">
+  <h1 class="text-3xl md:text-5xl font-extrabold mb-4">
+    Home.
+  </h1>
+  <p class="text-lg md:text-xl max-w-3xl">
+    This is an exploration of the home in the realms of ecological thinking, circular cities, systemic innovation, future living and social transformation. This space is an imagination on how we inhabit our homes, live in our societies and sustain life on this planet.
+  </p>
+</section>
   <Footer slot="footer" />
 </BaseLayout>
