@@ -3,14 +3,13 @@ const { title = 'Madlen Wulffen', description = 'Thinking Space' } = Astro.props
 ---
 <html lang="de">
   <head>
-    <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <link rel="icon" href={import.meta.env.BASE_URL + 'favicon.ico'} />
-  <link rel="stylesheet" href={import.meta.env.BASE_URL + 'styles.css'} />
-</head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={import.meta.env.BASE_URL + 'favicon.ico'} />
+    <link rel="stylesheet" href={import.meta.env.BASE_URL + 'styles.css'} />
+  </head>
   <body>
     <slot name="header" />
     <main class="container"><slot /></main>
