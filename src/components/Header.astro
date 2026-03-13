@@ -1,8 +1,29 @@
-<nav class="nav px-6 py-4 border-b flex items-center justify-between">
-  <a href={import.meta.env.BASE_URL} class="font-semibold">Madlen Wulffen</a>
-  <div class="space-x-6">
-    <a class="underline underline-offset-2" href={import.meta.env.BASE_URL + 'projects/'}>Projects</a>
-    <a class="underline underline-offset-2" href={import.meta.env.BASE_URL + 'about/'}>About</a>
-  </div>
-</nav>
+---
+const base = import.meta.env.BASE_URL;
 
+const navLinks = [
+  { label: 'Projects', href: `${base}` },
+  { label: 'Diary',    href: `${base}diary` },
+  { label: 'About',    href: `${base}about` },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <a class="site-name" href={base}>Madlen von Wulffen</a>
+  <nav>
+    <ul class="site-nav">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={currentPath.startsWith(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
