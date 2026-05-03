@@ -1,43 +1,40 @@
-/* @font-face declarations are in Layout.astro to support the base URL path */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@700&display=swap');
 
 /* ─────────────────────────────────────────
    CSS VARIABLES
 ───────────────────────────────────────── */
 :root {
-  --accent:      #D9043D;
-  --black:       #0a0a0a;
-  --white:       #ffffff;
-  --gray:        #888888;
-  --light-gray:  #e8e8e8;
+  --ink:    #141414;
+  --muted:  #888;
+  --red:    #c8001a;
+  --bg:     #ffffff;
+  --font:   'Barlow', sans-serif;
+  --cond:   'Barlow Condensed', sans-serif;
 
-  --font-main:   'Monument Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  --font-mono:   'Monument Grotesk Mono', 'Courier New', monospace;
-
-  --header-height: 52px;
+  --header-height: 56px;
 }
 
 /* ─────────────────────────────────────────
    RESET & BASE
 ───────────────────────────────────────── */
 *, *::before, *::after {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-  font-size: 16px;
+  font-size: 17px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--white);
-  color: var(--black);
-  font-family: var(--font-main);
-  font-weight: 400;
-  line-height: 1.5;
-  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-weight: 300;
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
@@ -53,55 +50,6 @@ a {
 }
 
 /* ─────────────────────────────────────────
-   HEADER / NAV
-───────────────────────────────────────── */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2.5rem;
-  height: var(--header-height);
-  border-bottom: 1px solid var(--black);
-}
-
-.site-name {
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--black);
-  text-decoration: none;
-}
-
-.site-nav {
-  display: flex;
-  gap: 3rem;
-  align-items: center;
-  list-style: none;
-}
-
-.site-nav a {
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--black);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.site-nav a:hover,
-.site-nav a[aria-current="page"] {
-  color: var(--accent);
-}
-
-/* ─────────────────────────────────────────
    MAIN CONTENT OFFSET
 ───────────────────────────────────────── */
 main {
@@ -112,9 +60,8 @@ main {
    FOOTER
 ───────────────────────────────────────── */
 .site-footer {
-  margin-top: 6rem;
-  padding: 1.8rem 2.5rem;
-  border-top: 1px solid var(--black);
+  padding: 1.8rem 2.6rem;
+  border-top: 1px solid #e2e2e2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -122,14 +69,14 @@ main {
 
 .site-footer p,
 .site-footer a {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: var(--font);
+  font-size: 11px;
   letter-spacing: 0.08em;
-  color: var(--gray);
+  color: var(--muted);
 }
 
 .site-footer a:hover {
-  color: var(--accent);
+  color: var(--red);
 }
 
 /* ─────────────────────────────────────────

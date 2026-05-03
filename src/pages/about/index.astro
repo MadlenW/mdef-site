@@ -4,7 +4,157 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="About — Madlen von Wulffen" description="About Madlen von Wulffen">
-  <main style="padding: 6rem 3rem;">
-    <p>About page coming soon.</p>
-  </main>
+  <div class="page">
+
+    <div class="hero">
+      <div class="photo-wrap">
+        <img src={`${base}images/madlen-portrait.png`} alt="Madlen von Wulffen" />
+      </div>
+      <div class="about-word">
+        <svg viewBox="0 0 1000 185" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <text
+            x="0" y="175"
+            font-family="'Barlow Condensed', sans-serif"
+            font-weight="700"
+            font-size="235"
+            fill="#141414"
+            textLength="1000"
+            lengthAdjust="spacingAndGlyphs">ABOUT</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="about-body">
+      <div class="bio-col">
+        <p>I am Madlen von Wulffen, a designer and researcher working at the intersection of spatial practice, urban sociology, and the politics of living.</p>
+        <p>My work examines how the spaces we inhabit shape — and are shaped by — questions of belonging, identity, and collective life. Based between Berlin and Madrid, I work across installation, curation, and research.</p>
+        <p>I am interested in the home not as a fixed category but as a site of negotiation — between bodies, histories, and futures.</p>
+      </div>
+
+      <div class="contact-col">
+        <span class="section-label">Contact</span>
+
+        <div class="contact-row">
+          <span class="c-label">Email</span>
+          <a class="c-val" href="mailto:hello@madlenvonwulffen.com">hello@madlenvonwulffen.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="c-label">Instagram</span>
+          <a class="c-val" href="https://instagram.com/madlenvonwulffen" target="_blank">@madlenvonwulffen</a>
+        </div>
+        <div class="contact-row">
+          <span class="c-label">Based</span>
+          <span class="c-val">Berlin / Madrid</span>
+        </div>
+        <div class="contact-row">
+          <span class="c-label">Languages</span>
+          <span class="c-val">German, English, Spanish</span>
+        </div>
+
+        <a class="cv-link" href={`${base}cv.pdf`} target="_blank">Download CV →</a>
+      </div>
+    </div>
+
+  </div>
 </Layout>
+
+<style>
+  .page { padding-top: 4.4rem; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 340px;
+    overflow: visible;
+  }
+
+  .about-word {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 1;
+    line-height: 1;
+  }
+  .about-word svg { display: block; width: 100%; height: auto; }
+
+  .photo-wrap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 230px;
+    z-index: 3;
+  }
+  .photo-wrap img { width: 100%; display: block; }
+
+  /* BODY */
+  .about-body {
+    padding: 3.5rem 2.6rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    position: relative;
+    z-index: 4;
+    background: var(--bg);
+  }
+
+  .bio-col p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #222;
+    max-width: 52ch;
+    margin-bottom: 1.4em;
+  }
+  .bio-col p:last-child { margin-bottom: 0; }
+
+  .contact-col { padding-top: 0.1rem; }
+
+  .section-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 1.6rem;
+  }
+
+  .contact-row { margin-bottom: 1.2rem; }
+
+  .c-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .c-val {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 0.15s;
+    display: block;
+  }
+  a.c-val:hover { color: var(--red); }
+
+  .cv-link {
+    display: inline-block;
+    margin-top: 1.8rem;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--ink);
+    padding-bottom: 0.2rem;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .cv-link:hover { color: var(--red); border-color: var(--red); }
+</style>

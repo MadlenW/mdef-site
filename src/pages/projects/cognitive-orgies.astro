@@ -4,493 +4,413 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Layout
-  title="Safe Space — Madlen von Wulffen"
+  title="Safe Space — Cognitive Orgies · Madlen von Wulffen"
   description="A handmade fabric canopy that makes the surveillance of the home office visible. Voice-driven AI projection, live pixelation, and six questions about privacy."
 >
+  <div class="page">
 
-  <div class="project-page">
-
-    <!-- ── LEFT STICKY PANEL ── -->
-    <aside class="project-meta">
-      <div class="meta-inner">
-
-        <a href={`${base}`} class="back-link">
-          <span>←</span> All Projects
-        </a>
-
-        <div class="meta-title-block">
-          <h1 class="meta-title">Cognitive Orgies II</h1>
-          <div class="meta-divider"></div>
-          <dl class="meta-list">
-            <dt>Year</dt>
-            <dd>2026</dd>
-            <dt>Category</dt>
-            <dd>Installation</dd>
-            <dt>Location</dt>
-            <dd>Barcelona</dd>
-            <dt>With</dt>
-            <dd>Armin Gulbert</dd>
-            <dt>Course</dt>
-            <dd>Cognitive Orgies</dd>
-          </dl>
-        </div>
-
-        <div class="meta-index">
-          <span class="index-label">Contents</span>
-          <ul class="index-list">
-            <li><a href="#reflection">Reflection</a></li>
-            <li><a href="#description">Description</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#system">System</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#build">Build the Canopy</a></li>
-            <li><a href="#ethics">Ethics</a></li>
-            <li><a href="#gallery">Images</a></li>
-          </ul>
-        </div>
-
-        <div class="meta-external">
-          <span class="index-label">Documentation</span>
-          <a
-            href="https://www.hackster.io/safe-dreams/safe-space-a-home-office-intervention-b3486a"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="external-link"
-          >
-            Full write-up on Hackster.io
-            <span class="external-arrow">↗</span>
-          </a>
-        </div>
-
-      </div>
-    </aside>
-
-    <!-- ── RIGHT SCROLLING CONTENT ── -->
-    <div class="project-content">
-
-      <!-- HERO -->
-      <div class="hero-image-block">
-        <img
-          src={`${base}images/cognitive-orgies/canopy-touchdesigner.jpg`}
-          alt="Safe Space — TouchDesigner projection inside canopy"
-          class="hero-image"
-        />
-      </div>
-
-      <!-- REFLECTION — two column layout -->
-      <section class="content-section" id="reflection">
-        <span class="section-label">Week Reflection</span>
-        <h2 class="section-title">SAFE SPACE.  A home office intervention.</h2>
-        <div class="two-col-text">
-          <p>This week, although exhausting and challenging at times, pushed me once again. Not only in regards to actually making something and getting into prototyping but also in regards to the cognitive knots of being stuck in my current project. I was struggling to connect dwelling practices research to actual design intervention. In this Cognitive Orgies session I felt like I was finally able to build a bridge from theory to practice. It forced me to stop overthinking and get into the making.</p>
-          <p>I had been thinking about methods to collect data for the base and justification of my project. Interviews were my preferred option. Using voice in the intervention supports the research subject and hypothesis: voice is intimate, embodied and temporal. This directly informs my main research methodology: I'm now committed to voice-based spatial interviews as my primary method — not surveys, not observation, but asking people to verbally describe how they make home when permanence is unavailable, and treating those descriptions as legitimate spatial knowledge. For this I need to create conditions — be it material, spatial or relational — that enable vulnerable knowledge to emerge. The methodology requires designing the context, not just the questions.</p>
-          <p>The textile canopy mediates the conversation. Not only as an interface but a literal safe space to host the exchange of intimate and private information such as living habits and rituals. People speak differently inside. When people entered the canopy and the curtain closed, the most common sentence was "Oh I love this, I could be anywhere." So the canopy not only shields and protects — it also expands the mind for imagination. For transporting oneself to other worlds and spaces. Like we did as children, building tents and telling stories about imaginative worlds. The canopy is not just about gathering data. It is creating a relationship.</p>
-          <p>Using an LLM to process voice into spatial data raised tensions for the ethical grounding of my project. I critique platform housing for treating living forms as data — and then I turn lived dwelling experiences into data? But the difference is, platforms extract data to optimise and profit. Our intervention extracts data to represent and protect. This discussion within the team taught me that using computational tools is not inherently extractive. It depends on the purpose, the power dynamics and transparency, and what happens to the data.</p>
-          <p>The canopy is explicitly temporary. It just creates a brief, shielded space to recognise what's been normalised. In the beginning I thought this would limit the value of the design. Eventually I realised that sometimes the intervention is the temporary refuge. It honours intimacy, temporariness and resistance to standardisation, as well as being heavily context-dependent — aligning perfectly with my research ambitions.</p>
-          <p>I enjoyed teaming up in a pair. Working individually would let me hide in the complexity of theory. Collaborating forced me to prioritise clarity.</p>
-        </div>
-      </section>
-
-      <!-- DESCRIPTION -->
-      <section class="content-section" id="description">
-        <span class="section-label">Description</span>
-        <div class="essay-text">
-          <p>Safe Space came out of a question I keep returning to in my research: how do we study homemaking when permanence is structurally unavailable — without turning survival strategies into data, or designing tools that make precarity more tolerable rather than visible?</p>
-          <p>The home office is the clearest site of this contradiction right now. We work from home. We are surveilled at work. The line between the two has collapsed. The space that was supposed to be private has become the most monitored room in the house.</p>
-          <p>Together with Armin, I built a canopy — a soft, handmade shelter suspended in that space. Large enough for one person and a chair. Inside, a projector casts AI-generated images onto the fabric walls, driven by what you say. A microphone records everything. The more you speak, the more your image breaks apart.</p>
-          <p>The canopy doesn't solve surveillance. It makes you feel it. That's the methodology: design a space where honest conversation becomes possible, and let the contradiction perform itself.</p>
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS -->
-      <section class="content-section" id="how-it-works">
-        <span class="section-label">How It Works</span>
-        <div class="split-body">
-          <div class="essay-text">
-            <p>When a participant enters the canopy, they find a phone on a small table. The screen greets them: "You're in a private space. Speak freely. Your voice will be heard, but your image is shielded. Answer each question aloud."</p>
-            <p>They speak their answers. As they talk, two things happen simultaneously. Their words are transcribed by AI and used as a prompt to generate a room image, projected live onto the canopy fabric around them. Describe a forest cabin: a forest cabin appears. Describe your actual desk: that appears too.</p>
-            <p>At the same time, the volume and pace of their voice controls the pixelation of a live camera feed. The more they speak, the more their image breaks apart. The visual metaphor matches the conceptual one — the more you reveal, the more you disappear.</p>
-            <p>Six questions guide the experience. They start warm — "what does your ideal workspace look like?" — and move toward colder, more transactional territory. The final question: "If your employer would pay for your apartment, would you trade your privacy for financial security?"</p>
-            <p>Then: "You may exit. The canopy provided temporary refuge. Thank you." The participant leaves. The monitored workspace is still there.</p>
-          </div>
-          <figure class="section-figure">
-            <img
-              src={`${base}images/cognitive-orgies/canopy-pixelated.jpg`}
-              alt="Pixelated camera feed"
-              loading="lazy"
-            />
-            <figcaption>Live pixelation driven by voice volume — the more you speak, the more you disappear.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <!-- SYSTEM -->
-      <section class="content-section" id="system">
-        <span class="section-label">System</span>
-        <div class="split-body">
-          <div class="essay-text">
-            <p>The system has three components working together.</p>
-            <p>1 — The Experience: a smartphone running a Typeform that guides the participant through the experience and triggers the audio recording and visual projection.</p>
-            <p>2 — The Canopy: physical fabric structure, the projection surface and shelter.</p>
-            <p>3 — The Projection: a live composite of AI-generated room images and a pixelated webcam feed, driven by the participant's voice.</p>
-            <p>Inside TouchDesigner, an Audio Device In CHOP captures the live audio stream. An Audio Analyze CHOP set to RMS measures the volume level and outputs a normalized 0–1 value, exported directly as a parameter into a Pixelate TOP applied to the live video feed. The smartphone connects to the laptop via the Camo app, presenting it as both a webcam and audio input over USB.</p>
-          </div>
-          <figure class="section-figure">
-            <img
-              src={`${base}images/cognitive-orgies/canopy-system-diagram.jpg`}
-              alt="Systems architecture diagram"
-              loading="lazy"
-            />
-            <figcaption>Systems architecture diagram — audio, video and AI projection pipeline.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <!-- PROCESS -->
-      <section class="content-section" id="process">
-        <span class="section-label">Process</span>
-        <div class="split-body">
-          <div class="essay-text">
-            <p>The process evolved across three interconnected design pillars: entering a physical space, interacting with the space and its devices, and using projection to transform the spatial experience.</p>
-            <p>Day 1 — Initial exploration focused on audio dynamics as input. We brainstormed what attributes — volume, rhythm, frequency — we could use beyond literal speech. The initial idea was speech-to-text-to-3D world modelling.</p>
-            <p>Day 2 — First testing with textile projection opened new possibilities for how light, texture and space could combine. The first prototype revealed an immediate spatial constraint: we needed a larger projection space, so the circular frame became a square.</p>
-            <p>Day 3 — User testing revealed participants were distracted by the tablet interface, which also blocked the projection. We replaced the tablet with a phone, incorporated spoken words as primary interaction, and simplified visual output to reduce cognitive load.</p>
-            <p>Day 4 — A chair was introduced to support the projection level. The laptop moved inside for presentation purposes, as the hardware could not simultaneously operate AI, video and audio through Camo.</p>
-          </div>
-          <figure class="section-figure">
-            <img
-              src={`${base}images/cognitive-orgies/canopy-ideation.jpg`}
-              alt="First ideation sketch"
-              loading="lazy"
-            />
-            <figcaption>First ideation scan — systems setup and experience flow.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <!-- BUILD THE CANOPY -->
-      <section class="content-section" id="build">
-        <span class="section-label">Build the Canopy</span>
-        <div class="split-body">
-          <div class="essay-text">
-            <p>This canopy is designed to be made by anyone. No matching fabrics required. Imperfection is the point.</p>
-            <p>Gather mismatched fabrics — old curtains, bedsheets, upholstery offcuts, whatever you have. Patchwork is not just acceptable here, it's intentional. The canopy should look handmade and lived-in.</p>
-            <p>Cut 4 panels at 1.5m × 3m each and 1 top square at 1m × 1m. Add 1cm seam allowance on all edges. Join the panels, attach the top square with right sides together. Sew 8 fabric ties from leftover strips — 4 at each corner, 4 at each midpoint — to lash the canopy to the internal frame.</p>
-            <p>Build the frame from 4 × 1m pieces of wood dowel, plastic pipe or broom handle, joined into a square with screws, cable ties or duct tape. Thread the ties through the frame and knot firmly. Cut a small hole in the centre of the top square, reinforce the edge, and thread your hanging rope through.</p>
-            <p>Find a ceiling hook or overhead beam. Pull the rope. Adjust until it hangs evenly. Then: get in. Sit down. You're home. ♥</p>
-          </div>
-          <figure class="section-figure">
-            <img
-              src={`${base}images/cognitive-orgies/canopy-diy.jpg`}
-              alt="DIY canopy instructions"
-              loading="lazy"
-            />
-            <figcaption>DIY instructions — designed to be built by anyone, from any materials.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <!-- ETHICS -->
-      <section class="content-section" id="ethics">
-        <span class="section-label">Ethics & Limitations</span>
-        <div class="essay-text">
-          <p>This project is not a solution. It doesn't protect anyone from actual surveillance. It can't scale. It is least accessible to those who are most surveilled — which is the most honest thing I can say about it.</p>
-          <p>What it refuses to do is make precarity more tolerable. It doesn't offer productivity tips or privacy hacks. It offers a few minutes of shelter and a question you probably already know the answer to.</p>
-          <p>The methodology itself is the intervention. Designing research tools — the canopy, voice-based spatial interviews — that counter algorithmic standardisation by prioritising narrative over metrics, care over optimisation, and intimate knowledge over extractive data collection.</p>
-          <p>These methods are as temporary and portable as the dwelling practices they study. Both research and home must adapt to conditions of ongoing impermanence. The canopy comes down. The surveillance continues. That tension is the work.</p>
-        </div>
-      </section>
-
-      <!-- GALLERY -->
-      <section class="content-section" id="gallery">
-        <span class="section-label">Images</span>
-        <div class="gallery-scroll-wrapper">
-          <div class="gallery-track">
-            <figure class="gallery-item">
-              <div class="gallery-img-wrap">
-                <img src={`${base}images/cognitive-orgies/canopy-final-setup.jpeg`} alt="Final setup" loading="lazy" />
-              </div>
-              <figcaption>Final setup for installation testing.</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <div class="gallery-img-wrap">
-                <img src={`${base}images/cognitive-orgies/canopy-prototype-1.jpeg`} alt="First prototype" loading="lazy" />
-              </div>
-              <figcaption>First prototype of the canopy.</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <div class="gallery-img-wrap">
-                <img src={`${base}images/cognitive-orgies/canopy-sewing.jpg`} alt="Sewing the panels" loading="lazy" />
-              </div>
-              <figcaption>Sewing the panels together.</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <div class="gallery-img-wrap">
-                <img src={`${base}images/cognitive-orgies/canopy-pixelated2.jpg.png`} alt="Pixelated feed" loading="lazy" />
-              </div>
-              <figcaption>Pixelated camera feed — voice-driven visual metaphor.</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <div class="gallery-img-wrap">
-                <img src={`${base}images/cognitive-orgies/canopy-system-diagram.jpg`} alt="System diagram" loading="lazy" />
-              </div>
-              <figcaption>Systems architecture.</figcaption>
-            </figure>
-          </div>
-          <div class="gallery-scroll-hint">
-            <span>Drag to scroll</span>
-            <span class="scroll-arrow">→</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- NEXT PROJECT -->
-      <div class="next-project">
-        <span class="next-label">Next Project</span>
-        <a href={`${base}projects/identity-prosthesis`} class="next-link">
-          Identity Prosthesis <span class="next-arrow">→</span>
-        </a>
-      </div>
-
+    <!-- BACK -->
+    <div class="back">
+      <a href={`${base}projects`}>Projects</a>
+      <span class="sep">→</span>
+      <span>Safe Space — Cognitive Orgies</span>
     </div>
-  </div>
 
+    <!-- HERO -->
+    <div class="hero">
+      <img
+        src={`${base}images/cognitive-orgies/canopy-touchdesigner.jpg`}
+        alt="Safe Space — TouchDesigner projection inside canopy"
+      />
+    </div>
+
+    <!-- HEADER -->
+    <div class="proj-header">
+      <div class="proj-header-left">
+        <div class="proj-category">Installation · 2026</div>
+        <h1 class="proj-title">Safe Space — Cognitive Orgies</h1>
+        <p class="proj-subtitle">A handmade fabric canopy that makes the surveillance of the home office visible. Voice-driven AI projection, live pixelation, and six questions about privacy.</p>
+      </div>
+      <div class="proj-meta">
+        <div class="meta-item">
+          <div class="meta-label">Year</div>
+          <div class="meta-value">2026</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Type</div>
+          <div class="meta-value">Installation</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Location</div>
+          <div class="meta-value">Barcelona</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">With</div>
+          <div class="meta-value">Armin Gulbert</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Course</div>
+          <div class="meta-value">Cognitive Orgies</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Documentation</div>
+          <div class="meta-value">
+            <a class="external-link" href="https://www.hackster.io/safe-dreams/safe-space-a-home-office-intervention-b3486a" target="_blank" rel="noopener noreferrer">
+              Hackster.io ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REFLECTION -->
+    <section class="content-section" id="reflection">
+      <span class="section-label">Week Reflection</span>
+      <h2 class="section-title">SAFE SPACE. A home office intervention.</h2>
+      <div class="two-col-text">
+        <p>This week, although exhausting and challenging at times, pushed me once again. Not only in regards to actually making something and getting into prototyping but also in regards to the cognitive knots of being stuck in my current project. I was struggling to connect dwelling practices research to actual design intervention. In this Cognitive Orgies session I felt like I was finally able to build a bridge from theory to practice. It forced me to stop overthinking and get into the making.</p>
+        <p>I had been thinking about methods to collect data for the base and justification of my project. Interviews were my preferred option. Using voice in the intervention supports the research subject and hypothesis: voice is intimate, embodied and temporal. This directly informs my main research methodology: I'm now committed to voice-based spatial interviews as my primary method — not surveys, not observation, but asking people to verbally describe how they make home when permanence is unavailable, and treating those descriptions as legitimate spatial knowledge. For this I need to create conditions — be it material, spatial or relational — that enable vulnerable knowledge to emerge. The methodology requires designing the context, not just the questions.</p>
+        <p>The textile canopy mediates the conversation. Not only as an interface but a literal safe space to host the exchange of intimate and private information such as living habits and rituals. People speak differently inside. When people entered the canopy and the curtain closed, the most common sentence was "Oh I love this, I could be anywhere." So the canopy not only shields and protects — it also expands the mind for imagination. For transporting oneself to other worlds and spaces. Like we did as children, building tents and telling stories about imaginative worlds. The canopy is not just about gathering data. It is creating a relationship.</p>
+        <p>Using an LLM to process voice into spatial data raised tensions for the ethical grounding of my project. I critique platform housing for treating living forms as data — and then I turn lived dwelling experiences into data? But the difference is, platforms extract data to optimise and profit. Our intervention extracts data to represent and protect. This discussion within the team taught me that using computational tools is not inherently extractive. It depends on the purpose, the power dynamics and transparency, and what happens to the data.</p>
+        <p>The canopy is explicitly temporary. It just creates a brief, shielded space to recognise what's been normalised. In the beginning I thought this would limit the value of the design. Eventually I realised that sometimes the intervention is the temporary refuge. It honours intimacy, temporariness and resistance to standardisation, as well as being heavily context-dependent — aligning perfectly with my research ambitions.</p>
+        <p>I enjoyed teaming up in a pair. Working individually would let me hide in the complexity of theory. Collaborating forced me to prioritise clarity.</p>
+      </div>
+    </section>
+
+    <!-- DESCRIPTION -->
+    <section class="content-section" id="description">
+      <span class="section-label">Description</span>
+      <div class="essay-text">
+        <p>Safe Space came out of a question I keep returning to in my research: how do we study homemaking when permanence is structurally unavailable — without turning survival strategies into data, or designing tools that make precarity more tolerable rather than visible?</p>
+        <p>The home office is the clearest site of this contradiction right now. We work from home. We are surveilled at work. The line between the two has collapsed. The space that was supposed to be private has become the most monitored room in the house.</p>
+        <p>Together with Armin, I built a canopy — a soft, handmade shelter suspended in that space. Large enough for one person and a chair. Inside, a projector casts AI-generated images onto the fabric walls, driven by what you say. A microphone records everything. The more you speak, the more your image breaks apart.</p>
+        <p>The canopy doesn't solve surveillance. It makes you feel it. That's the methodology: design a space where honest conversation becomes possible, and let the contradiction perform itself.</p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="content-section" id="how-it-works">
+      <span class="section-label">How It Works</span>
+      <div class="split-body">
+        <div class="essay-text">
+          <p>When a participant enters the canopy, they find a phone on a small table. The screen greets them: "You're in a private space. Speak freely. Your voice will be heard, but your image is shielded. Answer each question aloud."</p>
+          <p>They speak their answers. As they talk, two things happen simultaneously. Their words are transcribed by AI and used as a prompt to generate a room image, projected live onto the canopy fabric around them. Describe a forest cabin: a forest cabin appears. Describe your actual desk: that appears too.</p>
+          <p>At the same time, the volume and pace of their voice controls the pixelation of a live camera feed. The more they speak, the more their image breaks apart. The visual metaphor matches the conceptual one — the more you reveal, the more you disappear.</p>
+          <p>Six questions guide the experience. They start warm — "what does your ideal workspace look like?" — and move toward colder, more transactional territory. The final question: "If your employer would pay for your apartment, would you trade your privacy for financial security?"</p>
+          <p>Then: "You may exit. The canopy provided temporary refuge. Thank you." The participant leaves. The monitored workspace is still there.</p>
+        </div>
+        <figure class="section-figure">
+          <img
+            src={`${base}images/cognitive-orgies/canopy-pixelated.jpg`}
+            alt="Pixelated camera feed"
+            loading="lazy"
+          />
+          <figcaption>Live pixelation driven by voice volume — the more you speak, the more you disappear.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- SYSTEM -->
+    <section class="content-section" id="system">
+      <span class="section-label">System</span>
+      <div class="split-body">
+        <div class="essay-text">
+          <p>The system has three components working together.</p>
+          <p>1 — The Experience: a smartphone running a Typeform that guides the participant through the experience and triggers the audio recording and visual projection.</p>
+          <p>2 — The Canopy: physical fabric structure, the projection surface and shelter.</p>
+          <p>3 — The Projection: a live composite of AI-generated room images and a pixelated webcam feed, driven by the participant's voice.</p>
+          <p>Inside TouchDesigner, an Audio Device In CHOP captures the live audio stream. An Audio Analyze CHOP set to RMS measures the volume level and outputs a normalized 0–1 value, exported directly as a parameter into a Pixelate TOP applied to the live video feed. The smartphone connects to the laptop via the Camo app, presenting it as both a webcam and audio input over USB.</p>
+        </div>
+        <figure class="section-figure">
+          <img
+            src={`${base}images/cognitive-orgies/canopy-system-diagram.jpg`}
+            alt="Systems architecture diagram"
+            loading="lazy"
+          />
+          <figcaption>Systems architecture diagram — audio, video and AI projection pipeline.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="content-section" id="process">
+      <span class="section-label">Process</span>
+      <div class="split-body">
+        <div class="essay-text">
+          <p>The process evolved across three interconnected design pillars: entering a physical space, interacting with the space and its devices, and using projection to transform the spatial experience.</p>
+          <p>Day 1 — Initial exploration focused on audio dynamics as input. We brainstormed what attributes — volume, rhythm, frequency — we could use beyond literal speech. The initial idea was speech-to-text-to-3D world modelling.</p>
+          <p>Day 2 — First testing with textile projection opened new possibilities for how light, texture and space could combine. The first prototype revealed an immediate spatial constraint: we needed a larger projection space, so the circular frame became a square.</p>
+          <p>Day 3 — User testing revealed participants were distracted by the tablet interface, which also blocked the projection. We replaced the tablet with a phone, incorporated spoken words as primary interaction, and simplified visual output to reduce cognitive load.</p>
+          <p>Day 4 — A chair was introduced to support the projection level. The laptop moved inside for presentation purposes, as the hardware could not simultaneously operate AI, video and audio through Camo.</p>
+        </div>
+        <figure class="section-figure">
+          <img
+            src={`${base}images/cognitive-orgies/canopy-ideation.jpg`}
+            alt="First ideation sketch"
+            loading="lazy"
+          />
+          <figcaption>First ideation scan — systems setup and experience flow.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- BUILD THE CANOPY -->
+    <section class="content-section" id="build">
+      <span class="section-label">Build the Canopy</span>
+      <div class="split-body">
+        <div class="essay-text">
+          <p>This canopy is designed to be made by anyone. No matching fabrics required. Imperfection is the point.</p>
+          <p>Gather mismatched fabrics — old curtains, bedsheets, upholstery offcuts, whatever you have. Patchwork is not just acceptable here, it's intentional. The canopy should look handmade and lived-in.</p>
+          <p>Cut 4 panels at 1.5m × 3m each and 1 top square at 1m × 1m. Add 1cm seam allowance on all edges. Join the panels, attach the top square with right sides together. Sew 8 fabric ties from leftover strips — 4 at each corner, 4 at each midpoint — to lash the canopy to the internal frame.</p>
+          <p>Build the frame from 4 × 1m pieces of wood dowel, plastic pipe or broom handle, joined into a square with screws, cable ties or duct tape. Thread the ties through the frame and knot firmly. Cut a small hole in the centre of the top square, reinforce the edge, and thread your hanging rope through.</p>
+          <p>Find a ceiling hook or overhead beam. Pull the rope. Adjust until it hangs evenly. Then: get in. Sit down. You're home. ♥</p>
+        </div>
+        <figure class="section-figure">
+          <img
+            src={`${base}images/cognitive-orgies/canopy-diy.jpg`}
+            alt="DIY canopy instructions"
+            loading="lazy"
+          />
+          <figcaption>DIY instructions — designed to be built by anyone, from any materials.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ETHICS -->
+    <section class="content-section" id="ethics">
+      <span class="section-label">Ethics & Limitations</span>
+      <div class="essay-text">
+        <p>This project is not a solution. It doesn't protect anyone from actual surveillance. It can't scale. It is least accessible to those who are most surveilled — which is the most honest thing I can say about it.</p>
+        <p>What it refuses to do is make precarity more tolerable. It doesn't offer productivity tips or privacy hacks. It offers a few minutes of shelter and a question you probably already know the answer to.</p>
+        <p>The methodology itself is the intervention. Designing research tools — the canopy, voice-based spatial interviews — that counter algorithmic standardisation by prioritising narrative over metrics, care over optimisation, and intimate knowledge over extractive data collection.</p>
+        <p>These methods are as temporary and portable as the dwelling practices they study. Both research and home must adapt to conditions of ongoing impermanence. The canopy comes down. The surveillance continues. That tension is the work.</p>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="content-section" id="gallery">
+      <span class="section-label">Images</span>
+      <div class="gallery-scroll-wrapper">
+        <div class="gallery-track">
+          <figure class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src={`${base}images/cognitive-orgies/canopy-final-setup.jpeg`} alt="Final setup" loading="lazy" />
+            </div>
+            <figcaption>Final setup for installation testing.</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src={`${base}images/cognitive-orgies/canopy-prototype-1.jpeg`} alt="First prototype" loading="lazy" />
+            </div>
+            <figcaption>First prototype of the canopy.</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src={`${base}images/cognitive-orgies/canopy-sewing.jpg`} alt="Sewing the panels" loading="lazy" />
+            </div>
+            <figcaption>Sewing the panels together.</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src={`${base}images/cognitive-orgies/canopy-pixelated2.jpg.png`} alt="Pixelated feed" loading="lazy" />
+            </div>
+            <figcaption>Pixelated camera feed — voice-driven visual metaphor.</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <div class="gallery-img-wrap">
+              <img src={`${base}images/cognitive-orgies/canopy-system-diagram.jpg`} alt="System diagram" loading="lazy" />
+            </div>
+            <figcaption>Systems architecture.</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-hint">
+          <span>Drag to scroll</span>
+          <span class="hint-arrow">→</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MORE PROJECTS -->
+    <div class="more-projects">
+      <div class="more-label">More Projects</div>
+      <div class="more-grid">
+        <a class="more-card" href="#">
+          <div class="more-img"></div>
+          <div class="more-year">2025</div>
+          <div class="more-title">Identity Prosthesis</div>
+        </a>
+        <a class="more-card" href="#">
+          <div class="more-img"></div>
+          <div class="more-year">2024</div>
+          <div class="more-title">Espejito Espejito — Mayrit Bienal 2024</div>
+        </a>
+        <a class="more-card" href="#">
+          <div class="more-img"></div>
+          <div class="more-year">2024</div>
+          <div class="more-title">Revisiting Tithonus — Medialab Matadero</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
 </Layout>
 
 <style>
-  /* ── PAGE GRID ── */
-  .project-page {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    min-height: calc(100vh - var(--header-height));
-    align-items: start;
-    overflow: hidden;
-  }
+  .page { padding-top: 4.4rem; }
 
-  /* ── LEFT STICKY PANEL ── */
-  .project-meta {
-    position: sticky;
-    top: var(--header-height);
-    height: calc(100vh - var(--header-height));
-    border-right: 1px solid var(--black);
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 2.5rem 1.5rem 2.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    animation: fadeUp 0.5s 0.1s ease both;
-    box-sizing: border-box;
-  }
-
-  .meta-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    height: 100%;
-    min-width: 0;
-  }
-
-  .back-link {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray);
-    text-decoration: none;
+  /* BACK */
+  .back {
+    padding: 1.4rem 2.6rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: color 0.15s;
-    white-space: nowrap;
-  }
-  .back-link:hover { color: var(--accent); }
-
-  .meta-title-block {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-
-  .meta-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    word-break: break-word;
-  }
-
-  .meta-divider {
-    width: 2rem;
-    height: 1px;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .meta-list {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.45rem 1rem;
-    align-items: baseline;
-    min-width: 0;
-  }
-
-  .meta-list dt {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray);
-    white-space: nowrap;
-  }
-
-  .meta-list dd {
-    font-size: 0.8rem;
-    font-weight: 400;
-    margin: 0;
-    word-break: break-word;
-    min-width: 0;
-  }
-
-  .meta-index { margin-top: auto; }
-
-  .index-label {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
+    font-size: 0.65rem;
+    font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--gray);
-    display: block;
+    color: var(--muted);
+  }
+  .back a { color: var(--muted); transition: color 0.15s; }
+  .back a:hover { color: var(--ink); }
+  .back .sep { color: var(--muted); }
+  .back span:last-child { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+  }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* PROJ HEADER */
+  .proj-header {
+    padding: 2.6rem 2.6rem 0;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .proj-category {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.85rem;
+  }
+
+  h1.proj-title {
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    line-height: 1.1;
     margin-bottom: 0.6rem;
   }
 
-  .index-list {
-    list-style: none;
+  .proj-subtitle {
+    font-size: 0.94rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .proj-meta {
+    padding-top: 0.25rem;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 1rem;
   }
 
-  .index-list a {
-    font-size: 0.78rem;
-    color: var(--black);
-    text-decoration: none;
-    transition: color 0.15s;
+  .meta-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
   }
-  .index-list a:hover { color: var(--accent); }
 
-  .meta-external {
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--light-gray);
+  .meta-value {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--ink);
   }
 
   .external-link {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.3rem;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--black);
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--ink);
     text-decoration: none;
     transition: color 0.15s;
-    line-height: 1.5;
-    word-break: break-word;
   }
-  .external-link:hover { color: var(--accent); }
+  .external-link:hover { color: var(--red); }
 
-  .external-arrow {
-    font-size: 0.85rem;
-    transition: transform 0.15s;
-    flex-shrink: 0;
-  }
-  .external-link:hover .external-arrow { transform: translate(2px, -2px); }
-
-  /* ── RIGHT CONTENT ── */
-  .project-content {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    overflow: hidden;
-  }
-
-  /* ── HERO IMAGE ── */
-  .hero-image-block {
-    width: 100%;
-    border-bottom: 1px solid var(--black);
-    animation: fadeUp 0.5s 0.15s ease both;
-    overflow: hidden;
-    /* Fixed height landscape crop */
-    height: 65vh;
-  }
-
-  .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Centre crop — adjust vertical position here */
-    object-position: center center;
-    display: block;
-  }
-
-  /* ── CONTENT SECTIONS ── */
+  /* CONTENT SECTIONS */
   .content-section {
-    padding: 3rem 3.5rem;
-    border-bottom: 1px solid var(--light-gray);
+    padding: 3rem 2.6rem;
+    border-top: 1px solid #e2e2e2;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    animation: fadeUp 0.5s 0.2s ease both;
-    min-width: 0;
-    overflow: hidden;
+    margin-top: 2.6rem;
   }
 
   .section-label {
-    font-family: var(--font-mono);
     font-size: 0.62rem;
+    font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--gray);
+    color: var(--muted);
   }
 
-  /* Large section heading for reflection */
   .section-title {
     font-size: clamp(1.4rem, 3vw, 2.2rem);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     max-width: 700px;
   }
 
-  /* ── TWO COLUMN TEXT (like reference) ── */
+  /* TWO-COLUMN TEXT */
   .two-col-text {
     column-count: 2;
     column-gap: 3rem;
-    column-rule: 1px solid var(--light-gray);
+    column-rule: 1px solid #e2e2e2;
     text-align: justify;
     hyphens: auto;
   }
-
   .two-col-text p {
-    font-size: 0.95rem;
-    font-weight: 400;
+    font-size: 0.94rem;
+    font-weight: 300;
     line-height: 1.75;
-    color: var(--black);
+    color: var(--ink);
     margin-bottom: 1rem;
     break-inside: avoid;
-    overflow-wrap: break-word;
   }
+  .two-col-text p:last-child { margin-bottom: 0; }
 
-  .two-col-text p:last-child {
-    margin-bottom: 0;
-  }
-
-  /* ── SPLIT: text left, image right ── */
+  /* SPLIT: text left, figure right */
   .split-body {
     display: grid;
     grid-template-columns: 1fr 340px;
     gap: 2.5rem;
     align-items: start;
-    min-width: 0;
-    overflow: hidden;
+  }
+
+  .essay-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 640px;
+  }
+  .essay-text p {
+    font-size: 0.94rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink);
   }
 
   .section-figure {
@@ -499,55 +419,30 @@ const base = import.meta.env.BASE_URL;
     gap: 0.75rem;
     position: sticky;
     top: calc(var(--header-height) + 2rem);
-    min-width: 0;
-    overflow: hidden;
   }
-
   .section-figure img {
     width: 100%;
-    max-width: 100%;
     height: auto;
     max-height: 420px;
     object-fit: contain;
     object-position: top center;
     display: block;
-    background: var(--light-gray);
+    background: #e6e4df;
   }
-
   .section-figure figcaption {
-    font-family: var(--font-mono);
     font-size: 0.62rem;
+    font-weight: 300;
     letter-spacing: 0.08em;
-    color: var(--gray);
+    color: var(--muted);
     line-height: 1.5;
   }
 
-  /* ── SINGLE COLUMN ESSAY ── */
-  .essay-text {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    min-width: 0;
-    max-width: 640px;
-  }
-
-  .essay-text p {
-    font-size: 0.95rem;
-    font-weight: 400;
-    line-height: 1.75;
-    color: var(--black);
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-
-  /* ── GALLERY ── */
+  /* GALLERY */
   .gallery-scroll-wrapper {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    overflow: hidden;
   }
-
   .gallery-track {
     display: flex;
     gap: 1rem;
@@ -558,8 +453,8 @@ const base = import.meta.env.BASE_URL;
     cursor: grab;
   }
   .gallery-track:active { cursor: grabbing; }
-  .gallery-track::-webkit-scrollbar { height: 1px; background: var(--light-gray); }
-  .gallery-track::-webkit-scrollbar-thumb { background: var(--black); }
+  .gallery-track::-webkit-scrollbar { height: 1px; background: #e2e2e2; }
+  .gallery-track::-webkit-scrollbar-thumb { background: var(--ink); }
 
   .gallery-item {
     flex-shrink: 0;
@@ -569,14 +464,12 @@ const base = import.meta.env.BASE_URL;
     gap: 0.6rem;
     width: 280px;
   }
-
   .gallery-img-wrap {
     width: 100%;
-    aspect-ratio: 3 / 4;
-    background: var(--light-gray);
+    aspect-ratio: 3/4;
+    background: #e6e4df;
     overflow: hidden;
   }
-
   .gallery-img-wrap img {
     width: 100%;
     height: 100%;
@@ -585,79 +478,93 @@ const base = import.meta.env.BASE_URL;
     transition: transform 0.4s ease;
   }
   .gallery-item:hover .gallery-img-wrap img { transform: scale(1.02); }
-
   .gallery-item figcaption {
-    font-family: var(--font-mono);
     font-size: 0.62rem;
+    font-weight: 300;
     letter-spacing: 0.08em;
-    color: var(--gray);
+    color: var(--muted);
     line-height: 1.4;
   }
 
-  .gallery-scroll-hint {
+  .gallery-hint {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-family: var(--font-mono);
     font-size: 0.62rem;
+    font-weight: 300;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gray);
+    color: var(--muted);
     align-self: flex-end;
   }
-
-  .scroll-arrow { animation: nudge 1.5s ease-in-out infinite; }
-
+  .hint-arrow { animation: nudge 1.5s ease-in-out infinite; }
   @keyframes nudge {
     0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(5px); }
+    50%       { transform: translateX(5px); }
   }
 
-  /* ── NEXT PROJECT ── */
-  .next-project {
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--black);
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+  /* MORE PROJECTS */
+  .more-projects {
+    margin-top: 5rem;
+    padding: 2.4rem 2.6rem 5rem;
+    border-top: 1px solid #e2e2e2;
   }
-
-  .next-label {
-    font-family: var(--font-mono);
+  .more-label {
     font-size: 0.62rem;
-    letter-spacing: 0.15em;
+    font-weight: 500;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--gray);
+    color: var(--muted);
+    margin-bottom: 1.6rem;
   }
-
-  .next-link {
-    font-size: clamp(1.2rem, 2.5vw, 2rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--black);
+  .more-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.4rem;
+  }
+  .more-card {
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: color 0.15s;
+    color: var(--ink);
+    display: block;
   }
-  .next-link:hover { color: var(--accent); }
-  .next-arrow { transition: transform 0.2s ease; }
-  .next-link:hover .next-arrow { transform: translateX(6px); }
+  .more-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #e6e4df;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+  }
+  .more-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+  .more-card:hover .more-img img { transform: scale(1.04); }
+  .more-year {
+    font-size: 0.62rem;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+  .more-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
 
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVE */
   @media (max-width: 960px) {
-    .project-page { grid-template-columns: 1fr; }
-    .project-meta {
-      position: relative;
-      height: auto;
-      border-right: none;
-      border-bottom: 1px solid var(--black);
-    }
+    .proj-header { grid-template-columns: 1fr; gap: 2rem; }
     .split-body { grid-template-columns: 1fr; }
     .section-figure { position: relative; top: auto; }
-    .hero-image-block { height: 50vw; }
     .two-col-text { column-count: 1; }
+    .more-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .more-grid { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -666,14 +573,14 @@ const base = import.meta.env.BASE_URL;
     let isDown = false;
     let startX: number;
     let scrollLeft: number;
-    track.addEventListener('mousedown', (e) => {
+    track.addEventListener('mousedown', e => {
       isDown = true;
       startX = e.pageX - track.offsetLeft;
       scrollLeft = track.scrollLeft;
     });
     track.addEventListener('mouseleave', () => isDown = false);
-    track.addEventListener('mouseup', () => isDown = false);
-    track.addEventListener('mousemove', (e) => {
+    track.addEventListener('mouseup',    () => isDown = false);
+    track.addEventListener('mousemove', e => {
       if (!isDown) return;
       e.preventDefault();
       track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;

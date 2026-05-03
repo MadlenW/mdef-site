@@ -1,10 +1,170 @@
 ---
+import Layout from '../../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
 ---
-<!doctype html>
-<html>
-  <head>
-    <meta http-equiv="refresh" content={`0; url=${base}`} />
-  </head>
-  <body></body>
-</html>
+
+<Layout title="Projects — Madlen von Wulffen" description="Projects">
+  <div class="page">
+
+    <div class="filter-row">
+      <button class="pill active" data-filter="all">All</button>
+      <button class="pill" data-filter="installation">Installation</button>
+      <button class="pill" data-filter="research">Research</button>
+      <button class="pill" data-filter="other">Other</button>
+    </div>
+
+    <div class="proj-grid" id="proj-grid">
+
+      <a class="proj-card" href={`${base}projects/cognitive-orgies`} data-cat="installation">
+        <div class="proj-img">
+          <img src={`${base}images/cognitive-orgies/canopy-final-setup.jpeg`} alt="Safe Space — Cognitive Orgies" />
+          <span class="tag">Installation</span>
+        </div>
+        <div class="proj-year">2025</div>
+        <div class="proj-title">Safe Space — Cognitive Orgies</div>
+        <div class="proj-sub">An immersive installation exploring collective memory and spatial intimacy.</div>
+      </a>
+
+      <a class="proj-card" href="#" data-cat="other">
+        <div class="proj-img">
+          <span class="tag">Exhibition</span>
+        </div>
+        <div class="proj-year">2025</div>
+        <div class="proj-title">Identity Prosthesis</div>
+        <div class="proj-sub">An exhibition examining extensions of self through objects and architecture.</div>
+      </a>
+
+      <a class="proj-card" href="#" data-cat="other">
+        <div class="proj-img">
+          <span class="tag">Curation</span>
+        </div>
+        <div class="proj-year">2024</div>
+        <div class="proj-title">Espejito Espejito — Mayrit Bienal 2024</div>
+        <div class="proj-sub">Curatorial project for the Mayrit Bienal, Madrid.</div>
+      </a>
+
+      <a class="proj-card" href="#" data-cat="research">
+        <div class="proj-img">
+          <span class="tag">Research</span>
+        </div>
+        <div class="proj-year">2024</div>
+        <div class="proj-title">Revisiting Tithonus — Medialab Matadero</div>
+        <div class="proj-sub">A research project on co-habitation, belonging, and urban sociology.</div>
+      </a>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    padding: 6.5rem 2.6rem 5rem;
+  }
+
+  .filter-row {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 2.6rem;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    font-family: var(--font);
+    font-size: 7px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border: 0.5px solid #ccc;
+    border-radius: 2px;
+    background: transparent;
+    color: #aaa;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+  }
+  .pill:hover { color: var(--ink); border-color: var(--ink); }
+  .pill.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.2rem 1.6rem;
+  }
+
+  .proj-card {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+  }
+
+  .proj-img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    background: #e6e4df;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 0.85rem;
+  }
+
+  .proj-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .proj-card:hover .proj-img img { transform: scale(1.03); }
+
+  .tag {
+    position: absolute;
+    top: 0.85rem; right: 0.85rem;
+    font-size: 0.53rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: #fff;
+    color: var(--ink);
+    padding: 0.18rem 0.5rem;
+  }
+
+  .proj-year {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.25rem;
+  }
+
+  .proj-title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.25;
+    margin-bottom: 0.35rem;
+  }
+
+  .proj-sub {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.55;
+  }
+</style>
+
+<script>
+  const pills = document.querySelectorAll('.pill');
+  const cards = document.querySelectorAll('.proj-card');
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const filter = (pill as HTMLElement).dataset.filter;
+      cards.forEach(card => {
+        (card as HTMLElement).style.display =
+          filter === 'all' || (card as HTMLElement).dataset.cat === filter ? 'block' : 'none';
+      });
+    });
+  });
+</script>
