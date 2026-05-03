@@ -2,7 +2,23 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
-  <p>© {year} Madlen von Wulffen</p>
-  <a href="mailto:hello@madlenvonwulffen.com">hello@madlenvonwulffen.com</a>
+<footer>
+  <span class="footer-copy">© {year} Madlen von Wulffen</span>
 </footer>
+
+<style>
+  footer {
+    border-top: 0.5px solid #e2e2e2;
+    padding: 1.4rem 2.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: #bbb;
+    letter-spacing: 0.06em;
+  }
+</style>
