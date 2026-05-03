@@ -10,18 +10,7 @@ const base = import.meta.env.BASE_URL;
       <div class="photo-wrap">
         <img src={`${base}images/MnonameMoun.png`} alt="Madlen von Wulffen" />
       </div>
-      <div class="about-word">
-        <svg viewBox="0 0 1000 185" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <text
-            x="0" y="175"
-            font-family="'Teko', sans-serif"
-            font-weight="700"
-            font-size="235"
-            fill="#141414"
-            textLength="1000"
-            lengthAdjust="spacingAndGlyphs">ABOUT</text>
-        </svg>
-      </div>
+      <div class="about-word">ABOUT</div>
     </div>
 
     <div class="about-body">
@@ -59,7 +48,7 @@ const base = import.meta.env.BASE_URL;
 </Layout>
 
 <style>
-  .page { padding-top: 4.4rem; }
+  .page { padding-top: 2.8rem; }
 
   /* HERO */
   .hero {
@@ -72,9 +61,14 @@ const base = import.meta.env.BASE_URL;
     position: absolute;
     bottom: 0; left: 0; right: 0;
     z-index: 1;
-    line-height: 1;
+    font-family: 'Teko', sans-serif;
+    font-weight: 700;
+    font-size: clamp(120px, 18vw, 220px);
+    line-height: 0.85;
+    letter-spacing: -0.01em;
+    color: #141414;
+    white-space: nowrap;
   }
-  .about-word svg { display: block; width: 100%; height: auto; }
 
   .photo-wrap {
     position: absolute;

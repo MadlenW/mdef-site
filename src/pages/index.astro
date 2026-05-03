@@ -7,18 +7,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="description-block">
       <p>This is an exploration of the home in the realms of <u>ecological thinking</u>, <u>circular cities</u>, <u>systemic innovation</u>, <u>future living</u> and <u>social transformation</u>. This is a space for experimentation and imagination on how we inhabit our homes.</p>
     </div>
-    <div class="home-wordmark">
-      <svg viewBox="0 0 1000 185" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <text
-          x="0" y="175"
-          font-family="'Teko', sans-serif"
-          font-weight="700"
-          font-size="235"
-          fill="#141414"
-          textLength="1000"
-          lengthAdjust="spacingAndGlyphs">HOME</text>
-      </svg>
-    </div>
+    <div class="home-wordmark">HOME</div>
   </div>
 </Layout>
 
@@ -28,7 +17,7 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 4.4rem;
+    padding-top: 2.8rem;
   }
 
   .description-block {
@@ -52,14 +41,16 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .home-wordmark {
+    font-family: 'Teko', sans-serif;
+    font-weight: 700;
+    font-size: clamp(120px, 18vw, 220px);
+    line-height: 0.85;
+    letter-spacing: -0.01em;
+    color: #141414;
     width: 100%;
-    overflow: hidden;
-    line-height: 1;
-  }
-
-  .home-wordmark svg {
-    display: block;
-    width: 100%;
-    height: auto;
+    text-align: left;
+    padding: 0;
+    white-space: nowrap;
+    transform: scaleX(1);
   }
 </style>
