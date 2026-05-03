@@ -52,7 +52,7 @@ const base = import.meta.env.BASE_URL;
   .hero {
     position: relative;
     height: 480px;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .photo-wrap {
@@ -73,10 +73,10 @@ const base = import.meta.env.BASE_URL;
 
   .about-word {
     position: absolute;
-    bottom: -0.45em;
+    bottom: 0;
     left: 0;
     right: 0;
-    z-index: 3;
+    z-index: 1;
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     font-weight: 900;
     font-size: 19vw;
@@ -87,6 +87,9 @@ const base = import.meta.env.BASE_URL;
 
   /* BODY */
   .about-body {
+    position: relative;
+    z-index: 5;
+    background: #fff;
     padding: 3.5rem 2.6rem 5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -47,9 +47,10 @@ import Layout from '../layouts/Layout.astro';
     line-height: 0.85;
     color: #141414;
     white-space: nowrap;
-    overflow: hidden;
     display: block;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-1 * var(--page-padding, 0px));
     letter-spacing: -0.02em;
+    overflow: hidden;
   }
 </style>
