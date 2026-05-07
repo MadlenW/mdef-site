@@ -48,45 +48,34 @@ const base = import.meta.env.BASE_URL;
 <style>
   .page { padding-top: 2.8rem; }
 
-  /* HERO */
   .hero {
     position: relative;
-    height: 480px;
-    overflow: hidden;
   }
 
   .photo-wrap {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 42%;
-    height: 100%;
-    z-index: 1;
+    margin-left: 0;
   }
   .photo-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    height: auto;
     display: block;
   }
 
   .about-word {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    margin-top: -0.5em;
+    position: relative;
+    margin-top: -0.18em;
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     font-weight: 900;
-    font-size: 19vw;
-    line-height: 0.85;
+    font-size: 29.5vw;
+    line-height: 0.82;
     color: var(--ink);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 2;
   }
 
-  /* BODY */
   .about-body {
     position: relative;
     z-index: 5;
