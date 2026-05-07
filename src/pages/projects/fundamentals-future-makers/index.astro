@@ -1,0 +1,198 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Fundamentals for Future Makers · Madlen von Wulffen"
+  description="Laser cutting, CNC milling, 3D printing, silicone molds and biomaterials — learning tools as world-building."
+>
+  <div class="proj-layout">
+
+    <div class="col-images">
+      <figure>
+        <img src={`${base}images/ffm-lasercut-panels.jpeg`} alt="Laser cut test panels" />
+        <figcaption>Laser-cut panel tests: patterning, engraving, and assembly tolerances.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/ffm-mold-cups.jpeg`} alt="3D printed lego block" />
+        <figcaption>3D printed lego block — designed as a candle holder and stackable piece.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/ffm-mold-top.jpeg`} alt="Silicone mold" />
+        <figcaption>Silicone mold — replication as a design strategy.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/ffm-biomaterial-results.jpeg`} alt="Biomaterial casting results" />
+        <figcaption>Biomaterial casting tests — each cast a record of a specific batch, time, and condition.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/ffm-diagram.png`} alt="Technical diagram" />
+        <figcaption>Exploded diagram of the making process.</figcaption>
+      </figure>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+        <div class="proj-category">Fundamentals for Future Makers · 2025</div>
+        <h1>Learning Tools as World-Building</h1>
+        <p class="lede">Laser cutting, CNC milling, 3D printing, silicone molds, and biomaterials — approached not as isolated skills but as a connected pipeline from design to material experimentation.</p>
+
+        <p>This course introduced a set of foundational fabrication workflows. Rather than treating them as isolated skills, I approached them as a connected pipeline: design → prototyping → replication → material experimentation.</p>
+        <p>What matters to me is not just "how to make," but what these techniques enable conceptually: modular systems, repeatable parts, distributed production, and material storytelling. Especially through molds and bio-casting, the work starts to shift from object-design to system-design — where interaction, maintenance, and material behaviour become part of the design narrative.</p>
+
+        <h2>Laser Cutting</h2>
+        <p>Laser cutting taught me speed and precision: how a small change in vector geometry immediately affects assembly, tolerance, and visual language. The panel tests became a way to explore surface identity while also learning the practical constraints of kerf, burn marks, and fit.</p>
+
+        <h2>CNC Milling</h2>
+        <p>CNC milling introduced a different temporal and material logic. Instead of instant results, the process required planning toolpaths, understanding material resistance, and anticipating errors before they happen. What interested me most was how CNC sits between craft and automation: every mistake is amplified, but every successful cut produces a level of precision and material presence that feels structural rather than graphic.</p>
+
+        <h2>3D Printing</h2>
+        <p>3D printing shifted my thinking to "designing the void": chamfers, draft angles, wall thickness, and how parts release from a mold. The printed block with four cavities acted as a master model for silicone casting, where the accuracy of the print directly shaped the quality of the mold.</p>
+
+        <h2>Silicone Mold Making</h2>
+        <p>Mold making is where precision meets process: bubbles, curing time, mixing ratios, and surface finish. It also introduced the idea of scaling up production. Once a mold works, the object becomes a series, not a singular artifact.</p>
+
+        <h2>Biomaterials</h2>
+        <p>Casting biomaterials introduced a different kind of control — less about perfect replication, more about material expression. The results vary in translucency, brittleness, and surface texture depending on the mix and inclusions. Instead of treating this as error, I'm interested in how variation can carry meaning: each cast becomes a record of a specific batch, time, and condition.</p>
+
+        <h2>Technical Drawing</h2>
+        <p>Technical drawings help me translate between concept and fabrication — they are both instruction and storyboard for how an object comes into being. This diagram captures the assembly logic of the system: a top plate aligned to a base structure with repeated circular features.</p>
+
+        <h2>Link to Broader Practice</h2>
+        <p>These workflows feel directly relevant to my practice because they support modular thinking: repeatable units, distributed making, and material narratives. Laser cutting gives fast structural language, 3D printing enables custom masters, and molding opens up series-making — but biomaterials add a critical layer: the possibility of designing with decay, repair, and ecological behaviour rather than permanence.</p>
+
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-key">Course</span><span class="meta-val">Fundamentals for Future Makers</span></div>
+          <div class="meta-row"><span class="meta-key">Focus</span><span class="meta-val">Tools, materials & fabrication literacy</span></div>
+          <div class="meta-row"><span class="meta-key">Technologies</span><span class="meta-val">Laser cutting, CNC milling, 3D printing, silicone molds, biomaterials</span></div>
+        </div>
+
+        <a class="back-link" href={`${base}projects`}>← Back to Projects</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
+  .col-images {
+    height: 100%;
+    overflow-y: scroll;
+    border-right: 0.5px solid #e0e0e0;
+  }
+  figure {
+    margin: 0;
+    border-bottom: 0.5px solid #e0e0e0;
+  }
+  figure img {
+    width: 100%;
+    display: block;
+  }
+  figcaption {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+    padding: 0.7rem 1.4rem 1rem;
+    border-top: 0.5px solid #e0e0e0;
+  }
+  .col-text {
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .text-inner {
+    padding: 3rem 2.2rem 4rem;
+  }
+  .proj-category {
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
+    text-transform: none;
+  }
+  .lede {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    border-bottom: 0.5px solid #e0e0e0;
+    padding-bottom: 1.4rem;
+  }
+  .col-text p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 1em;
+  }
+  h2 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 2rem 0 0.8rem;
+  }
+  .meta-table {
+    margin-top: 2.4rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .meta-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    font-size: 0.8rem;
+  }
+  .meta-key {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+  .meta-val {
+    font-weight: 300;
+    color: var(--ink);
+  }
+  .meta-val a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 2.4rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--ink); }
+  :global(body:has(.proj-layout) footer) { display: none; }
+  @media (max-width: 860px) {
+    .proj-layout { grid-template-columns: 1fr; height: auto; overflow: visible; }
+    .col-images, .col-text { height: auto; overflow-y: visible; }
+    .col-images { border-right: none; border-bottom: 0.5px solid #e0e0e0; }
+  }
+</style>
