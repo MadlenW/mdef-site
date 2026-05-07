@@ -1,0 +1,174 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Situated Design Practice · Madlen von Wulffen"
+  description="Four postcards written to practitioners met during the Situated Design Practices course."
+>
+  <div class="proj-layout">
+
+    <div class="col-images">
+      <figure>
+        <img src={`${base}images/postcard%201.jpg`} alt="Postcard 1" />
+        <figcaption>Postcard 1.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/postcard%202.jpg`} alt="Postcard 2" />
+        <figcaption>Postcard 2.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/postcard%203.jpg`} alt="Postcard 3" />
+        <figcaption>Postcard 3.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/postcard%204.jpg`} alt="Postcard 4" />
+        <figcaption>Postcard 4.</figcaption>
+      </figure>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+        <div class="proj-category">Design Practice · 2026</div>
+        <h1>Situated Design Practice</h1>
+        <p class="lede">Four postcards written to practitioners met during the Situated Design Practices course — reflecting on their stories and my own creative practice.</p>
+
+        <h2>Four Letters on Practice</h2>
+        <p>I love letters. Especially love letters. I am writing at least one letter or postcard every week to my beloved grandmother, my best friend or my godchild, Camilla.</p>
+        <p>For this, I took the advantage of pursuing my letter writing and created four postcards to the people I was able to meet and listen to during the course "Situated Design Practices" — to reflect on their stories and my own creative practice.</p>
+
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-key">Time</span><span class="meta-val">Feb 17 – 20, 2026</span></div>
+          <div class="meta-row"><span class="meta-key">Context</span><span class="meta-val">Situated Design Practices</span></div>
+          <div class="meta-row"><span class="meta-key">Outcome</span><span class="meta-val">4 Postcards</span></div>
+        </div>
+
+        <a class="back-link" href={`${base}projects`}>← Back to Projects</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
+  .col-images {
+    height: 100%;
+    overflow-y: scroll;
+    border-right: 0.5px solid #e0e0e0;
+  }
+  figure {
+    margin: 0;
+    border-bottom: 0.5px solid #e0e0e0;
+  }
+  figure img {
+    width: 100%;
+    display: block;
+  }
+  figcaption {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+    padding: 0.7rem 1.4rem 1rem;
+    border-top: 0.5px solid #e0e0e0;
+  }
+  .col-text {
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .text-inner {
+    padding: 3rem 2.2rem 4rem;
+  }
+  .proj-category {
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
+    text-transform: none;
+  }
+  .lede {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    border-bottom: 0.5px solid #e0e0e0;
+    padding-bottom: 1.4rem;
+  }
+  .col-text p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 1em;
+  }
+  h2 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 2rem 0 0.8rem;
+  }
+  .meta-table {
+    margin-top: 2.4rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .meta-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    font-size: 0.8rem;
+  }
+  .meta-key {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+  .meta-val {
+    font-weight: 300;
+    color: var(--ink);
+  }
+  .meta-val a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 2.4rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--ink); }
+  :global(body:has(.proj-layout) footer) { display: none; }
+  @media (max-width: 860px) {
+    .proj-layout { grid-template-columns: 1fr; height: auto; overflow: visible; }
+    .col-images, .col-text { height: auto; overflow-y: visible; }
+    .col-images { border-right: none; border-bottom: 0.5px solid #e0e0e0; }
+  }
+</style>

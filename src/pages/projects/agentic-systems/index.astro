@@ -1,0 +1,178 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Agentic Systems + the Myth of Intelligence · Madlen von Wulffen"
+  description="Exploring agentic systems, multi-agent decision-making, and tool-connected LLM workflows through hands-on prototyping."
+>
+  <div class="proj-layout">
+
+    <div class="col-images">
+      <figure>
+        <img src={`${base}images/fortuneteller.jpeg`} alt="AI fortune printed by thermal printer" />
+        <figcaption>AI fortune printed by thermal printer as output from agentic system.</figcaption>
+      </figure>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+        <div class="proj-category">Extended Intelligences II · 2026</div>
+        <h1>Agentic Systems + the Myth of Intelligence</h1>
+        <p class="lede">Exploring agentic AI, multi-agent decision-making, and tool-connected LLM workflows through hands-on prototyping — and questioning the authority we grant to systems that know almost nothing.</p>
+
+        <p>We explored agentic AI as a powerful tool — systems that don't just respond, but act and interact with other systems. What became immediately clear is that this power demands careful design. Questions of security, privacy, and control can't be added later but need to be embedded directly into the design of the system from the start.</p>
+        <p>One very practical insight was how much the quality of output depends on the quality of input. The more specific and intentional a prompt is, the more solid and meaningful the response becomes. Large Language Models are not oracles but mirrors of clarity or confusion. LLMs seem best suited for synthesizing and summarizing complex information, reframing ideas, generating drafts and variations, recognizing patterns, or opening up option spaces. Used this way, they feel less like replacements for thinking and more like amplifiers of it.</p>
+        <p>A new learning for me were multi-agent systems, where different AI agents — prompted as specific personas — negotiate with one another to reach decisions. This can be incredibly powerful, especially for complex scenarios like healthcare or policy-making. At the same time, I'm skeptical. These personas are inevitably based on simplified assumptions and stereotypes: the lawyer, the left-wing politician, the economist. Real people don't think or act in such neat categories.</p>
+        <p>Another important layer is the political economy of AI itself. LLMs are not neutral tools but products that want to retain users, scale usage, and generate value. This makes them fertile ground for echo chambers, subtle persuasion, and dependency — especially when we stop questioning why we are using them in the first place.</p>
+        <p>One concept I found particularly fascinating was Model Context Protocols (MCPs) — systems that allow AI agents to access and interact with external tools. Once an agent can act beyond its own environment, questions of transparency and control become much harder to answer. Who is responsible when something goes wrong?</p>
+        <p>So for the exercise we decided to lean into exactly this — the mysticism that often surrounds AI. We built a fortune teller: a temperature sensor connected to a Pico Pi fed data to an AI agent. Based on your body temperature, the system would "predict" your future. The project wasn't about accuracy but about belief — exposing how easily we grant authority and meaning to outputs that are, in reality, based on almost nothing.</p>
+        <blockquote>„In AI we trust"</blockquote>
+        <p>Not every problem needs AI. In fact, I'd argue that most don't. Perhaps 80% of current use cases are unnecessary. But the remaining 20%, when approached with ethical intention, can be genuinely powerful.</p>
+        <p>Still, I can't help but wonder: will this all last? Or will AI follow the path of so many technologies before it — hyped and eventually forgotten?</p>
+
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-key">Time</span><span class="meta-val">Jan 26 – 30, 2026</span></div>
+          <div class="meta-row"><span class="meta-key">Context</span><span class="meta-val">Extended Intelligences II</span></div>
+          <div class="meta-row"><span class="meta-key">Role</span><span class="meta-val">Concept, research & prototyping</span></div>
+          <div class="meta-row"><span class="meta-key">Outcome</span><span class="meta-val">Fortune Teller prototype — Pico Pi temperature sensor + agentic AI + thermal printer</span></div>
+        </div>
+
+        <a class="back-link" href={`${base}projects`}>← Back to Projects</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
+  .col-images {
+    height: 100%;
+    overflow-y: scroll;
+    border-right: 0.5px solid #e0e0e0;
+  }
+  figure {
+    margin: 0;
+    border-bottom: 0.5px solid #e0e0e0;
+  }
+  figure img {
+    width: 100%;
+    display: block;
+  }
+  figcaption {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+    padding: 0.7rem 1.4rem 1rem;
+    border-top: 0.5px solid #e0e0e0;
+  }
+  .col-text {
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .text-inner {
+    padding: 3rem 2.2rem 4rem;
+  }
+  .proj-category {
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
+    text-transform: none;
+  }
+  .lede {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    border-bottom: 0.5px solid #e0e0e0;
+    padding-bottom: 1.4rem;
+  }
+  .col-text p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 1em;
+  }
+  blockquote {
+    border-left: 2px solid var(--ink);
+    margin: 1.6rem 0;
+    padding: 0.2rem 0 0.2rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  h2 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 2rem 0 0.8rem;
+  }
+  .meta-table {
+    margin-top: 2.4rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .meta-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    font-size: 0.8rem;
+  }
+  .meta-key {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+  .meta-val {
+    font-weight: 300;
+    color: var(--ink);
+  }
+  .meta-val a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 2.4rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--ink); }
+  :global(body:has(.proj-layout) footer) { display: none; }
+  @media (max-width: 860px) {
+    .proj-layout { grid-template-columns: 1fr; height: auto; overflow: visible; }
+    .col-images, .col-text { height: auto; overflow-y: visible; }
+    .col-images { border-right: none; border-bottom: 0.5px solid #e0e0e0; }
+  }
+</style>
