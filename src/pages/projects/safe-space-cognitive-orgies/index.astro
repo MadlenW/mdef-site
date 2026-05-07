@@ -1,0 +1,222 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Safe Space — Cognitive Orgies · Madlen von Wulffen"
+  description="A handmade fabric canopy that makes the surveillance of the home office visible."
+>
+  <div class="proj-layout">
+
+    <div class="col-images">
+      <figure>
+        <img src={`${base}images/cognitive-orgies/canopy-touchdesigner.jpg`} alt="TouchDesigner projection setup" />
+        <figcaption>TouchDesigner projection setup inside the canopy.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/cognitive-orgies/canopy-pixelated.jpg`} alt="Pixelated camera feed" />
+        <figcaption>Live pixelation driven by voice volume — the more you speak, the more you disappear.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/cognitive-orgies/canopy-final-setup.jpeg`} alt="Final setup" />
+        <figcaption>Final setup for installation testing.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/cognitive-orgies/canopy-sewing.jpg`} alt="Sewing the panels" />
+        <figcaption>Sewing the panels together.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/cognitive-orgies/canopy-system-diagram.jpg`} alt="System diagram" />
+        <figcaption>Systems architecture — audio, video and AI projection pipeline.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/cognitive-orgies/canopy-ideation.jpg`} alt="Ideation sketch" />
+        <figcaption>First ideation scan — systems setup and experience flow.</figcaption>
+      </figure>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+        <div class="proj-category">Installation · 2026</div>
+        <h1>Safe Space —<br/>Cognitive Orgies</h1>
+        <p class="lede">A handmade fabric canopy that makes the surveillance of the home office visible. Voice-driven AI projection, live pixelation, and six questions about privacy.</p>
+
+        <p>Safe Space came out of a question I keep returning to in my research: how do we study homemaking when permanence is structurally unavailable — without turning survival strategies into data, or designing tools that make precarity more tolerable rather than visible?</p>
+        <p>The home office is the clearest site of this contradiction right now. We work from home. We are surveilled at work. The line between the two has collapsed. The space that was supposed to be private has become the most monitored room in the house.</p>
+        <p>Together with Armin, I built a canopy — a soft, handmade shelter suspended in that space. Large enough for one person and a chair. Inside, a projector casts AI-generated images onto the fabric walls, driven by what you say. A microphone records everything. The more you speak, the more your image breaks apart.</p>
+        <p>The canopy doesn't solve surveillance. It makes you feel it. That's the methodology: design a space where honest conversation becomes possible, and let the contradiction perform itself.</p>
+
+        <h2>How It Works</h2>
+        <p>When a participant enters the canopy, they find a phone on a small table. They speak their answers. As they talk, their words are transcribed by AI and used to generate a room image, projected live onto the canopy fabric. At the same time, voice volume controls the pixelation of a live camera feed — the more they speak, the more their image breaks apart.</p>
+        <p>Six questions guide the experience. They start warm and move toward colder, more transactional territory. The final question: "If your employer would pay for your apartment, would you trade your privacy for financial security?"</p>
+
+        <h2>System</h2>
+        <p>1 — The Experience: a smartphone running a Typeform that guides the participant and triggers audio recording and visual projection.</p>
+        <p>2 — The Canopy: physical fabric structure, the projection surface and shelter.</p>
+        <p>3 — The Projection: a live composite of AI-generated room images and a pixelated webcam feed, driven by voice.</p>
+        <p>Inside TouchDesigner, an Audio Device In CHOP captures the live audio stream. An Audio Analyze CHOP set to RMS outputs a normalized 0–1 value into a Pixelate TOP applied to the live video feed.</p>
+
+        <h2>Ethics &amp; Limitations</h2>
+        <p>This project is not a solution. It doesn't protect anyone from actual surveillance. It can't scale. It is least accessible to those who are most surveilled.</p>
+        <p>What it refuses to do is make precarity more tolerable. It offers a few minutes of shelter and a question you probably already know the answer to. The canopy comes down. The surveillance continues. That tension is the work.</p>
+
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-key">Year</span><span class="meta-val">2026</span></div>
+          <div class="meta-row"><span class="meta-key">Type</span><span class="meta-val">Installation</span></div>
+          <div class="meta-row"><span class="meta-key">Location</span><span class="meta-val">Barcelona</span></div>
+          <div class="meta-row"><span class="meta-key">With</span><span class="meta-val">Armin Gulbert</span></div>
+          <div class="meta-row"><span class="meta-key">Course</span><span class="meta-val">Cognitive Orgies</span></div>
+          <div class="meta-row"><span class="meta-key">Documentation</span><span class="meta-val"><a href="https://www.hackster.io/safe-dreams/safe-space-a-home-office-intervention-b3486a" target="_blank">Hackster.io ↗</a></span></div>
+        </div>
+
+        <a class="back-link" href={`${base}projects`}>← Back to Projects</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+    height: calc(100vh - 56px);
+    position: sticky;
+    top: 56px;
+    overflow: hidden;
+  }
+
+  /* LEFT: images */
+  .col-images {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+    border-right: 0.5px solid #e0e0e0;
+  }
+
+  figure {
+    margin: 0;
+    border-bottom: 0.5px solid #e0e0e0;
+  }
+
+  figure img {
+    width: 100%;
+    display: block;
+  }
+
+  figcaption {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+    padding: 0.7rem 1.4rem 1rem;
+    border-top: 0.5px solid #e0e0e0;
+  }
+
+  /* RIGHT: text */
+  .col-text {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+  }
+
+  .text-inner {
+    padding: 3rem 2.2rem 4rem;
+  }
+
+  .proj-category {
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
+    text-transform: none;
+  }
+
+  .lede {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    border-bottom: 0.5px solid #e0e0e0;
+    padding-bottom: 1.4rem;
+  }
+
+  .col-text p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 1em;
+  }
+
+  h2 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 2rem 0 0.8rem;
+  }
+
+  .meta-table {
+    margin-top: 2.4rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    font-size: 0.8rem;
+  }
+
+  .meta-key {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+
+  .meta-val {
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .meta-val a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 2.4rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--ink); }
+
+  @media (max-width: 860px) {
+    .proj-layout { grid-template-columns: 1fr; }
+    .col-text { position: relative; top: auto; height: auto; }
+    .col-images { border-right: none; }
+  }
+</style>
