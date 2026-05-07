@@ -11,15 +11,17 @@ import Layout from '../layouts/Layout.astro';
   </div>
 
   <script>
-    function fitWordmark() {
-      const el = document.querySelector('.home-wordmark') as HTMLElement | null;
-      if (!el) return;
-      el.style.fontSize = '100px';
-      const scale = window.innerWidth / el.scrollWidth;
-      el.style.fontSize = (100 * scale) + 'px';
-    }
-    fitWordmark();
-    window.addEventListener('resize', fitWordmark);
+    document.fonts.ready.then(() => {
+      function fitWordmark() {
+        const el = document.querySelector('.home-wordmark') as HTMLElement | null;
+        if (!el) return;
+        el.style.fontSize = '100px';
+        const scale = window.innerWidth / el.scrollWidth;
+        el.style.fontSize = (100 * scale) + 'px';
+      }
+      fitWordmark();
+      window.addEventListener('resize', fitWordmark);
+    });
   </script>
 </Layout>
 
