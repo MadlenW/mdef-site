@@ -14,9 +14,10 @@ import Layout from '../layouts/Layout.astro';
 <style>
 .page {
   position: relative;
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 0;
   overflow: hidden;
 }
@@ -45,21 +46,16 @@ import Layout from '../layouts/Layout.astro';
 }
 
 .home-wordmark {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative;
+  margin-top: -0.18em;
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 900;
-  font-size: 16vw;
-  line-height: 0.80;
-  color: #000000;
-  letter-spacing: -0.035em;
+  font-size: 29.5vw;
+  line-height: 0.82;
+  color: var(--ink);
+  letter-spacing: -0.03em;
   white-space: nowrap;
-  width: 100%;
   overflow: hidden;
-  pointer-events: none;
-  margin: 0;
-  padding: 0;
+  z-index: 2;
 }
 </style>
