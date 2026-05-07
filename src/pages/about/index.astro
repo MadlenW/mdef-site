@@ -6,41 +6,39 @@ const base = import.meta.env.BASE_URL;
 <Layout title="About — Madlen von Wulffen" description="About Madlen von Wulffen">
   <div class="page">
 
-    <div class="hero">
+    <div class="hero-row">
       <div class="photo-wrap">
         <img src={`${base}images/MnonameMoun.png`} alt="Madlen von Wulffen" />
       </div>
-      <div class="about-word">ABOUT</div>
-    </div>
-
-    <div class="about-body">
-      <div class="bio-col">
-        <p>I am Madlen von Wulffen, a designer and researcher working at the intersection of spatial practice, urban sociology, and the politics of living.</p>
-        <p>My work examines how the spaces we inhabit shape — and are shaped by — questions of belonging, identity, and collective life. Based between Berlin and Madrid, I work across installation, curation, and research.</p>
-        <p>I am interested in the home not as a fixed category but as a site of negotiation — between bodies, histories, and futures.</p>
-      </div>
-
-      <div class="contact-col">
-        <span class="section-label">Contact</span>
-        <div class="contact-row">
-          <span class="c-label">Email</span>
-          <a class="c-val" href="mailto:hello@madlenvonwulffen.com">hello@madlenvonwulffen.com</a>
+      <div class="about-body">
+        <div class="bio-col">
+          <p>I am Madlen von Wulffen, a designer and researcher working at the intersection of spatial practice, urban sociology, and the politics of living.</p>
+          <p>My work examines how the spaces we inhabit shape — and are shaped by — questions of belonging, identity, and collective life. Based between Berlin and Madrid, I work across installation, curation, and research.</p>
+          <p>I am interested in the home not as a fixed category but as a site of negotiation — between bodies, histories, and futures.</p>
         </div>
-        <div class="contact-row">
-          <span class="c-label">Instagram</span>
-          <a class="c-val" href="https://instagram.com/madlenvonwulffen" target="_blank">@madlenvonwulffen</a>
+        <div class="contact-col">
+          <span class="section-label">Contact</span>
+          <div class="contact-row">
+            <span class="c-label">Email</span>
+            <a class="c-val" href="mailto:hello@madlenvonwulffen.com">hello@madlenvonwulffen.com</a>
+          </div>
+          <div class="contact-row">
+            <span class="c-label">Instagram</span>
+            <a class="c-val" href="https://instagram.com/madlenvonwulffen" target="_blank">@madlenvonwulffen</a>
+          </div>
+          <div class="contact-row">
+            <span class="c-label">Based</span>
+            <span class="c-val">Berlin / Madrid</span>
+          </div>
+          <div class="contact-row">
+            <span class="c-label">Languages</span>
+            <span class="c-val">German, English, Spanish</span>
+          </div>
+          <a class="cv-link" href={`${base}cv.pdf`} target="_blank">Download CV →</a>
         </div>
-        <div class="contact-row">
-          <span class="c-label">Based</span>
-          <span class="c-val">Berlin / Madrid</span>
-        </div>
-        <div class="contact-row">
-          <span class="c-label">Languages</span>
-          <span class="c-val">German, English, Spanish</span>
-        </div>
-        <a class="cv-link" href={`${base}cv.pdf`} target="_blank">Download CV →</a>
       </div>
     </div>
+    <div class="about-word">ABOUT</div>
 
   </div>
 </Layout>
@@ -48,14 +46,12 @@ const base = import.meta.env.BASE_URL;
 <style>
   .page { padding-top: 2.8rem; }
 
-  .hero {
-    position: relative;
+  .hero-row {
+    display: grid;
+    grid-template-columns: 42% 1fr;
+    align-items: start;
   }
 
-  .photo-wrap {
-    width: 42%;
-    margin-left: 0;
-  }
   .photo-wrap img {
     width: 100%;
     height: auto;
@@ -77,13 +73,10 @@ const base = import.meta.env.BASE_URL;
   }
 
   .about-body {
-    position: relative;
-    z-index: 5;
-    background: #fff;
-    padding: 3.5rem 2.6rem 5rem;
+    padding: 3.5rem 2.6rem 3.5rem 3.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 3rem;
     align-items: start;
   }
 
