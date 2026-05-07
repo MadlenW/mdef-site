@@ -9,23 +9,37 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div class="home-wordmark">HOME</div>
   </div>
+
+  <script>
+    function fitWordmark() {
+      const el = document.querySelector('.home-wordmark') as HTMLElement | null;
+      if (!el) return;
+      el.style.fontSize = '100px';
+      const scale = window.innerWidth / el.scrollWidth;
+      el.style.fontSize = (100 * scale) + 'px';
+    }
+    fitWordmark();
+    window.addEventListener('resize', fitWordmark);
+  </script>
 </Layout>
 
 <style>
-  .page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 2.8rem 0 0 0;
-  }
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0;
+  overflow: hidden;
+}
 
-  .description-block {
-    padding: 0 2.6rem;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: 2.6rem;
-  }
+.description-block {
+  display: flex;
+  align-items: center;
+  padding: calc(var(--header-height) + 3rem) 2.6rem 3rem 2.6rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: 0;
+}
 
   .description-block p {
     font-size: 0.94rem;
@@ -40,18 +54,19 @@ import Layout from '../layouts/Layout.astro';
     text-decoration-thickness: 1px;
   }
 
-  .home-wordmark {
-    display: block;
-    width: 100vw;
-    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-    font-weight: 900;
-    font-size: 23.5vw;
-    line-height: 0.85;
-    color: #141414;
-    letter-spacing: -0.02em;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-  }
+.home-wordmark {
+  display: block;
+  width: 100vw;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 900;
+  line-height: 0.82;
+  color: #141414;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  font-size: clamp(100px, 26vw, 9999px);
+  overflow: visible;
+  /* fit-text via JS below */
+}
 </style>
