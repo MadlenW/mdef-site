@@ -7,25 +7,20 @@ import Layout from '../layouts/Layout.astro';
     <div class="description-block">
       <p>This is an exploration of the home in the realms of <u>ecological thinking</u>, <u>circular cities</u>, <u>systemic innovation</u>, <u>future living</u> and <u>social transformation</u>. This is a space for experimentation and imagination on how we inhabit our homes.</p>
     </div>
-    <div class="home-wordmark">HOME</div>
   </div>
+  <div class="home-wordmark">HOME</div>
 </Layout>
 
 <style>
 .page {
+  flex: 1;
   position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0;
-  overflow: hidden;
 }
 
 .description-block {
   display: flex;
   align-items: flex-start;
-  padding: calc(var(--header-height) + 2rem) 2.6rem 3rem 2.6rem;
+  padding: calc(var(--header-height) + 4rem) 2.6rem 3rem 2.6rem;
   max-width: 520px;
   margin-left: auto;
   margin-right: 0;
@@ -46,16 +41,19 @@ import Layout from '../layouts/Layout.astro';
 }
 
 .home-wordmark {
-  position: relative;
-  margin-top: -0.18em;
+  display: block;
+  width: 100%;
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 900;
-  font-size: 29.5vw;
-  line-height: 0.82;
-  color: var(--ink);
-  letter-spacing: -0.03em;
+  font-size: 22vw;
+  line-height: 0.85;
+  color: #000000;
+  letter-spacing: -0.035em;
   white-space: nowrap;
   overflow: hidden;
-  z-index: 2;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  margin-top: auto;
 }
 </style>
