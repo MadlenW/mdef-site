@@ -1,0 +1,205 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Unpacking Tech Systems · Madlen von Wulffen"
+  description="Reading machines from the inside out — disassembly, forensic documentation and the machine paradox."
+>
+  <div class="proj-layout">
+
+    <div class="col-images">
+      <figure>
+        <img src={`${base}images/macbook.png`} alt="Unpacked MacBook with internal components laid out" />
+        <figcaption>Mapping the MacBook as a system of interdependent parts rather than a single, closed object.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/meluza1.jpeg`} alt="Meluza — Week 2 machine paradox project" />
+        <figcaption>Meluza — a deceptive, useless machine built from dissassembled parts.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/meluza2.jpeg`} alt="Meluza detail" />
+        <figcaption>Meluza performs its paradox through misdirection and concealed logic.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/meluza3.jpeg`} alt="Meluza in use" />
+        <figcaption>Small moments of confusion, humour or irritation — Meluza in action.</figcaption>
+      </figure>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+        <div class="proj-category">Research · 2025</div>
+        <h1>Unpacking Tech Systems</h1>
+        <p class="lede">Reading machines from the inside out — disassembly, forensic documentation, and the machine paradox.</p>
+
+        <h2>Week 1 — Reading Machines From The Inside Out</h2>
+        <p>This week we shifted our attention from using technology to reading it as a system. Together with my group, we disassembled a familiar device and traced its internal logic through three shared documents: a Forensic Report, a Component Data Sheet, and an Inventory. What looked like a closed, seamless product quickly fragmented into screws, chips, cables and invisible dependencies.</p>
+        <p>Contributing to the forensic report made me slow down: instead of naming parts, I had to describe behaviours, relations and failure points. The component data sheet pushed this further by asking what each part affords within the broader system and what breaks if it is missing.</p>
+        <p>This exercise shifted my perspective from "device as object" to "device as layered infrastructure". I became more aware of how many human and material decisions are hidden under a single aluminium surface. It also highlighted how documentation can be a design act in itself: depending on how we map a system, different forms of repair, reuse or critique become thinkable.</p>
+
+        <h2>Week 2 — Performing The Machine Paradox</h2>
+        <p>In the second week we shifted from analysing existing devices to building one with the disassembled parts from the week prior. Not to improve functionality, but to challenge the logic that demands it. Our project, Meluza, emerged as a response to the machine paradox: the expectation that every machine should be purposeful, efficient and obedient, contrasted with our desire to break, twist or subvert that expectation.</p>
+        <p>Meluza performs this paradox through misdirection: it appears to invite interaction, yet its internal behaviour disrupts predictable cause-and-effect. Instead of revealing how it works, it actively conceals its logic, producing small moments of confusion, humour or irritation. In this sense, Meluza becomes a commentary on technological trust — how quickly we assume machines are rational, transparent or aligned with our intentions, and how fragile that assumption is when confronted with opacity.</p>
+        <p>What interested me most was how a useless machine can still be meaningful. By refusing productivity, Meluza exposes the cultural scripts embedded in our relationship with technology. It opens space to reconsider machines not only as tools but as actors with their own behaviours, rhythms and unpredictabilities.</p>
+
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-key">Time</span><span class="meta-val">Nov 18 – 28, 2025</span></div>
+          <div class="meta-row"><span class="meta-key">Context</span><span class="meta-val">Unpacking Tech Systems</span></div>
+          <div class="meta-row"><span class="meta-key">Role</span><span class="meta-val">Group Collaboration, Analysis & Documentation</span></div>
+          <div class="meta-row"><span class="meta-key">Outcome</span><span class="meta-val">Rapid Prototyping of Technological Artifacts</span></div>
+          <div class="meta-row"><span class="meta-key">Docs</span><span class="meta-val"><a href="https://hackmd.io/@M_mbpDG9RfCkv3Hh2okOvw/BkdWfLolbe" target="_blank">Forensic Report ↗</a></span></div>
+        </div>
+
+        <a class="back-link" href={`${base}projects`}>← Back to Projects</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    overflow: hidden;
+    height: calc(100vh - 56px);
+    position: sticky;
+    top: 56px;
+  }
+
+  .col-images {
+    height: 100%;
+    overflow-y: scroll;
+    border-right: 0.5px solid #e0e0e0;
+  }
+
+  figure {
+    margin: 0;
+    border-bottom: 0.5px solid #e0e0e0;
+  }
+
+  figure img {
+    width: 100%;
+    display: block;
+  }
+
+  figcaption {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+    padding: 0.7rem 1.4rem 1rem;
+    border-top: 0.5px solid #e0e0e0;
+  }
+
+  .col-text {
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  .text-inner {
+    padding: 3rem 2.2rem 4rem;
+  }
+
+  .proj-category {
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
+    text-transform: none;
+  }
+
+  .lede {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    border-bottom: 0.5px solid #e0e0e0;
+    padding-bottom: 1.4rem;
+  }
+
+  .col-text p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 1em;
+  }
+
+  h2 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 2rem 0 0.8rem;
+  }
+
+  .meta-table {
+    margin-top: 2.4rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    font-size: 0.8rem;
+  }
+
+  .meta-key {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+
+  .meta-val {
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .meta-val a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 2.4rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--ink); }
+
+  :global(body:has(.proj-layout) footer) {
+    display: none;
+  }
+
+  @media (max-width: 860px) {
+    .proj-layout { grid-template-columns: 1fr; height: auto; overflow: visible; position: relative; top: auto; }
+    .col-images, .col-text { height: auto; overflow-y: visible; }
+    .col-images { border-right: none; border-bottom: 0.5px solid #e0e0e0; }
+  }
+</style>

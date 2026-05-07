@@ -219,4 +219,8 @@ const base = import.meta.env.BASE_URL;
     .col-text { position: relative; top: auto; height: auto; }
     .col-images { border-right: none; }
   }
+
+  :global(body:has(.proj-layout) footer) {
+    display: none;
+  }
 </style>
