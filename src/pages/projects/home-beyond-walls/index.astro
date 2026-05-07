@@ -1,0 +1,70 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Home Beyond Walls · Madlen von Wulffen"
+  description="Published in URBAN Magazine Vol. 35 — rethinking housing for an interconnected future."
+>
+  <div class="proj-layout">
+
+    <div class="col-images">
+      <figure>
+        <img src={`${base}images/gsapp-article.png`} alt="Home Beyond Walls article spread" />
+        <figcaption>Home Beyond Walls: Rethinking Housing for an Interconnected Future — Urban Magazine Vol. 35, p. 11.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/gsapp-contents.png`} alt="Urban Magazine Vol. 35 contents page" />
+        <figcaption>Urban Magazine Vol. 35 contents — published by GSAPP, Columbia University.</figcaption>
+      </figure>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+        <div class="proj-category">Publication · 2025</div>
+        <h1>Home Beyond Walls: Rethinking Housing for an Interconnected Future</h1>
+        <p class="lede">Published in Urban Magazine Vol. 35 by Columbia University GSAPP — an essay investigating the intersection of housing, private property, and ecological urbanism using Berlin as a case study.</p>
+
+        <p>This article investigates the intersection of housing, private property, and ecological urbanism using Berlin as a case study. Drawing on philosophical and socio-political theory, it critiques the modern home as a site of disconnection and proposes a vision of housing as an adaptive, relational system that mediates between individuals, ecosystems, and urban complexity.</p>
+        <p>This work synthesizes my core intellectual commitments. It proposes that the future of dwelling lies not in fixed forms, but in systems that foster belonging, adaptability, and ecological entanglement. I consider it both a manifesto and a bridge to the kind of experimental practice I aim to develop.</p>
+
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-key">Published</span><span class="meta-val">Urban Magazine Vol. 35, Spring 2025</span></div>
+          <div class="meta-row"><span class="meta-key">Publisher</span><span class="meta-val">Columbia University GSAPP, New York</span></div>
+          <div class="meta-row"><span class="meta-key">Role</span><span class="meta-val">Author, Theorist</span></div>
+          <div class="meta-row"><span class="meta-key">Methods</span><span class="meta-val">Philosophical inquiry, critical urban analysis, systemic reflection</span></div>
+          <div class="meta-row"><span class="meta-key">Time</span><span class="meta-val">January – April 2025, New York City</span></div>
+          <div class="meta-row"><span class="meta-key">Read</span><span class="meta-val"><a href="https://issuu.com/gsapp_digitalpublishing/docs/urban_magazine_volume_35_-_spring_2025" target="_blank">Urban Magazine Vol. 35 ↗</a></span></div>
+        </div>
+
+        <a class="back-link" href={`${base}projects`}>← Back to Projects</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout { display: grid; grid-template-columns: 2fr 1fr; height: calc(100vh - 56px); overflow: hidden; }
+  .col-images { height: 100%; overflow-y: scroll; border-right: 0.5px solid #e0e0e0; }
+  figure { margin: 0; border-bottom: 0.5px solid #e0e0e0; }
+  figure img { width: 100%; display: block; }
+  figcaption { font-size: 0.72rem; font-weight: 300; color: var(--muted); line-height: 1.5; padding: 0.7rem 1.4rem 1rem; border-top: 0.5px solid #e0e0e0; }
+  .col-text { height: 100%; overflow-y: scroll; }
+  .text-inner { padding: 3rem 2.2rem 4rem; }
+  .proj-category { font-size: 0.62rem; font-weight: 400; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.8rem; }
+  h1 { font-size: 1.6rem; font-weight: 500; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.6rem; text-transform: none; }
+  .lede { font-size: 0.95rem; font-weight: 400; line-height: 1.65; color: var(--ink); margin-bottom: 1.4rem; border-bottom: 0.5px solid #e0e0e0; padding-bottom: 1.4rem; }
+  .col-text p { font-size: 0.85rem; font-weight: 300; line-height: 1.75; color: #2a2a2a; margin-bottom: 1em; }
+  h2 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin: 2rem 0 0.8rem; }
+  .meta-table { margin-top: 2.4rem; border-top: 0.5px solid #e0e0e0; padding-top: 1.4rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; font-size: 0.8rem; }
+  .meta-key { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); padding-top: 0.15rem; }
+  .meta-val { font-weight: 300; color: var(--ink); }
+  .meta-val a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .back-link { display: inline-block; margin-top: 2.4rem; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; }
+  .back-link:hover { color: var(--ink); }
+  :global(body:has(.proj-layout) footer) { display: none; }
+  @media (max-width: 860px) { .proj-layout { grid-template-columns: 1fr; height: auto; overflow: visible; } .col-images, .col-text { height: auto; overflow-y: visible; } .col-images { border-right: none; border-bottom: 0.5px solid #e0e0e0; } }
+</style>
