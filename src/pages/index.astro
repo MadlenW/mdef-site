@@ -9,20 +9,6 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div class="home-wordmark">HOME</div>
   </div>
-
-  <script>
-    document.fonts.ready.then(() => {
-      function fitWordmark() {
-        const el = document.querySelector('.home-wordmark') as HTMLElement | null;
-        if (!el) return;
-        el.style.fontSize = '100px';
-        const scale = window.innerWidth / el.scrollWidth;
-        el.style.fontSize = (100 * scale) + 'px';
-      }
-      fitWordmark();
-      window.addEventListener('resize', fitWordmark);
-    });
-  </script>
 </Layout>
 
 <style>
@@ -43,22 +29,21 @@ import Layout from '../layouts/Layout.astro';
   margin-right: 0;
 }
 
-  .description-block p {
-    font-size: 0.94rem;
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--ink);
-    letter-spacing: 0.01em;
-  }
+.description-block p {
+  font-size: 0.94rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
 
-  .description-block u {
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
-  }
+.description-block u {
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
 
 .home-wordmark {
   display: block;
-  width: 100vw;
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 900;
   line-height: 0.82;
@@ -67,7 +52,8 @@ import Layout from '../layouts/Layout.astro';
   white-space: nowrap;
   padding: 0;
   margin: 0;
-  overflow: visible;
-  /* fit-text via JS below */
+  font-size: 22.4vw;
+  width: 100%;
+  overflow: hidden;
 }
 </style>
