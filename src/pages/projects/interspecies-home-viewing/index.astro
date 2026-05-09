@@ -1,0 +1,210 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Interspecies Home Viewing · Madlen von Wulffen"
+  description="An apartment viewing where the space — not the tenant — decides who gets to inhabit it."
+>
+  <div class="proj-layout">
+
+    <div class="col-images">
+      <figure>
+        <img src={`${base}images/interspecies-home-viewing/IMG_6723.jpg`} alt="TouchDesigner output — live data streams rendered as abstract imagery" />
+        <figcaption>TouchDesigner output with live data streams from movement, touch and voice rendered as abstract imagery on a split screen alongside the visitor feed.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/interspecies-home-viewing/IMG_6725.jpg`} alt="The evaluation score given by the assembly" />
+        <figcaption>The evaluation score given by the assembly shown after the visitor left the viewing.</figcaption>
+      </figure>
+      <figure>
+        <img src={`${base}images/interspecies-home-viewing/IMG_6703.jpg`} alt="Building the logic in TouchDesigner" />
+        <figcaption>The process of building and designing the logic in TouchDesigner.</figcaption>
+      </figure>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+        <div class="proj-category">Performance · May 2026</div>
+        <h1>Interspecies<br/>Home Viewing</h1>
+
+        <p class="lede">An apartment viewing where the space decides who gets to inhabit it, not the potential tenant. Scored in real time by movement, touch, and voice, with the verdict delivered by an assembly of non-human and computational agents.</p>
+
+        <p>Interspecies Home Viewing inverts the logic of a property viewing. Rather than a prospective tenant evaluating a space, the space with its non-human inhabitants, its spatial memory, and its algorithmic processes, evaluates whether to receive the visitor as an inhabitant.</p>
+
+        <p>Built around the social construct of a property viewing, the experience stages this reversal through a Space Inhabitancy Agreement read aloud by an AI voice agent, a live soil sensor embedded in worm-inhabited earth, and a real-time scoring system fed by three data streams: movement, touch, and voice.</p>
+
+        <p>In relation to my research project To Home, which explores the concept of home through enacted rituals, habits, and spatial relations, this prototype operates in the space just before those rituals begin, before the process of making oneself at home is even possible.</p>
+
+        <p>What interested me was giving agency to what is usually rendered invisible in that moment: the spatial memory of previous inhabitants, the non-human organisms already living there, the infrastructural systems running continuously through the building. Reversing the logic of the viewing, and letting those agents decide, felt like a productive way to ask what home actually is and who or what gets to be part of it and stay.</p>
+
+        <p>This opened the research toward other perspectives on the meaning and function of home: non-human inhabitation and algorithmic systems. Producing the performance pushed me beyond the human-centred, practice-focused angle of my own work toward understanding home as a living system of negotiation between multiple kinds of agents.</p>
+
+        <p>The most honest failure of the performance was spatial. We had to compromise on the room, and the wrong space produced the wrong experience, which, ironically, directly reflected my own hypothesis that space shapes behaviour and vice versa.</p>
+
+        <p>My contribution centred on the narrative and storytelling layer of the project: designing the apartment viewing scenario, developing the Space Inhabitancy Agreement and exploring how a contract as a form could carry the conceptual weight of the piece, and defining the evaluation categories and the logic that determined the verdict.</p>
+
+        <div class="meta-table">
+          <div class="meta-row">
+            <span class="meta-label">Year</span>
+            <span class="meta-value">May 2026</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">Performance</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Course</span>
+            <span class="meta-value">Fast Prototyping</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Tools</span>
+            <span class="meta-value">Arduino, Touch Sensor, TouchDesigner</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Docs</span>
+            <span class="meta-value"><a href="https://www.hackster.io/548931/vermi-interspecies-home-viewing-659ef6" target="_blank" rel="noopener" class="meta-link">Hackster.io ↗</a></span>
+          </div>
+        </div>
+
+        <a href={`${base}projects`} class="back-link">← All Projects</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
+
+  .col-images {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+    border-right: 0.5px solid #e0e0e0;
+  }
+
+  .col-images figure {
+    margin: 0;
+    padding: 0;
+  }
+
+  .col-images figure + figure {
+    border-top: 0.5px solid #e0e0e0;
+  }
+
+  .col-images img {
+    width: 100%;
+    display: block;
+  }
+
+  .col-images figcaption {
+    padding: 0.75rem 1.5rem 1.5rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .col-text {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+  }
+
+  .text-inner {
+    padding: 3rem 2.5rem 3rem;
+  }
+
+  .proj-category {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.8rem;
+  }
+
+  .lede {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.65;
+    margin-bottom: 1.8rem;
+    color: var(--ink);
+  }
+
+  p {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #333;
+    margin-bottom: 1.2rem;
+  }
+
+  .meta-table {
+    margin-top: 2.5rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.5rem;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.45rem 0;
+    border-bottom: 0.5px solid #f0f0f0;
+    font-size: 0.75rem;
+  }
+
+  .meta-label {
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 70px;
+  }
+
+  .meta-value {
+    color: var(--ink);
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover {
+    color: var(--red);
+  }
+
+  .meta-link {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 0.5px solid currentColor;
+    transition: color 0.15s;
+  }
+  .meta-link:hover {
+    color: var(--red);
+  }
+
+  :global(body:has(.proj-layout) footer) {
+    display: none;
+  }
+</style>
