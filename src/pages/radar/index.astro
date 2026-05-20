@@ -22,7 +22,7 @@ import Layout from '../../layouts/Layout.astro';
     #radar-svg-wrap {
       position:absolute;
       top:80px;
-      left:270px;
+      left:320px;
       right:0;
       bottom:0;
       display:flex;
@@ -39,25 +39,27 @@ import Layout from '../../layouts/Layout.astro';
 
     /* Top-left overlay: subtitle + filters + add button + legends */
     #top-left {
-      position:absolute; top:96px; left:28px;
-      z-index:10; max-width:260px;
+      position:absolute; top:140px; left:28px;
+      z-index:10; max-width:280px;
+      overflow-y:auto;
+      max-height:calc(100vh - 200px);
     }
-    .subtitle { font-size:14px; color:#555; line-height:1.6; margin-bottom:6px; margin-top:16px; }
-    .update-note { font-size:12px; color:#999; line-height:1.5; margin-bottom:14px; }
+    .subtitle { font-size:14px; color:#444; line-height:1.6; margin-bottom:8px; margin-top:0; }
+    .update-note { font-size:12px; color:#999; line-height:1.5; margin-bottom:16px; }
     .filter-row { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
-    .pill { font-size:9px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:3px 8px; border:0.5px solid #ccc; border-radius:2px; background:white; color:#aaa; cursor:pointer; font-family:inherit; }
+    .pill { font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border:0.5px solid #ccc; border-radius:2px; background:white; color:#aaa; cursor:pointer; font-family:inherit; }
     .pill:hover { color:#111; border-color:#111; }
     .pill.active { background:#111; color:white; border-color:#111; }
-    #add-btn { padding:7px 12px; border:0.5px solid #111; border-radius:4px; background:white; color:#111; font-size:9px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; font-family:inherit; transition:all 0.12s; }
+    #add-btn { padding:8px 14px; border:0.5px solid #111; border-radius:4px; background:white; color:#111; font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; font-family:inherit; transition:all 0.12s; }
     #add-btn:hover { background:#111; color:white; }
 
     #legend-scale { margin-top:20px; }
     #legend-forces { margin-top:16px; }
-    .legend-title { font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#bbb; margin-bottom:8px; }
-    .legend-item { display:flex; align-items:center; gap:7px; margin-bottom:4px; }
-    .legend-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .legend-title { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#bbb; margin-bottom:8px; }
+    .legend-item { display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+    .legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
     .legend-label { font-size:12px; color:#555; line-height:1.4; }
-    .legend-label strong { font-weight:500; color:#222; }
+    .legend-label strong { font-weight:600; color:#222; }
 
     /* Popup */
     #sp { position:absolute; background:white; border:0.5px solid #ddd; border-radius:10px; padding:14px 16px; width:220px; pointer-events:none; opacity:0; transition:opacity 0.15s; z-index:30; box-shadow:0 4px 20px rgba(0,0,0,0.1); }
@@ -69,6 +71,10 @@ import Layout from '../../layouts/Layout.astro';
     :global(#sp .sref a) { color:#60a5fa; text-decoration:none; display:block; margin-bottom:2px; font-size:9px; line-height:1.4; }
     :global(#sp .sref a:hover) { text-decoration:underline; }
     :global(#sp .sref-label) { font-size:8px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ccc; margin-bottom:4px; display:block; border-top:0.5px solid #eee; padding-top:8px; margin-top:4px; }
+    :global(#sp .smeta) { font-size:9px; color:#ccc; margin-top:8px; display:block; border-top:0.5px solid #eee; padding-top:8px; }
+    :global(#sp .sdelete-wrap) { position:absolute; bottom:10px; right:12px; }
+    :global(#sp .sdelete) { font-size:13px; color:#ddd; background:none; border:none; cursor:pointer; padding:0; line-height:1; }
+    :global(#sp .sdelete:hover) { color:#e879a0; }
     #sp .sx { position:absolute; top:8px; right:11px; cursor:pointer; font-size:16px; opacity:0.3; pointer-events:auto; }
     #sp .dot { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:5px; vertical-align:middle; }
 
@@ -100,6 +106,8 @@ import Layout from '../../layouts/Layout.astro';
         <div class="sr"></div>
         <div class="sd2"></div>
         <div class="sref"></div>
+        <div class="smeta"></div>
+        <div class="sdelete-wrap"><button class="sdelete" title="Delete signal">🗑</button></div>
       </div>
     </div>
 
@@ -145,6 +153,7 @@ import Layout from '../../layouts/Layout.astro';
       <label>Title<input id="m-title" type="text" placeholder="e.g. Rental Algorithms"/></label>
       <label>Description<textarea id="m-desc" placeholder="What is this signal about?"></textarea></label>
       <label>Source URL (optional)<input id="m-url" type="text" placeholder="https://..."/></label>
+      <label>Your Name<input id="m-name" type="text" placeholder="e.g. Madlen von Wulffen"/></label>
       <label>Sector<select id="m-sector"><option>Technological</option><option>Economical</option><option>Socio-Demographic</option><option>Governance</option><option>Environmental</option><option>Values</option></select></label>
       <label>Scale<select id="m-ring"><option>Body</option><option>Domestic Space</option><option>Social Systems</option><option>Ecosystems</option><option>Planetary Boundaries</option></select></label>
       <div id="modal-btns"><button id="modal-cancel">Cancel</button><button id="modal-add">Add Signal</button></div>
@@ -170,28 +179,28 @@ import Layout from '../../layouts/Layout.astro';
       });
     }
     el('rect',{width:800,height:800,fill:'white'},svg);
-    [290,240,180,120,60].forEach((r,i)=>{el('circle',{cx,cy,r,fill:['#f2f2f2','#f7f7f7','#efefef','#e5e5e5','#dbdbdb'][i],stroke:'#d0d0d0','stroke-width':'0.75'},svg);});
-    for(let i=0;i<6;i++){const a=(i*60-90)*Math.PI/180;el('line',{x1:cx,y1:cy,x2:cx+310*Math.cos(a),y2:cy+310*Math.sin(a),stroke:'#d0d0d0','stroke-width':'0.75'},svg);}
-    [{label:'DOMESTIC SPACE',r:82,spacing:3.8},{label:'SOCIAL SYSTEMS',r:148,spacing:3.6},{label:'ECOSYSTEMS',r:208,spacing:3.2},{label:'PLANETARY BOUNDARIES',r:262,spacing:2.4}].forEach(({label,r,spacing})=>{arcLabel(label,r,345,spacing,7,'#c0c0c0');});
+    [300,225,150,75].forEach((r,i)=>{el('circle',{cx,cy,r,fill:['#f7f7f7','#efefef','#e5e5e5','#dbdbdb'][i],stroke:'#d0d0d0','stroke-width':'0.75'},svg);});
+    for(let i=0;i<6;i++){const a=(i*60-90)*Math.PI/180;el('line',{x1:cx,y1:cy,x2:cx+315*Math.cos(a),y2:cy+315*Math.sin(a),stroke:'#d0d0d0','stroke-width':'0.75'},svg);}
+    [{label:'DOMESTIC SPACE',r:78,spacing:3.8},{label:'SOCIAL SYSTEMS',r:153,spacing:3.6},{label:'ECOSYSTEMS',r:228,spacing:3.2},{label:'PLANETARY BOUNDARIES',r:303,spacing:2.4}].forEach(({label,r,spacing})=>{arcLabel(label,r,345,spacing,7,'#c0c0c0');});
     [{label:'TECHNOLOGICAL',bisector:30},{label:'ECONOMICAL',bisector:90},{label:'SOCIO-DEMO',bisector:150},{label:'GOVERNANCE',bisector:210},{label:'ENVIRONMENTAL',bisector:270},{label:'VALUES',bisector:330}].forEach(({label,bisector})=>{
       const spacing=Math.min(46/(label.split('').length-1),4.0);
-      arcLabel(label,310,bisector,spacing,12,'#222');
+      arcLabel(label,328,bisector,spacing,12,'#222');
     });
     el('circle',{cx,cy,r:22,fill:'white',stroke:'#d0d0d0','stroke-width':'0.75'},svg);
     txt('BODY',{x:cx,y:cy+1,'font-size':'7',fill:'#bbb','font-family':'sans-serif','text-anchor':'middle','dominant-baseline':'middle'},svg);
     const ringColors={'Body':'#e879a0','Domestic Space':'#a78bfa','Social Systems':'#60a5fa','Ecosystems':'#f59e0b','Planetary Boundaries':'#10b981'};
     function pos(deg,r){const rad=deg*Math.PI/180;return[cx+r*Math.sin(rad),cy-r*Math.cos(rad)];}
     let signals=[
-      {title:'Home as Surveillance Site',sector:'Technological',ring:'Social Systems',deg:30,r:150,desc:'Smart home data extraction by platforms, employers and insurers normalises the home as a site of continuous monitoring.',refs:[{label:'Shoshana Zuboff — The Age of Surveillance Capitalism',url:'https://www.surveillancecapitalism.com'},{label:'Mozilla Foundation — Privacy Not Included',url:'https://foundation.mozilla.org/en/privacynotincluded/'}]},
-      {title:'Work-Home Blur',sector:'Technological',ring:'Domestic Space',deg:22,r:90,desc:'Permanent collapse of domestic and professional boundaries driven by remote work infrastructure embedded in the home.',refs:[{label:'Microsoft Work Trend Index 2023',url:'https://www.microsoft.com/en-us/worklab/work-trend-index'},{label:'Harvard Business Review — The Home Office Problem',url:'https://hbr.org'}]},
-      {title:'Platformed Housing',sector:'Economical',ring:'Social Systems',deg:90,r:150,desc:'Renting mediated entirely by algorithmic platforms that extract data, set prices dynamically, and remove landlord accountability.',refs:[{label:'Airbnb Annual Report 2023',url:'https://investors.airbnb.com'},{label:'Urban Studies — Platform Urbanism',url:'https://journals.sagepub.com/home/usj'}]},
-      {title:'Micro-Living Densification',sector:'Economical',ring:'Ecosystems',deg:98,r:210,desc:'Sub-30m² units becoming the urban housing norm as land prices concentrate housing into ever-smaller footprints.',refs:[{label:'UN Habitat — World Cities Report 2022',url:'https://unhabitat.org/world-cities-report-2022'},{label:'Dezeen — Micro-apartment design',url:'https://www.dezeen.com/tag/micro-apartments/'}]},
-      {title:'Housing Financialization',sector:'Economical',ring:'Planetary Boundaries',deg:82,r:270,desc:'Global capital treating housing as an asset class, structurally decoupling shelter from local wages and social need.',refs:[{label:'UN Special Rapporteur on Housing',url:'https://www.ohchr.org/en/special-procedures/sr-housing'},{label:'Blackstone & the Rental Market — The Guardian',url:'https://www.theguardian.com/us-news/2019/mar/26/blackstone-group-accused-global-housing-crisis-un'}]},
-      {title:'Co-Living as Default',sector:'Socio-Demographic',ring:'Domestic Space',deg:155,r:90,desc:'Shared housing normalised for economic and social reasons — not a lifestyle choice but a structural condition of precarious adulthood.',refs:[{label:'The Economist — The rise of co-living',url:'https://www.economist.com'},{label:'JLL — Co-living Market Report',url:'https://www.jll.com'}]},
-      {title:'Chosen Family Clusters',sector:'Socio-Demographic',ring:'Body',deg:145,r:30,desc:'Non-biological household formations becoming the primary social unit — care networks built from friendship, not kinship.',refs:[{label:'Kath Weston — Families We Choose (1991)',url:'https://cup.columbia.edu'},{label:'Pew Research — The Changing American Family',url:'https://www.pewresearch.org/social-trends/2015/12/17/1-the-american-family-today/'}]},
-      {title:'Precarious Homemaking',sector:'Governance',ring:'Planetary Boundaries',deg:212,r:270,desc:'Rising structural unaffordability forcing nomadic dwelling — homemaking as ongoing improvisation under conditions of systemic instability.',refs:[{label:'Saskia Sassen — Expulsions (2014)',url:'https://www.hup.harvard.edu/catalog.php?isbn=9780674599222'},{label:'OECD Affordable Housing Database',url:'https://www.oecd.org/housing/data/affordable-housing-database/'}]},
-      {title:'Net-Zero Home Mandate',sector:'Environmental',ring:'Social Systems',deg:270,r:150,desc:'Ecological performance requirements embedded into housing regulation — homes as energy infrastructure rather than private property.',refs:[{label:'EU Energy Performance of Buildings Directive',url:'https://energy.ec.europa.eu/topics/energy-efficiency/energy-efficient-buildings/energy-performance-buildings-directive_en'},{label:'IEA — Net Zero by 2050',url:'https://www.iea.org/reports/net-zero-by-2050'}]},
-      {title:'Biophilic Home Design',sector:'Values',ring:'Domestic Space',deg:330,r:90,desc:'Nature integration as mental health infrastructure — growing normative expectation that homes provide living materials, light, and ecological connection.',refs:[{label:'Stephen Kellert — Biophilic Design (2008)',url:'https://www.wiley.com'},{label:'WELL Building Standard — Biophilia',url:'https://www.wellcertified.com'}]},
+      {title:'Home as Surveillance Site',sector:'Technological',ring:'Social Systems',deg:30,r:112,desc:'Smart home data extraction by platforms, employers and insurers normalises the home as a site of continuous monitoring.',refs:[{label:'Shoshana Zuboff — The Age of Surveillance Capitalism',url:'https://www.surveillancecapitalism.com'},{label:'Mozilla Foundation — Privacy Not Included',url:'https://foundation.mozilla.org/en/privacynotincluded/'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
+      {title:'Work-Home Blur',sector:'Technological',ring:'Domestic Space',deg:22,r:37,desc:'Permanent collapse of domestic and professional boundaries driven by remote work infrastructure embedded in the home.',refs:[{label:'Microsoft Work Trend Index 2023',url:'https://www.microsoft.com/en-us/worklab/work-trend-index'},{label:'Harvard Business Review — The Home Office Problem',url:'https://hbr.org'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
+      {title:'Platformed Housing',sector:'Economical',ring:'Social Systems',deg:90,r:112,desc:'Renting mediated entirely by algorithmic platforms that extract data, set prices dynamically, and remove landlord accountability.',refs:[{label:'Airbnb Annual Report 2023',url:'https://investors.airbnb.com'},{label:'Urban Studies — Platform Urbanism',url:'https://journals.sagepub.com/home/usj'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
+      {title:'Micro-Living Densification',sector:'Economical',ring:'Ecosystems',deg:98,r:187,desc:'Sub-30m² units becoming the urban housing norm as land prices concentrate housing into ever-smaller footprints.',refs:[{label:'UN Habitat — World Cities Report 2022',url:'https://unhabitat.org/world-cities-report-2022'},{label:'Dezeen — Micro-apartment design',url:'https://www.dezeen.com/tag/micro-apartments/'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
+      {title:'Housing Financialization',sector:'Economical',ring:'Planetary Boundaries',deg:82,r:255,desc:'Global capital treating housing as an asset class, structurally decoupling shelter from local wages and social need.',refs:[{label:'UN Special Rapporteur on Housing',url:'https://www.ohchr.org/en/special-procedures/sr-housing'},{label:'Blackstone & the Rental Market — The Guardian',url:'https://www.theguardian.com/us-news/2019/mar/26/blackstone-group-accused-global-housing-crisis-un'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
+      {title:'Co-Living as Default',sector:'Socio-Demographic',ring:'Domestic Space',deg:155,r:37,desc:'Shared housing normalised for economic and social reasons, not as a lifestyle choice but a structural condition of precarious adulthood.',refs:[{label:'The Economist — The rise of co-living',url:'https://www.economist.com'},{label:'JLL — Co-living Market Report',url:'https://www.jll.com'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
+      {title:'Chosen Family Clusters',sector:'Socio-Demographic',ring:'Body',deg:145,r:11,desc:'Non-biological household formations becoming the primary social unit; care networks built from friendship, not kinship.',refs:[{label:'Kath Weston — Families We Choose (1991)',url:'https://cup.columbia.edu'},{label:'Pew Research — The Changing American Family',url:'https://www.pewresearch.org/social-trends/2015/12/17/1-the-american-family-today/'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
+      {title:'Precarious Homemaking',sector:'Governance',ring:'Planetary Boundaries',deg:212,r:255,desc:'Rising structural unaffordability forcing nomadic dwelling, homemaking as ongoing improvisation under conditions of systemic instability.',refs:[{label:'Saskia Sassen — Expulsions (2014)',url:'https://www.hup.harvard.edu/catalog.php?isbn=9780674599222'},{label:'OECD Affordable Housing Database',url:'https://www.oecd.org/housing/data/affordable-housing-database/'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
+      {title:'Net-Zero Home Mandate',sector:'Environmental',ring:'Social Systems',deg:270,r:112,desc:'Ecological performance requirements embedded into housing regulation; homes as energy infrastructure rather than private property.',refs:[{label:'EU Energy Performance of Buildings Directive',url:'https://energy.ec.europa.eu/topics/energy-efficiency/energy-efficient-buildings/energy-performance-buildings-directive_en'},{label:'IEA — Net Zero by 2050',url:'https://www.iea.org/reports/net-zero-by-2050'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
+      {title:'Biophilic Home Design',sector:'Values',ring:'Domestic Space',deg:330,r:37,desc:'Nature integration as mental health infrastructure; growing normative expectation that homes provide living materials, light, and ecological connection.',refs:[{label:'Stephen Kellert — Biophilic Design (2008)',url:'https://www.wiley.com'},{label:'WELL Building Standard — Biophilia',url:'https://www.wellcertified.com'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
     ];
     const dotGroup=el('g',{id:'dots'},svg);
     function renderSignals(filter='all'){
@@ -200,8 +209,11 @@ import Layout from '../../layouts/Layout.astro';
         if(filter!=='all'&&s.sector!==filter)return;
         const color=ringColors[s.ring]||'#999';
         const[x,y]=pos(s.deg,s.r);
-        const c=el('circle',{cx:x,cy:y,r:8,fill:color,stroke:'white','stroke-width':'2',class:'sd',style:'cursor:pointer'},dotGroup);
+        const dotSize={'Body':5,'Domestic Space':6,'Social Systems':7,'Ecosystems':9,'Planetary Boundaries':11}[s.ring]||7;
+        const c=el('circle',{cx:x,cy:y,r:dotSize,fill:color,stroke:'white','stroke-width':'2',class:'sd',style:'cursor:pointer'},dotGroup);
         c.dataset.title=s.title;c.dataset.sector=s.sector;c.dataset.ring=s.ring;c.dataset.color=color;c.dataset.desc=s.desc;c.dataset.refs=JSON.stringify(s.refs||[]);
+        c.dataset.addedBy=s.addedBy||'Unknown';
+        c.dataset.addedOn=s.addedOn||'';
         c.addEventListener('click',handleDotClick);
       });
     }
@@ -211,7 +223,7 @@ import Layout from '../../layouts/Layout.astro';
     function handleDotClick(e){
       const svgRect=svg.getBoundingClientRect();
       const wrapRect=svgWrap.getBoundingClientRect();
-      const scaleX=svgRect.width/900,scaleY=svgRect.height/900;
+      const scaleX=svgRect.width/800,scaleY=svgRect.height/800;
       const ox=svgRect.left-wrapRect.left,oy=svgRect.top-wrapRect.top;
       const x=parseFloat(this.getAttribute('cx'))*scaleX+ox;
       const y=parseFloat(this.getAttribute('cy'))*scaleY+oy;
@@ -222,15 +234,27 @@ import Layout from '../../layouts/Layout.astro';
       const refs=JSON.parse(this.dataset.refs||'[]');
       const refDiv=sp.querySelector('.sref');
       refDiv.innerHTML=refs.length?'<div class="sref-label">Sources</div>'+refs.map(r=>`<a href="${r.url}" target="_blank" rel="noopener">↗ ${r.label}</a>`).join(''):'';
+      const meta=sp.querySelector('.smeta');
+      meta.textContent='Added by '+this.dataset.addedBy+' · '+this.dataset.addedOn;
       let left=x+14,top=y-20;
       if(left+230>wrapRect.width)left=x-234;
       if(top+220>wrapRect.height)top=y-210;
       if(top<0)top=4;
       sp.style.left=left+'px';sp.style.top=top+'px';
+      sp.querySelector('.sdelete').dataset.title=this.dataset.title;
       sp.classList.add('on');e.stopPropagation();
     }
     document.getElementById('sp-close').addEventListener('click',()=>sp.classList.remove('on'));
     svgWrap.addEventListener('click',()=>sp.classList.remove('on'));
+    document.getElementById('sp').addEventListener('click',function(e){
+      if(!e.target.classList.contains('sdelete'))return;
+      const pw=prompt('Enter password to delete this signal:');
+      if(pw!=='madlen2026')return;
+      const title=e.target.dataset.title;
+      signals=signals.filter(s=>s.title!==title);
+      renderSignals(document.querySelector('.pill.active').dataset.filter);
+      sp.classList.remove('on');
+    });
     document.querySelectorAll('.pill').forEach(p=>{
       p.addEventListener('click',function(){
         document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
@@ -243,20 +267,24 @@ import Layout from '../../layouts/Layout.astro';
     document.getElementById('modal-cancel').addEventListener('click',()=>modalBg.classList.remove('on'));
     modalBg.addEventListener('click',e=>{if(e.target===modalBg)modalBg.classList.remove('on');});
     const sectorBisectors={'Technological':30,'Economical':90,'Socio-Demographic':150,'Governance':210,'Environmental':270,'Values':330};
-    const ringRadii={'Body':30,'Domestic Space':90,'Social Systems':150,'Ecosystems':210,'Planetary Boundaries':270};
+    const ringRadii={'Body':37,'Domestic Space':112,'Social Systems':187,'Ecosystems':252,'Planetary Boundaries':272};
     document.getElementById('modal-add').addEventListener('click',()=>{
       const title=document.getElementById('m-title').value.trim();
       const desc=document.getElementById('m-desc').value.trim();
       const url=document.getElementById('m-url').value.trim();
+      const name=document.getElementById('m-name').value.trim()||'Anonymous';
       const sector=document.getElementById('m-sector').value;
       const ring=document.getElementById('m-ring').value;
+      const now=new Date();
+      const addedOn=now.toLocaleString('en-GB',{month:'long',year:'numeric'});
       if(!title)return;
-      signals.push({title,sector,ring,deg:sectorBisectors[sector]+(Math.random()-0.5)*16,r:ringRadii[ring]+(Math.random()-0.5)*18,desc:desc||'No description.',refs:url?[{label:'Source',url}]:[]});
+      signals.push({title,sector,ring,deg:sectorBisectors[sector]+(Math.random()-0.5)*16,r:ringRadii[ring]+(Math.random()-0.5)*18,desc:desc||'No description.',refs:url?[{label:'Source',url}]:[],addedBy:name,addedOn});
       renderSignals(document.querySelector('.pill.active').dataset.filter);
       modalBg.classList.remove('on');
       document.getElementById('m-title').value='';
       document.getElementById('m-desc').value='';
       document.getElementById('m-url').value='';
+      document.getElementById('m-name').value='';
     });
   </script>
 </Layout>
