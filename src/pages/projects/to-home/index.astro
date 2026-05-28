@@ -1,0 +1,310 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="To Home · Madlen von Wulffen"
+  description="A live archive collecting evidence of homing practices, small acts through which people make themselves at home, from participants around the world."
+>
+  <div class="proj-layout">
+
+    <div class="col-diagram">
+      <div class="diagram-inner">
+        <div class="diagram-label">System Architecture</div>
+        <svg viewBox="0 0 560 490" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+              <path d="M0,0.5 L0,5.5 L6,3 z" fill="#999"/>
+            </marker>
+          </defs>
+
+          <!-- ── Node 1: Participants ── -->
+          <rect x="165" y="30" width="230" height="58" rx="3" fill="#f8f7f5" stroke="#aaa" stroke-width="0.75"/>
+          <text x="280" y="54" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="10" font-weight="600" letter-spacing="0.13em" fill="#111">PARTICIPANTS</text>
+          <text x="280" y="72" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">via QR code · phone-first</text>
+
+          <!-- Content type annotations (left) -->
+          <text x="14" y="126" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" letter-spacing="0.1em" fill="#555">TEXT</text>
+          <text x="14" y="141" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" letter-spacing="0.1em" fill="#555">PHOTO</text>
+          <text x="14" y="156" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" letter-spacing="0.1em" fill="#555">VOICE</text>
+          <line x1="66" y1="141" x2="162" y2="141" stroke="#bbb" stroke-width="0.5" stroke-dasharray="3,2"/>
+
+          <!-- Arrow 1 -->
+          <line x1="280" y1="88" x2="280" y2="152" stroke="#999" stroke-width="0.75" marker-end="url(#arr)"/>
+          <text x="288" y="124" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">sends response</text>
+
+          <!-- ── Node 2: Telegram Bot ── -->
+          <rect x="165" y="155" width="230" height="58" rx="3" fill="#f8f7f5" stroke="#aaa" stroke-width="0.75"/>
+          <text x="280" y="179" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="10" font-weight="600" letter-spacing="0.13em" fill="#111">TELEGRAM BOT</text>
+          <text x="280" y="197" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">automated intake · 5 modules</text>
+
+          <!-- Module annotations (right) -->
+          <line x1="395" y1="184" x2="418" y2="184" stroke="#bbb" stroke-width="0.5"/>
+          <text x="422" y="165" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">01 — Territorializing</text>
+          <text x="422" y="179" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">02 — Bubbling</text>
+          <text x="422" y="193" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">03 — Outboxing</text>
+          <text x="422" y="207" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">04 — Connecting</text>
+          <text x="422" y="221" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">05 — Sensory Re-evocation</text>
+
+          <!-- Arrow 2 -->
+          <line x1="280" y1="213" x2="280" y2="277" stroke="#999" stroke-width="0.75" marker-end="url(#arr)"/>
+          <text x="288" y="249" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">logs to sheet</text>
+
+          <!-- ── Node 3: Google Sheets ── -->
+          <rect x="165" y="280" width="230" height="58" rx="3" fill="#f8f7f5" stroke="#aaa" stroke-width="0.75"/>
+          <text x="280" y="304" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="10" font-weight="600" letter-spacing="0.13em" fill="#111">GOOGLE SHEETS</text>
+          <text x="280" y="322" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">live archive · public JSON API</text>
+
+          <!-- Column annotations (right) -->
+          <line x1="395" y1="309" x2="418" y2="309" stroke="#bbb" stroke-width="0.5"/>
+          <text x="422" y="298" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">city · country · room</text>
+          <text x="422" y="312" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">live_with · duration · own_rent</text>
+          <text x="422" y="326" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">text_content · media_url</text>
+
+          <!-- Arrow 3 -->
+          <line x1="280" y1="338" x2="280" y2="402" stroke="#999" stroke-width="0.75" marker-end="url(#arr)"/>
+          <text x="288" y="374" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">reads on load · no cache</text>
+
+          <!-- ── Node 4: Archive Website (filled) ── -->
+          <rect x="140" y="405" width="280" height="58" rx="3" fill="#111" stroke="#111"/>
+          <text x="280" y="429" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="10" font-weight="600" letter-spacing="0.13em" fill="#fff">ARCHIVE WEBSITE</text>
+          <text x="280" y="447" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#aaa">filter · browse · reflect</text>
+
+          <!-- Filter annotations (left) -->
+          <line x1="138" y1="434" x2="112" y2="434" stroke="#bbb" stroke-width="0.5"/>
+          <text x="108" y="416" text-anchor="end" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">city · country · room</text>
+          <text x="108" y="430" text-anchor="end" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">module · language</text>
+          <text x="108" y="444" text-anchor="end" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">own_rent · duration</text>
+          <text x="108" y="458" text-anchor="end" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="#555">content_type</text>
+
+
+        </svg>
+
+        <div class="canopy-ref">
+          <div class="postcard-label">Canopy Installation</div>
+          <img src={`${base}images/to-home-canopy.png`} alt="Canopy installation diagram" />
+        </div>
+
+        <div class="postcard-ref">
+          <div class="postcard-label">Postcard — Module 01</div>
+          <img src={`${base}images/to-home-postcard.png`} alt="To Home postcard design" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+        <div class="proj-category">
+          <span>Research Infrastructure · 2026</span>
+          <span class="wip-tag">Work in Progress</span>
+        </div>
+        <h1>To Home</h1>
+
+        <p class="lede">A live archive collecting evidence of homing practices, small acts through which people make themselves at home, from participants around the world.</p>
+
+        <p>Home is a verb, not a noun. To Home is a design research project investigating the practices through which people constitute a sense of home, such as the rituals, habits, and spatial relations that make a place feel inhabited. Grounded in Paolo Boccagni's five homing dimensions, the project gathers responses from participants via a Telegram bot and surfaces them as a growing live archive.</p>
+
+        <p>Participants enter via QR code printed on postcards inside the canopy installation and on physical letters sent to long-term research participants. They respond through a structured Telegram bot across five modules, sending text, photographs, or voice notes. Each response is automatically logged to Google Sheet and immediately visible in the archive.</p>
+
+        <p>The website reads the sheet directly, with no backend, displaying the full collection with filters by city, country, housing situation, duration, module, and content type. It is built to feel like a collection of letters.</p>
+
+
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-key">Year</span><span class="meta-val">2026</span></div>
+          <div class="meta-row"><span class="meta-key">Type</span><span class="meta-val">Design Research · Live Archive</span></div>
+          <div class="meta-row"><span class="meta-key">Context</span><span class="meta-val">MDEF Research Project, Elisava / IAAC</span></div>
+          <div class="meta-row"><span class="meta-key">Stack</span><span class="meta-val">Telegram Bot · Google Sheets </span></div>
+          <div class="meta-row"><span class="meta-key">Shown</span><span class="meta-val">Grad Show, Elisava Barcelona, June 2026</span></div>
+        </div>
+
+        <a class="back-link" href={`${base}projects`}>← Back to Projects</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
+
+  .col-diagram {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+    border-right: 0.5px solid #e0e0e0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: #faf9f7;
+  }
+
+  .diagram-inner {
+    padding: 2rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diagram-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    align-self: center;
+  }
+
+  .diagram-inner svg {
+    height: calc(100vh - 56px - 7rem);
+    width: auto;
+    max-width: 100%;
+    flex-shrink: 0;
+  }
+
+  .canopy-ref {
+    margin-top: 3rem;
+    flex-shrink: 0;
+  }
+
+  .canopy-ref img {
+    display: block;
+    width: 10cm;
+    object-fit: contain;
+  }
+
+  .postcard-ref {
+    margin-top: 3rem;
+    flex-shrink: 0;
+  }
+
+  .postcard-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .postcard-ref img {
+    display: block;
+    width: 10cm;
+    height: 8cm;
+    object-fit: contain;
+  }
+
+
+  .col-text {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+  }
+
+  .text-inner {
+    padding: 3rem 2.2rem 4rem;
+  }
+
+  .proj-category {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .wip-tag {
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b03a2e;
+    background: #fdf2f1;
+    border: 0.5px solid #e8b4b0;
+    padding: 0.15rem 0.55rem;
+    border-radius: 2px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
+  }
+
+  .lede {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    border-bottom: 0.5px solid #e0e0e0;
+    padding-bottom: 1.4rem;
+  }
+
+  .col-text p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 1em;
+  }
+
+  .meta-table {
+    margin-top: 2.4rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    font-size: 0.8rem;
+  }
+
+  .meta-key {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+
+  .meta-val {
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 2.4rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .back-link:hover { color: var(--ink); }
+
+  :global(body:has(.proj-layout) footer) { display: none; }
+
+  @media (max-width: 860px) {
+    .proj-layout { grid-template-columns: 1fr; height: auto; overflow: visible; }
+    .col-diagram, .col-text { height: auto; overflow-y: visible; }
+    .col-diagram { border-right: none; border-bottom: 0.5px solid #e0e0e0; min-height: 480px; }
+  }
+</style>

@@ -16,6 +16,16 @@ const base = import.meta.env.BASE_URL;
 
     <div class="proj-grid" id="proj-grid">
 
+      <a class="proj-card" href={`${base}projects/to-home`} data-cat="research">
+        <div class="proj-img proj-img--wip">
+          <span class="tag">Research</span>
+          <div class="wip-label">Work in Progress</div>
+        </div>
+        <div class="proj-year">2026</div>
+        <div class="proj-title">To Home</div>
+        <div class="proj-sub">A live archive of homing practices — small acts through which people make themselves at home — from participants around the world.</div>
+      </a>
+
       <a class="proj-card" href={`${base}projects/safe-space-cognitive-orgies`} data-cat="installation">
         <div class="proj-img">
           <img src={`${base}images/canopytextile%20copy.png`} alt="Safe Space — Cognitive Orgies" />
@@ -149,6 +159,25 @@ const base = import.meta.env.BASE_URL;
     overflow: hidden;
     position: relative;
     margin-bottom: 0.85rem;
+  }
+
+  .proj-img--wip {
+    background: #f5f3ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wip-label {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #b03a2e;
+    border: 0.5px solid #e8b4b0;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    background: #fdf2f1;
   }
 
   .proj-img img {
