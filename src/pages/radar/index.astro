@@ -267,7 +267,7 @@ import Layout from '../../layouts/Layout.astro';
     document.getElementById('modal-cancel').addEventListener('click',()=>modalBg.classList.remove('on'));
     modalBg.addEventListener('click',e=>{if(e.target===modalBg)modalBg.classList.remove('on');});
     const sectorBisectors={'Technological':30,'Economical':90,'Socio-Demographic':150,'Governance':210,'Environmental':270,'Values':330};
-    const ringRadii={'Body':37,'Domestic Space':112,'Social Systems':187,'Ecosystems':252,'Planetary Boundaries':272};
+    const ringRadii={'Body':11,'Domestic Space':37,'Social Systems':112,'Ecosystems':187,'Planetary Boundaries':255};
     document.getElementById('modal-add').addEventListener('click',()=>{
       const title=document.getElementById('m-title').value.trim();
       const desc=document.getElementById('m-desc').value.trim();
