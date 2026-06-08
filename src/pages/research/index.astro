@@ -1,0 +1,1042 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const QUESTIONS_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoJAmUIxX-uvjWWTeWVheKeuaCu-o4KcKfOkc96WS2dGtegyiVfwyBf202tsVJmjNFsj41ooboxMLb/pub?gid=38610428&single=true&output=csv";
+const CONNECTIONS_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoJAmUIxX-uvjWWTeWVheKeuaCu-o4KcKfOkc96WS2dGtegyiVfwyBf202tsVJmjNFsj41ooboxMLb/pub?gid=2026582461&single=true&output=csv";
+---
+
+<Layout title="Research · Madlen von Wulffen" description="A contamination web of questions, research, and theory behind To Home.">
+
+<style>
+  :global(body:has(#research-page) footer) { display: none; }
+  :global(body:has(#research-page)) { overflow: hidden; }
+
+  #research-page {
+    position: fixed;
+    inset: 0;
+    top: 56px;
+    background: var(--bg, #faf9f7);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #top-bar {
+    position: relative;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 10px 24px;
+    border-bottom: 0.5px solid #ddd;
+    background: var(--bg, #faf9f7);
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  #page-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #111;
+    white-space: nowrap;
+    margin-right: 8px;
+  }
+
+  #search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 160px;
+    max-width: 280px;
+  }
+  #search-wrap svg {
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  #search {
+    width: 100%;
+    padding: 6px 10px 6px 30px;
+    border: 0.5px solid #ccc;
+    border-radius: 3px;
+    font-size: 11px;
+    font-family: inherit;
+    background: white;
+    color: #111;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  #search:focus { border-color: #273859; }
+  #search::placeholder { color: #bbb; }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-right: 2px;
+  }
+
+  .pill {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 0.5px solid #ccc;
+    border-radius: 2px;
+    background: white;
+    color: #999;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.12s;
+    white-space: nowrap;
+  }
+  .pill:hover { color: #111; border-color: #999; }
+  .pill.active { background: #273859; color: white; border-color: #273859; }
+  .pill.active-past { background: #8B7355; color: white; border-color: #8B7355; }
+  .pill.active-present { background: #4A6741; color: white; border-color: #4A6741; }
+  .pill.active-future { background: #3D5A80; color: white; border-color: #3D5A80; }
+
+  #reset-btn {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 0.5px solid #ddd;
+    border-radius: 2px;
+    background: white;
+    color: #bbb;
+    cursor: pointer;
+    font-family: inherit;
+    margin-left: 4px;
+    transition: all 0.12s;
+  }
+  #reset-btn:hover { color: #111; border-color: #999; }
+
+  #question-count {
+    font-size: 9px;
+    color: #bbb;
+    letter-spacing: 0.06em;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  #main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #graph-wrap {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    transition: margin-right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #graph-wrap.drawer-open {
+    margin-right: 400px;
+  }
+
+  #graph-svg {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+  }
+  #graph-svg:active { cursor: grabbing; }
+
+  #legend {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
+    background: rgba(250,249,247,0.92);
+    border: 0.5px solid #ddd;
+    border-radius: 4px;
+    padding: 12px 14px;
+    pointer-events: none;
+  }
+  .legend-title {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 8px;
+  }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 5px;
+  }
+  .legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-text {
+    font-size: 10px;
+    color: #555;
+  }
+  .legend-divider {
+    border: none;
+    border-top: 0.5px solid #eee;
+    margin: 8px 0;
+  }
+
+  #drawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background: var(--bg, #faf9f7);
+    border-left: 0.5px solid #ddd;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #drawer.open {
+    transform: translateX(0);
+  }
+
+  #drawer-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px 20px 0 20px;
+    flex-shrink: 0;
+  }
+
+  #drawer-deck {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    color: white;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  #drawer-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #bbb;
+    line-height: 1;
+    padding: 0;
+    margin-top: -2px;
+    flex-shrink: 0;
+    transition: color 0.12s;
+  }
+  #drawer-close:hover { color: #111; }
+
+  #drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px 32px 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd transparent;
+  }
+
+  #drawer-question {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #111;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 0.5px solid #e5e5e5;
+  }
+
+  .drawer-section {
+    margin-bottom: 18px;
+  }
+
+  .drawer-section-label {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 8px;
+  }
+
+  .drawer-section-content {
+    font-size: 12px;
+    color: #444;
+    line-height: 1.7;
+  }
+
+  .drawer-divider {
+    border: none;
+    border-top: 0.5px solid #e5e5e5;
+    margin: 16px 0;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 0.5px solid #ddd;
+    border-radius: 2px;
+    color: #666;
+    background: white;
+  }
+
+  .tag-boccagni {
+    border-color: #273859;
+    color: #273859;
+    background: rgba(39,56,89,0.05);
+  }
+
+  .moment-item {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.6;
+    padding: 6px 0;
+    border-bottom: 0.5px solid #f0f0f0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .moment-item:last-child { border-bottom: none; }
+  .moment-bullet {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ccc;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .theory-item {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.5;
+    padding: 5px 0;
+    border-bottom: 0.5px solid #f0f0f0;
+    font-style: italic;
+  }
+  .theory-item:last-child { border-bottom: none; }
+
+  .connected-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .connected-pill {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 4px 9px;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 0.5px solid;
+    background: white;
+    font-family: inherit;
+    transition: all 0.12s;
+  }
+  .connected-pill:hover { opacity: 0.7; }
+
+  .drawer-desc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.75;
+    font-style: italic;
+    background: white;
+    border-left: 2px solid #273859;
+    padding: 10px 14px;
+    border-radius: 0 3px 3px 0;
+    margin-bottom: 4px;
+  }
+
+  .drawer-image {
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 8px;
+    object-fit: cover;
+    max-height: 200px;
+    display: block;
+  }
+
+  .keywords-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .keyword-tag {
+    font-size: 9px;
+    color: #999;
+    background: #f5f5f5;
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  #loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #bbb;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .loading-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #273859;
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  .loading-dot:nth-child(2) { animation-delay: 0.2s; background: #4A6741; }
+  .loading-dot:nth-child(3) { animation-delay: 0.4s; background: #3D5A80; }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  .loading-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  #tooltip {
+    position: fixed;
+    pointer-events: none;
+    z-index: 100;
+    background: rgba(17,17,17,0.88);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 1.4;
+    max-width: 220px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    white-space: normal;
+  }
+  #tooltip.on { opacity: 1; }
+</style>
+
+<div id="research-page">
+
+  <div id="top-bar">
+    <span id="page-title">To Home — Research Web</span>
+
+    <div id="search-wrap">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <circle cx="5" cy="5" r="4" stroke="#999" stroke-width="1"/>
+        <line x1="8.5" y1="8.5" x2="11" y2="11" stroke="#999" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <input type="text" id="search" placeholder="Search questions, keywords…" autocomplete="off"/>
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">Deck</span>
+      <button class="pill" data-deck="Past">Past</button>
+      <button class="pill" data-deck="Present">Present</button>
+      <button class="pill" data-deck="Future">Future</button>
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">Dimension</span>
+      <select id="dim-filter" style="font-size:10px;padding:4px 8px;border:0.5px solid #ccc;border-radius:3px;font-family:inherit;background:white;color:#555;outline:none;cursor:pointer;">
+        <option value="">All</option>
+        <option>Territorializing</option>
+        <option>Bubbling</option>
+        <option>Outboxing</option>
+        <option>Connecting</option>
+        <option>Sensory Re-evocation</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">Research</span>
+      <select id="type-filter" style="font-size:10px;padding:4px 8px;border:0.5px solid #ccc;border-radius:3px;font-family:inherit;background:white;color:#555;outline:none;cursor:pointer;">
+        <option value="">All</option>
+        <option>Autoethnographic</option>
+        <option>Embodied Practice</option>
+        <option>Speculative Design</option>
+        <option>Participatory</option>
+        <option>Theoretical</option>
+        <option>Desk Research</option>
+      </select>
+    </div>
+
+    <button id="reset-btn">× Reset</button>
+    <span id="question-count"></span>
+  </div>
+
+  <div id="main">
+    <div id="graph-wrap">
+      <svg id="graph-svg"></svg>
+
+      <div id="loading">
+        <div class="loading-dots">
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+        </div>
+        Building the web…
+      </div>
+
+      <div id="legend">
+        <div class="legend-title">Deck</div>
+        <div class="legend-row">
+          <div class="legend-dot" style="background:#8B7355"></div>
+          <span class="legend-text">Past</span>
+        </div>
+        <div class="legend-row">
+          <div class="legend-dot" style="background:#4A6741"></div>
+          <span class="legend-text">Present</span>
+        </div>
+        <div class="legend-row">
+          <div class="legend-dot" style="background:#3D5A80"></div>
+          <span class="legend-text">Future</span>
+        </div>
+        <hr class="legend-divider">
+        <div class="legend-title">Node size = connections</div>
+        <div style="font-size:9px;color:#bbb;line-height:1.5;">Hover to highlight<br>Click to open</div>
+      </div>
+    </div>
+
+    <div id="drawer">
+      <div id="drawer-header">
+        <div>
+          <div id="drawer-deck"></div>
+        </div>
+        <button id="drawer-close">×</button>
+      </div>
+      <div id="drawer-body">
+        <div id="drawer-question"></div>
+
+        <div class="drawer-section" id="drawer-desc-section">
+          <div class="drawer-section-label">Context</div>
+          <div id="drawer-desc" class="drawer-desc"></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-label">Boccagni Dimensions</div>
+          <div class="tag-row" id="drawer-boccagni"></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-label">Keywords</div>
+          <div class="keywords-wrap" id="drawer-keywords"></div>
+        </div>
+
+        <hr class="drawer-divider">
+
+        <div class="drawer-section">
+          <div class="drawer-section-label">Research Moments</div>
+          <div id="drawer-moments"></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-label">Theoretical Sources</div>
+          <div id="drawer-theories"></div>
+        </div>
+
+        <hr class="drawer-divider">
+
+        <div class="drawer-section">
+          <div class="drawer-section-label">Contaminated by</div>
+          <div class="connected-pills" id="drawer-connected"></div>
+        </div>
+
+        <div class="drawer-section" id="drawer-image-section" style="display:none">
+          <div class="drawer-section-label">Documentation</div>
+          <img id="drawer-image" class="drawer-image" src="" alt="Research documentation"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+// @ts-nocheck
+(async () => {
+
+const QUESTIONS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoJAmUIxX-uvjWWTeWVheKeuaCu-o4KcKfOkc96WS2dGtegyiVfwyBf202tsVJmjNFsj41ooboxMLb/pub?gid=38610428&single=true&output=csv";
+const CONNECTIONS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoJAmUIxX-uvjWWTeWVheKeuaCu-o4KcKfOkc96WS2dGtegyiVfwyBf202tsVJmjNFsj41ooboxMLb/pub?gid=2026582461&single=true&output=csv";
+
+const DECK_COLORS = { Past: "#8B7355", Present: "#4A6741", Future: "#3D5A80" };
+const DECK_LIGHT  = { Past: "#e8e0d5", Present: "#d5e0d4", Future: "#d4dce8" };
+
+function parseCSV(text) {
+  const lines = text.trim().split(/\r?\n/);
+  const headers = parseRow(lines[0]);
+  return lines.slice(1).map(line => {
+    const vals = parseRow(line);
+    const obj = {};
+    headers.forEach((h, i) => { obj[h.trim()] = (vals[i] || "").trim(); });
+    return obj;
+  });
+}
+
+function parseRow(line) {
+  const result = [];
+  let cur = "", inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { inQ = !inQ; continue; }
+    if (c === ',' && !inQ) { result.push(cur); cur = ""; continue; }
+    cur += c;
+  }
+  result.push(cur);
+  return result;
+}
+
+let questions = [], connections = [];
+try {
+  const [qRes, cRes] = await Promise.all([
+    fetch(QUESTIONS_URL),
+    CONNECTIONS_URL ? fetch(CONNECTIONS_URL) : Promise.resolve(null)
+  ]);
+  const qText = await qRes.text();
+  questions = parseCSV(qText);
+
+  if (cRes) {
+    const cText = await cRes.text();
+    connections = parseCSV(cText);
+  } else {
+    questions.forEach(q => {
+      const ids = (q["Connected Question IDs"] || q["contaminated_by_question_ids"] || "")
+        .split(",").map(s => s.trim()).filter(Boolean);
+      ids.forEach(tid => {
+        connections.push({ source_id: q["ID"] || q["id"], target_id: tid, connection_type: "thematic", connection_note: "" });
+      });
+    });
+    const seen = new Set();
+    connections = connections.filter(c => {
+      const key = [c.source_id, c.target_id].sort().join("|");
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    });
+  }
+} catch(e) {
+  document.getElementById("loading").innerHTML = `<span style="color:#e07070">Could not load data. Check the sheet is published publicly.</span>`;
+  return;
+}
+
+document.getElementById("loading").style.display = "none";
+
+function field(q, ...keys) {
+  for (const k of keys) { if (q[k] !== undefined && q[k] !== "") return q[k]; }
+  return "";
+}
+
+const normalised = questions.map(q => ({
+  id:         field(q, "ID", "id"),
+  question:   field(q, "Question", "question"),
+  deck:       field(q, "Deck", "deck"),
+  boccagni1:  field(q, "Boccagni Dimension 1", "boccagni_dimension"),
+  boccagni2:  field(q, "Boccagni Dimension 2", "boccagni_dimension_2"),
+  type1:      field(q, "Research Type 1", "research_type"),
+  type2:      field(q, "Research Type 2", "research_type_2"),
+  moment1:    field(q, "Research Moment 1", "research_moment"),
+  moment2:    field(q, "Research Moment 2", "research_moment_2"),
+  moment3:    field(q, "Research Moment 3", "research_moment_3"),
+  theory1:    field(q, "Theoretical Source 1", "theoretical_source"),
+  theory2:    field(q, "Theoretical Source 2", "theoretical_source_2"),
+  theory3:    field(q, "Theoretical Source 3", "theoretical_source_3"),
+  connected:  field(q, "Connected Question IDs", "contaminated_by_question_ids"),
+  keywords:   field(q, "Keywords", "keywords"),
+  desc:       field(q, "Short Description", "short_description"),
+  image:      field(q, "Image URL", "image_url"),
+})).filter(q => q.id && q.question);
+
+const nodeById = new Map(normalised.map(q => [q.id, q]));
+
+const connCount = new Map();
+normalised.forEach(q => { connCount.set(q.id, 0); });
+connections.forEach(c => {
+  if (nodeById.has(c.source_id)) connCount.set(c.source_id, (connCount.get(c.source_id) || 0) + 1);
+  if (nodeById.has(c.target_id)) connCount.set(c.target_id, (connCount.get(c.target_id) || 0) + 1);
+});
+
+const d3Script = document.createElement("script");
+d3Script.src = "https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js";
+document.head.appendChild(d3Script);
+await new Promise(res => d3Script.onload = res);
+
+const svg = d3.select("#graph-svg");
+const wrap = document.getElementById("graph-wrap");
+
+let W = wrap.clientWidth;
+let H = wrap.clientHeight;
+
+svg.attr("viewBox", `0 0 ${W} ${H}`);
+
+const g = svg.append("g");
+
+const zoom = d3.zoom()
+  .scaleExtent([0.3, 3])
+  .on("zoom", e => g.attr("transform", e.transform));
+svg.call(zoom);
+
+let nodes = normalised.map(q => ({
+  ...q,
+  connections: connCount.get(q.id) || 0
+}));
+
+let links = connections
+  .filter(c => nodeById.has(c.source_id) && nodeById.has(c.target_id))
+  .map(c => ({
+    source: c.source_id,
+    target: c.target_id,
+    type: c.connection_type,
+    note: c.connection_note
+  }));
+
+const sim = d3.forceSimulation(nodes)
+  .force("link", d3.forceLink(links).id(d => d.id).distance(90).strength(0.4))
+  .force("charge", d3.forceManyBody().strength(-220))
+  .force("center", d3.forceCenter(W / 2, H / 2))
+  .force("collision", d3.forceCollide().radius(d => nodeRadius(d) + 8))
+  .alphaDecay(0.02);
+
+function nodeRadius(d) {
+  return 5 + Math.min(d.connections * 1.8, 14);
+}
+
+const linkG = g.append("g").attr("class", "links");
+const nodeG = g.append("g").attr("class", "nodes");
+
+let linkEls = linkG.selectAll("line")
+  .data(links).join("line")
+  .attr("stroke", d => {
+    const s = nodeById.get(typeof d.source === "object" ? d.source.id : d.source);
+    const t = nodeById.get(typeof d.target === "object" ? d.target.id : d.target);
+    if (!s || !t) return "#ddd";
+    return blendColors(DECK_LIGHT[s.deck] || "#ddd", DECK_LIGHT[t.deck] || "#ddd");
+  })
+  .attr("stroke-width", 1)
+  .attr("stroke-opacity", 0.5);
+
+let nodeEls = nodeG.selectAll("circle")
+  .data(nodes).join("circle")
+  .attr("r", d => nodeRadius(d))
+  .attr("fill", d => DECK_COLORS[d.deck] || "#999")
+  .attr("stroke", "white")
+  .attr("stroke-width", 2)
+  .attr("cursor", "pointer")
+  .style("transition", "r 0.2s");
+
+nodeEls.call(d3.drag()
+  .on("start", (e, d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+  .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; })
+  .on("end", (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; })
+);
+
+const tooltip = document.getElementById("tooltip");
+
+nodeEls.on("mouseover", (e, d) => {
+  tooltip.textContent = d.question.length > 80 ? d.question.slice(0, 80) + "…" : d.question;
+  tooltip.classList.add("on");
+  highlightNode(d);
+})
+.on("mousemove", (e) => {
+  tooltip.style.left = (e.clientX + 14) + "px";
+  tooltip.style.top = (e.clientY - 8) + "px";
+})
+.on("mouseout", () => {
+  tooltip.classList.remove("on");
+  if (!activeNode) resetHighlight();
+})
+.on("click", (e, d) => {
+  e.stopPropagation();
+  openDrawer(d);
+});
+
+svg.on("click", () => {
+  closeDrawer();
+  resetHighlight();
+});
+
+sim.on("tick", () => {
+  linkEls
+    .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+    .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+  nodeEls
+    .attr("cx", d => d.x)
+    .attr("cy", d => d.y);
+});
+
+let activeNode = null;
+
+function getConnectedIds(d) {
+  const ids = new Set([d.id]);
+  links.forEach(l => {
+    const sid = typeof l.source === "object" ? l.source.id : l.source;
+    const tid = typeof l.target === "object" ? l.target.id : l.target;
+    if (sid === d.id) ids.add(tid);
+    if (tid === d.id) ids.add(sid);
+  });
+  return ids;
+}
+
+function highlightNode(d) {
+  const connected = getConnectedIds(d);
+  nodeEls
+    .attr("opacity", n => connected.has(n.id) ? 1 : 0.15)
+    .attr("stroke-width", n => n.id === d.id ? 3 : 2)
+    .attr("stroke", n => n.id === d.id ? "#111" : "white");
+  linkEls.attr("stroke-opacity", l => {
+    const sid = typeof l.source === "object" ? l.source.id : l.source;
+    const tid = typeof l.target === "object" ? l.target.id : l.target;
+    return (sid === d.id || tid === d.id) ? 0.8 : 0.05;
+  })
+  .attr("stroke-width", l => {
+    const sid = typeof l.source === "object" ? l.source.id : l.source;
+    const tid = typeof l.target === "object" ? l.target.id : l.target;
+    return (sid === d.id || tid === d.id) ? 1.5 : 1;
+  });
+}
+
+function resetHighlight() {
+  nodeEls.attr("opacity", d => isFiltered(d) ? 1 : 0.12)
+         .attr("stroke-width", 2)
+         .attr("stroke", "white");
+  linkEls.attr("stroke-opacity", 0.4).attr("stroke-width", 1);
+}
+
+function openDrawer(d) {
+  activeNode = d;
+  highlightNode(d);
+
+  const deckColor = DECK_COLORS[d.deck] || "#273859";
+  const deckEl = document.getElementById("drawer-deck");
+  deckEl.textContent = d.deck;
+  deckEl.style.background = deckColor;
+
+  document.getElementById("drawer-question").textContent = d.question;
+
+  const descEl = document.getElementById("drawer-desc");
+  if (d.desc) {
+    descEl.textContent = d.desc;
+    document.getElementById("drawer-desc-section").style.display = "block";
+  } else {
+    document.getElementById("drawer-desc-section").style.display = "none";
+  }
+
+  const bocEl = document.getElementById("drawer-boccagni");
+  bocEl.innerHTML = "";
+  [d.boccagni1, d.boccagni2].filter(Boolean).forEach(b => {
+    const t = document.createElement("span");
+    t.className = "tag tag-boccagni";
+    t.textContent = b;
+    bocEl.appendChild(t);
+  });
+
+  const kwEl = document.getElementById("drawer-keywords");
+  kwEl.innerHTML = "";
+  d.keywords.split(",").map(k => k.trim()).filter(Boolean).forEach(kw => {
+    const t = document.createElement("span");
+    t.className = "keyword-tag";
+    t.textContent = kw;
+    kwEl.appendChild(t);
+  });
+
+  const momEl = document.getElementById("drawer-moments");
+  momEl.innerHTML = "";
+  [d.moment1, d.moment2, d.moment3].filter(Boolean).forEach(m => {
+    const div = document.createElement("div");
+    div.className = "moment-item";
+    div.innerHTML = `<div class="moment-bullet" style="background:${deckColor}"></div><span>${m}</span>`;
+    momEl.appendChild(div);
+  });
+
+  const thEl = document.getElementById("drawer-theories");
+  thEl.innerHTML = "";
+  [d.theory1, d.theory2, d.theory3].filter(Boolean).forEach(t => {
+    const div = document.createElement("div");
+    div.className = "theory-item";
+    div.textContent = t;
+    thEl.appendChild(div);
+  });
+
+  const connEl = document.getElementById("drawer-connected");
+  connEl.innerHTML = "";
+  const connected = getConnectedIds(d);
+  connected.forEach(id => {
+    if (id === d.id) return;
+    const n = nodeById.get(id);
+    if (!n) return;
+    const btn = document.createElement("button");
+    btn.className = "connected-pill";
+    btn.textContent = id;
+    btn.style.borderColor = DECK_COLORS[n.deck] || "#ddd";
+    btn.style.color = DECK_COLORS[n.deck] || "#555";
+    btn.title = n.question;
+    btn.onclick = () => {
+      const node = nodes.find(nd => nd.id === id);
+      if (node) openDrawer(node);
+    };
+    connEl.appendChild(btn);
+  });
+
+  const imgSection = document.getElementById("drawer-image-section");
+  const imgEl = document.getElementById("drawer-image");
+  if (d.image) {
+    imgEl.src = d.image;
+    imgSection.style.display = "block";
+  } else {
+    imgSection.style.display = "none";
+  }
+
+  document.getElementById("drawer").classList.add("open");
+  document.getElementById("graph-wrap").classList.add("drawer-open");
+
+  const targetX = W * 0.35 - d.x;
+  const targetY = H * 0.5 - d.y;
+  svg.transition().duration(400).call(
+    zoom.translateBy, targetX * 0.3, targetY * 0.3
+  );
+}
+
+function closeDrawer() {
+  activeNode = null;
+  document.getElementById("drawer").classList.remove("open");
+  document.getElementById("graph-wrap").classList.remove("drawer-open");
+  resetHighlight();
+}
+
+document.getElementById("drawer-close").addEventListener("click", closeDrawer);
+
+const activeDeckFilters = new Set();
+let dimFilter = "";
+let typeFilter = "";
+let searchQuery = "";
+
+function isFiltered(d) {
+  if (activeDeckFilters.size > 0 && !activeDeckFilters.has(d.deck)) return false;
+  if (dimFilter && d.boccagni1 !== dimFilter && d.boccagni2 !== dimFilter) return false;
+  if (typeFilter && d.type1 !== typeFilter && d.type2 !== typeFilter) return false;
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    const text = (d.question + " " + d.keywords + " " + d.desc).toLowerCase();
+    if (!text.includes(q)) return false;
+  }
+  return true;
+}
+
+function applyFilters() {
+  nodeEls
+    .attr("opacity", d => isFiltered(d) ? 1 : 0.12)
+    .attr("display", "block");
+  linkEls.attr("stroke-opacity", l => {
+    const sid = typeof l.source === "object" ? l.source.id : l.source;
+    const tid = typeof l.target === "object" ? l.target.id : l.target;
+    const s = nodeById.get(sid);
+    const t = nodeById.get(tid);
+    return (s && t && isFiltered(s) && isFiltered(t)) ? 0.4 : 0.05;
+  });
+
+  const visible = normalised.filter(isFiltered).length;
+  document.getElementById("question-count").textContent = `${visible} / ${normalised.length} questions`;
+}
+
+document.querySelectorAll("[data-deck]").forEach(btn => {
+  const deck = btn.dataset.deck;
+  btn.addEventListener("click", () => {
+    if (activeDeckFilters.has(deck)) {
+      activeDeckFilters.delete(deck);
+      btn.className = "pill";
+    } else {
+      activeDeckFilters.add(deck);
+      btn.className = `pill active-${deck.toLowerCase()}`;
+    }
+    applyFilters();
+  });
+});
+
+document.getElementById("dim-filter").addEventListener("change", e => {
+  dimFilter = e.target.value;
+  applyFilters();
+});
+
+document.getElementById("type-filter").addEventListener("change", e => {
+  typeFilter = e.target.value;
+  applyFilters();
+});
+
+document.getElementById("search").addEventListener("input", e => {
+  searchQuery = e.target.value.trim();
+  applyFilters();
+});
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+  activeDeckFilters.clear();
+  dimFilter = "";
+  typeFilter = "";
+  searchQuery = "";
+  document.getElementById("search").value = "";
+  document.getElementById("dim-filter").value = "";
+  document.getElementById("type-filter").value = "";
+  document.querySelectorAll("[data-deck]").forEach(btn => btn.className = "pill");
+  applyFilters();
+  resetHighlight();
+});
+
+document.getElementById("question-count").textContent = `${normalised.length} questions`;
+
+const ro = new ResizeObserver(() => {
+  W = wrap.clientWidth;
+  H = wrap.clientHeight;
+  svg.attr("viewBox", `0 0 ${W} ${H}`);
+  sim.force("center", d3.forceCenter(W / 2, H / 2)).alpha(0.1).restart();
+});
+ro.observe(wrap);
+
+function blendColors(a, b) {
+  const ra = parseInt(a.slice(1,3),16), ga = parseInt(a.slice(3,5),16), ba = parseInt(a.slice(5,7),16);
+  const rb = parseInt(b.slice(1,3),16), gb = parseInt(b.slice(3,5),16), bb = parseInt(b.slice(5,7),16);
+  const r = Math.round((ra+rb)/2), gr = Math.round((ga+gb)/2), br = Math.round((ba+bb)/2);
+  return `rgb(${r},${gr},${br})`;
+}
+
+})();
+</script>
+
+</Layout>

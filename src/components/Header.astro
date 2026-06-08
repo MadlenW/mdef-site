@@ -8,6 +8,7 @@ const currentPath = Astro.url.pathname;
   <nav>
     <ul class="nav-links">
       <li><a href={`${base}projects`} class={currentPath.startsWith(`${base}projects`) ? 'active' : ''}>Projects</a></li>
+      <li><a href={`${base}research`} class={currentPath.startsWith(`${base}research`) ? 'active' : ''}>Research</a></li>
       <li><a href={`${base}radar`} class={currentPath.startsWith(`${base}radar`) ? 'active' : ''}>Radar</a></li>
       <li><a href={`${base}about`} class={currentPath.startsWith(`${base}about`) ? 'active' : ''}>About</a></li>
     </ul>
