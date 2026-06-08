@@ -106,14 +106,7 @@ import Layout from '../../layouts/Layout.astro';
   #canvas-wrap:active { cursor: grabbing; }
   #canvas-wrap.drawer-open { margin-right: 400px; transition: margin-right 0.32s cubic-bezier(0.4,0,0.2,1); }
 
-  #canvas-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: visible;
-  }
+  #canvas-svg { display: none; }
 
   /* Question cards */
   .qcard {
@@ -520,9 +513,8 @@ connections.forEach(c => {
 
 document.getElementById("loading").style.display = "none";
 
-const wrap   = document.getElementById("canvas-wrap");
-const svg    = document.getElementById("canvas-svg");
-const NS     = "http://www.w3.org/2000/svg";
+const wrap = document.getElementById("canvas-wrap");
+const NS   = "http://www.w3.org/2000/svg";
 
 function svgEl(tag, attrs) {
   const e = document.createElementNS(NS, tag);
@@ -530,15 +522,18 @@ function svgEl(tag, attrs) {
   return e;
 }
 
-let W = wrap.clientWidth, H = wrap.clientHeight;
+// Wait one frame so wrap has measured dimensions
+await new Promise(r => requestAnimationFrame(r));
+let W = wrap.clientWidth || 1200;
+let H = wrap.clientHeight || 700;
 
 const nodes = questions.map((q,i) => {
   const baseX = q.deck === "Past" ? W*0.2 : q.deck === "Present" ? W*0.5 : W*0.78;
   return {
     id: q.id,
     q,
-    x: baseX + (Math.random()-0.5)*260,
-    y: H*0.1 + Math.random()*H*0.8,
+    x: baseX + (Math.random()-0.5)*260 - CARD_W/2,
+    y: H*0.1 + Math.random()*H*0.8 - CARD_H/2,
     vx: 0, vy: 0,
     w: CARD_W, h: CARD_H,
   };
@@ -574,10 +569,10 @@ function tick() {
       const dx = (b.x+CARD_W/2) - (a.x+CARD_W/2);
       const dy = (b.y+CARD_H/2) - (a.y+CARD_H/2);
       const d2 = dx*dx + dy*dy + 1;
-      const f  = K_REP / d2;
+      const fv = K_REP / d2;
       const d  = Math.sqrt(d2);
-      a.vx -= f*dx/d; a.vy -= f*dy/d;
-      b.vx += f*dx/d; b.vy += f*dy/d;
+      a.vx -= fv*dx/d; a.vy -= fv*dy/d;
+      b.vx += fv*dx/d; b.vy += fv*dy/d;
     }
   }
 
@@ -596,7 +591,6 @@ function tick() {
     n.vx += (cx - (n.x+CARD_W/2)) * K_CTR;
     n.vy += (cy - (n.y+CARD_H/2)) * K_CTR;
     n.vx += (deckX[n.q.deck] - (n.x+CARD_W/2)) * K_DECK;
-
     n.vx *= DAMP; n.vy *= DAMP;
     const VMAX = 12;
     n.vx = Math.max(-VMAX, Math.min(VMAX, n.vx));
@@ -643,16 +637,8 @@ wrap.addEventListener("wheel", e => {
   applyTf();
 }, { passive: false });
 
-function applyTf() {
-  svgGroup.setAttribute("transform", `translate(${tx},${ty}) scale(${scale})`);
-  htmlLayer.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
-  htmlLayer.style.transformOrigin = "0 0";
-}
-
-svg.style.display = "none";
-
 const htmlLayer = document.createElement("div");
-htmlLayer.style.cssText = "position:absolute;inset:0;overflow:visible;";
+htmlLayer.style.cssText = "position:absolute;top:0;left:0;width:0;height:0;overflow:visible;";
 wrap.appendChild(htmlLayer);
 
 const svgOverlay = document.createElementNS(NS, "svg");
@@ -662,12 +648,18 @@ wrap.insertBefore(svgOverlay, htmlLayer);
 const svgGroup = svgEl("g", {});
 svgOverlay.appendChild(svgGroup);
 
+function applyTf() {
+  svgGroup.setAttribute("transform", `translate(${tx},${ty}) scale(${scale})`);
+  htmlLayer.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+  htmlLayer.style.transformOrigin = "0 0";
+}
+
 const cardEls = new Map();
 nodes.forEach(n => {
   const div = document.createElement("div");
   div.className = "qcard";
   div.dataset.id = n.id;
-  div.style.width = CARD_W + "px";
+  div.style.cssText = `position:absolute;width:${CARD_W}px;left:${n.x}px;top:${n.y}px;`;
 
   const color = DECK_COLOR[n.q.deck] || "#999";
   div.innerHTML = `
@@ -972,8 +964,8 @@ function updateCardPositions() {
   nodes.forEach(n => {
     const el = cardEls.get(n.id);
     if (!el) return;
-    el.style.left = n.x + "px";
-    el.style.top  = n.y + "px";
+    el.style.left = Math.round(n.x) + "px";
+    el.style.top  = Math.round(n.y) + "px";
   });
 }
 
