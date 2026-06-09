@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://madlenw.github.io/mdef-site/',
-  base: '/mdef-site/',
+  base: '',
 
   vite: {
     plugins: [tailwindcss()]
