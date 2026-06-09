@@ -12,25 +12,22 @@ import Layout from '../../layouts/Layout.astro';
     position: fixed;
     inset: 0;
     top: 56px;
-    background: #faf9f7;
-    display: flex;
-    flex-direction: column;
+    background: #ffffff;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     overflow: hidden;
   }
 
-  /* Top bar */
   #bar {
-    position: relative;
-    z-index: 50;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 42px;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 0.5px solid #e0e0e0;
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 9px 20px;
-    border-bottom: 0.5px solid #ddd;
-    background: #faf9f7;
-    flex-shrink: 0;
-    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0 18px;
+    z-index: 50;
   }
 
   #bar-title {
@@ -40,223 +37,135 @@ import Layout from '../../layouts/Layout.astro';
     text-transform: uppercase;
     color: #111;
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
   #search {
-    padding: 5px 10px 5px 28px;
+    width: 170px;
+    padding: 4px 10px;
     border: 0.5px solid #ccc;
     border-radius: 2px;
     font-size: 11px;
     font-family: inherit;
-    background: white;
-    color: #111;
     outline: none;
-    width: 200px;
-    transition: border-color 0.15s;
-  }
-  #search:focus { border-color: #273859; }
-  #search::placeholder { color: #bbb; }
-  #search-wrap { position: relative; }
-  #search-wrap svg { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: 0.4; }
-
-  .fg { display: flex; align-items: center; gap: 5px; }
-  .fl { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #aaa; }
-
-  .pill {
-    font-size: 9px; font-weight: 600; letter-spacing: 0.07em;
-    text-transform: uppercase; padding: 4px 9px;
-    border: 0.5px solid #ccc; border-radius: 2px;
-    background: white; color: #999; cursor: pointer;
-    font-family: inherit; transition: all 0.1s; white-space: nowrap;
-  }
-  .pill:hover { color: #111; border-color: #888; }
-  .pill.ap { background: #8B7355; color: white; border-color: #8B7355; }
-  .pill.apr { background: #4A6741; color: white; border-color: #4A6741; }
-  .pill.af { background: #3D5A80; color: white; border-color: #3D5A80; }
-  .pill.on { background: #273859; color: white; border-color: #273859; }
-
-  select.fs {
-    font-size: 10px; padding: 4px 8px;
-    border: 0.5px solid #ccc; border-radius: 2px;
-    font-family: inherit; background: white; color: #555;
-    outline: none; cursor: pointer;
-  }
-
-  #reset {
-    font-size: 9px; font-weight: 600; letter-spacing: 0.07em;
-    text-transform: uppercase; padding: 4px 9px;
-    border: 0.5px solid #ddd; border-radius: 2px;
-    background: white; color: #bbb; cursor: pointer;
-    font-family: inherit; transition: all 0.1s; margin-left: 4px;
-  }
-  #reset:hover { color: #111; border-color: #888; }
-
-  #qcount {
-    font-size: 9px; color: #bbb; letter-spacing: 0.06em;
-    margin-left: auto; white-space: nowrap;
-  }
-
-  /* Canvas */
-  #canvas-wrap {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    cursor: grab;
-  }
-  #canvas-wrap:active { cursor: grabbing; }
-  #canvas-wrap.drawer-open { margin-right: 380px; transition: margin-right 0.3s cubic-bezier(0.4,0,0.2,1); }
-
-  #canvas-svg { display: none; }
-
-  /* Question cards */
-  .qcard {
-    position: absolute;
-    width: 180px;
-    background: #ffffff;
-    border: 0.5px solid #e0e0e0;
-    border-radius: 2px;
-    padding: 10px 12px 24px 12px;
-    cursor: pointer;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    transition: opacity 0.2s, box-shadow 0.18s;
-    user-select: none;
-    pointer-events: all;
-  }
-  .qcard:hover {
-    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-  }
-  .qcard.dimmed {
-    opacity: 0.08;
-    pointer-events: none;
-  }
-  .qcard.active {
-    box-shadow: 0 0 0 1.5px #141414, 0 4px 16px rgba(0,0,0,0.12);
-  }
-  .qcard-deck {
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .qcard-deck-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
     flex-shrink: 0;
   }
-  .qcard-text {
-    font-size: 11px;
-    line-height: 1.6;
-    color: #141414;
-    font-weight: 400;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .qcard-id {
-    position: absolute;
-    bottom: 7px;
-    right: 9px;
-    font-size: 8px;
-    color: #ccc;
-    letter-spacing: 0.06em;
-    font-weight: 600;
-  }
+  #search:focus { border-color: #111; }
+  #search::placeholder { color: #bbb; }
 
-  /* SVG edges */
-  .edge-path {
-    fill: none;
-    stroke: #c8c0b8;
-    stroke-width: 0.8;
-    stroke-opacity: 0.3;
-    transition: stroke-opacity 0.18s, stroke-width 0.18s, stroke 0.18s;
-  }
-  .edge-path.lit {
-    stroke: #141414;
-    stroke-width: 1.5;
-    stroke-opacity: 0.85;
-  }
-  .edge-path.faded {
-    stroke-opacity: 0.03;
-  }
-
-  .edge-label {
-    font-size: 8px;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    fill: #141414;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.18s;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+  .fp {
+    font-size: 9px;
     font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border: 0.5px solid #ccc;
+    border-radius: 2px;
+    background: #fff;
+    color: #999;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.1s;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
-  .edge-label.lit { opacity: 1; }
-  .edge-label-bg {
-    fill: #ffffff;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.18s;
-  }
-  .edge-label-bg.lit { opacity: 1; }
+  .fp:hover { color: #111; border-color: #888; }
+  .fp.on-past    { background: #8B7355; color: #fff; border-color: #8B7355; }
+  .fp.on-present { background: #4A6741; color: #fff; border-color: #4A6741; }
+  .fp.on-future  { background: #3D5A80; color: #fff; border-color: #3D5A80; }
 
-  /* Legend */
+  .fsel {
+    font-size: 10px;
+    padding: 4px 7px;
+    border: 0.5px solid #ccc;
+    border-radius: 2px;
+    font-family: inherit;
+    background: #fff;
+    color: #555;
+    outline: none;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  #resetbtn {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border: 0.5px solid #e0e0e0;
+    border-radius: 2px;
+    background: #fff;
+    color: #bbb;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.1s;
+    flex-shrink: 0;
+  }
+  #resetbtn:hover { color: #111; border-color: #888; }
+
+  #qcount {
+    font-size: 9px;
+    color: #bbb;
+    letter-spacing: 0.06em;
+    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  #canvas-wrap {
+    position: absolute;
+    top: 42px; left: 0; right: 0; bottom: 0;
+  }
+
+  #canvas {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    display: block;
+  }
+  #canvas:active { cursor: grabbing; }
+
   #legend {
     position: absolute;
     bottom: 18px;
     left: 18px;
-    z-index: 20;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.97);
     border: 0.5px solid #e0e0e0;
     border-radius: 2px;
-    padding: 10px 12px;
+    padding: 10px 13px;
     pointer-events: none;
+    z-index: 20;
   }
-  .leg-title {
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
+  .lt { font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; margin-bottom: 7px; }
+  .lr { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; font-size: 10px; color: #555; font-weight: 500; }
+  .ld { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .lhr { border: none; border-top: 0.5px solid #eee; margin: 7px 0; }
+
+  #loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #bbb;
-    margin-bottom: 7px;
+    z-index: 10;
   }
-  .leg-row {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-bottom: 5px;
-    font-size: 10px;
-    color: #555;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-  }
-  .leg-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .leg-hr { border: none; border-top: 0.5px solid #eee; margin: 7px 0; }
+  .ldots { display: flex; gap: 5px; }
+  .ld2 { width: 5px; height: 5px; border-radius: 50%; animation: lp 1.1s ease-in-out infinite; }
+  @keyframes lp { 0%,100%{opacity:.2;transform:scale(.7)} 50%{opacity:1;transform:scale(1.2)} }
 
-  /* Tooltip */
-  #tip {
-    position: fixed; pointer-events: none; z-index: 200;
-    background: #111; color: white;
-    padding: 5px 9px; border-radius: 2px;
-    font-size: 10px; line-height: 1.5; max-width: 200px;
-    opacity: 0; transition: opacity 0.12s;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    letter-spacing: 0.03em;
-  }
-  #tip.on { opacity: 1; }
-
-  /* Drawer */
   #drawer {
     position: absolute;
     top: 0; right: 0;
-    width: 380px;
+    width: 360px;
     height: 100%;
-    background: #ffffff;
+    background: #fff;
     border-left: 0.5px solid #e0e0e0;
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
@@ -267,823 +176,585 @@ import Layout from '../../layouts/Layout.astro';
   }
   #drawer.open { transform: translateX(0); }
 
-  #dr-header {
-    padding: 16px 16px 0 16px;
+  #dh {
+    padding: 16px 16px 0;
     flex-shrink: 0;
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
+    align-items: flex-start;
   }
-  #dr-deck {
+  #ddeck {
     font-size: 8px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     padding: 3px 8px;
     border-radius: 2px;
-    color: white;
+    color: #fff;
     display: inline-block;
   }
-  #dr-close {
+  #dclose {
     background: none;
     border: 0.5px solid #e0e0e0;
     border-radius: 50%;
-    width: 26px;
-    height: 26px;
+    width: 24px; height: 24px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     color: #999;
-    line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.1s, border-color 0.1s;
+    transition: all 0.1s;
     flex-shrink: 0;
   }
-  #dr-close:hover { color: #141414; border-color: #141414; }
+  #dclose:hover { color: #111; border-color: #111; }
 
-  #dr-body {
+  #dbody {
     flex: 1;
     overflow-y: auto;
-    padding: 14px 16px 32px 16px;
+    padding: 12px 16px 28px;
     scrollbar-width: thin;
     scrollbar-color: #eee transparent;
   }
-  #dr-q {
-    font-size: 16px;
+  #dq {
+    font-size: 15px;
     font-weight: 300;
     line-height: 1.55;
-    color: #141414;
+    color: #111;
     letter-spacing: -0.01em;
-    margin-bottom: 14px;
-    padding-bottom: 14px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
     border-bottom: 0.5px solid #ebebeb;
   }
-  .ds { margin-bottom: 14px; }
-  .dl {
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #bbb;
-    margin-bottom: 6px;
-  }
-  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
-  .tag {
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    padding: 3px 7px;
-    border: 0.5px solid #273859;
-    border-radius: 2px;
-    color: #273859;
-    background: rgba(39,56,89,0.04);
-  }
-  .kw {
-    font-size: 9px;
-    color: #999;
-    background: #f5f5f5;
-    padding: 2px 6px;
-    border-radius: 2px;
-  }
-  .dr-divider { border: none; border-top: 0.5px solid #ebebeb; margin: 12px 0; }
-  .mi {
-    font-size: 11px;
-    color: #555;
-    line-height: 1.6;
-    padding: 5px 0;
-    border-bottom: 0.5px solid #f5f5f5;
-    display: flex;
-    align-items: flex-start;
-    gap: 7px;
-  }
-  .mi:last-child { border-bottom: none; }
-  .mb {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #ccc;
-    flex-shrink: 0;
-    margin-top: 7px;
-  }
-  .ti {
-    font-size: 11px;
-    color: #555;
-    line-height: 1.5;
-    padding: 4px 0;
-    border-bottom: 0.5px solid #f5f5f5;
-    font-style: italic;
-  }
-  .ti:last-child { border-bottom: none; }
-  .conn-pills { display: flex; flex-wrap: wrap; gap: 4px; }
-  .cp {
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.07em;
-    padding: 3px 8px;
-    border-radius: 2px;
-    cursor: pointer;
-    border: 0.5px solid;
-    background: white;
-    font-family: inherit;
-    transition: opacity 0.1s;
-  }
-  .cp:hover { opacity: 0.6; }
-  .dr-desc {
-    font-size: 11px;
-    color: #555;
-    line-height: 1.75;
-    font-style: italic;
-    background: #fafafa;
-    border-left: 2px solid #141414;
-    padding: 9px 12px;
-    border-radius: 0 2px 2px 0;
-  }
-
-  /* Loading */
-  #loading {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 10px;
-    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb;
-  }
-  .ldots { display: flex; gap: 5px; }
-  .ld {
-    width: 5px; height: 5px; border-radius: 50%;
-    animation: lp 1.1s ease-in-out infinite;
-  }
-  @keyframes lp { 0%,100%{opacity:.2;transform:scale(.7)} 50%{opacity:1;transform:scale(1.2)} }
+  .ds { margin-bottom: 13px; }
+  .dl { font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; margin-bottom: 6px; }
+  .dtags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .dtag { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 7px; border: 0.5px solid #273859; border-radius: 2px; color: #273859; background: rgba(39,56,89,.04); }
+  .dkw { font-size: 9px; color: #999; background: #f5f5f5; padding: 2px 6px; border-radius: 2px; }
+  .dhr { border: none; border-top: 0.5px solid #ebebeb; margin: 11px 0; }
+  .dmi { font-size: 11px; color: #555; line-height: 1.6; padding: 4px 0; border-bottom: 0.5px solid #f5f5f5; display: flex; align-items: flex-start; gap: 6px; }
+  .dmi:last-child { border-bottom: none; }
+  .dmb { width: 4px; height: 4px; border-radius: 50%; background: #ccc; flex-shrink: 0; margin-top: 7px; }
+  .dti { font-size: 11px; color: #555; line-height: 1.5; padding: 4px 0; border-bottom: 0.5px solid #f5f5f5; font-style: italic; }
+  .dti:last-child { border-bottom: none; }
+  .dcps { display: flex; flex-wrap: wrap; gap: 4px; }
+  .dcp { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; padding: 3px 8px; border-radius: 2px; cursor: pointer; border: 0.5px solid; background: #fff; font-family: inherit; transition: opacity 0.1s; }
+  .dcp:hover { opacity: 0.6; }
+  .ddesc { font-size: 11px; color: #555; line-height: 1.75; font-style: italic; background: #fafafa; border-left: 2px solid #111; padding: 9px 12px; border-radius: 0 2px 2px 0; }
 </style>
 
 <div id="rp">
   <div id="bar">
     <span id="bar-title">To Home — Research Web</span>
-
-    <div id="search-wrap" class="fg">
-      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-        <circle cx="4.5" cy="4.5" r="3.5" stroke="#999" stroke-width="1"/>
-        <line x1="7.5" y1="7.5" x2="10" y2="10" stroke="#999" stroke-width="1" stroke-linecap="round"/>
-      </svg>
-      <input type="text" id="search" placeholder="Search questions…" autocomplete="off"/>
-    </div>
-
-    <div class="fg">
-      <span class="fl">Deck</span>
-      <button class="pill" data-deck="Past">Past</button>
-      <button class="pill" data-deck="Present">Present</button>
-      <button class="pill" data-deck="Future">Future</button>
-    </div>
-
-    <div class="fg">
-      <span class="fl">Dimension</span>
-      <select id="dim-sel" class="fs">
-        <option value="">All</option>
-        <option>Territorializing</option>
-        <option>Bubbling</option>
-        <option>Outboxing</option>
-        <option>Connecting</option>
-        <option>Sensory Re-evocation</option>
-      </select>
-    </div>
-
-    <div class="fg">
-      <span class="fl">Research</span>
-      <select id="type-sel" class="fs">
-        <option value="">All</option>
-        <option>Autoethnographic</option>
-        <option>Embodied Practice</option>
-        <option>Speculative Design</option>
-        <option>Participatory</option>
-        <option>Theoretical</option>
-        <option>Desk Research</option>
-      </select>
-    </div>
-
-    <button id="reset">× Reset</button>
+    <input type="text" id="search" placeholder="Search questions…" autocomplete="off">
+    <button class="fp" data-deck="Past">Past</button>
+    <button class="fp" data-deck="Present">Present</button>
+    <button class="fp" data-deck="Future">Future</button>
+    <select id="dimsel" class="fsel">
+      <option value="">All Dimensions</option>
+      <option>Territorializing</option>
+      <option>Bubbling</option>
+      <option>Outboxing</option>
+      <option>Connecting</option>
+      <option>Sensory Re-evocation</option>
+    </select>
+    <select id="typesel" class="fsel">
+      <option value="">All Research Types</option>
+      <option>Autoethnographic</option>
+      <option>Embodied Practice</option>
+      <option>Speculative Design</option>
+      <option>Participatory</option>
+      <option>Theoretical</option>
+      <option>Desk Research</option>
+    </select>
+    <button id="resetbtn">× Reset</button>
     <span id="qcount"></span>
   </div>
 
   <div id="canvas-wrap">
-    <svg id="canvas-svg"></svg>
     <div id="loading">
       <div class="ldots">
-        <div class="ld" style="background:#8B7355"></div>
-        <div class="ld" style="background:#4A6741;animation-delay:.18s"></div>
-        <div class="ld" style="background:#3D5A80;animation-delay:.36s"></div>
+        <div class="ld2" style="background:#8B7355"></div>
+        <div class="ld2" style="background:#4A6741;animation-delay:.18s"></div>
+        <div class="ld2" style="background:#3D5A80;animation-delay:.36s"></div>
       </div>
       Building the web…
     </div>
+    <svg id="canvas"></svg>
     <div id="legend">
-      <div class="leg-title">Deck</div>
-      <div class="leg-row"><div class="leg-dot" style="background:#8B7355"></div>Past</div>
-      <div class="leg-row"><div class="leg-dot" style="background:#4A6741"></div>Present</div>
-      <div class="leg-row"><div class="leg-dot" style="background:#3D5A80"></div>Future</div>
-      <hr class="leg-hr">
-      <div style="font-size:9px;color:#bbb;line-height:1.6;">Hover card — connections light up<br>Click card — full detail</div>
+      <div class="lt">Deck</div>
+      <div class="lr"><div class="ld" style="background:#8B7355"></div>Past</div>
+      <div class="lr"><div class="ld" style="background:#4A6741"></div>Present</div>
+      <div class="lr"><div class="ld" style="background:#3D5A80"></div>Future</div>
+      <div class="lhr"></div>
+      <div style="font-size:9px;color:#bbb;line-height:1.6">Hover — show connections<br>Click — full detail</div>
     </div>
     <div id="drawer">
-      <div id="dr-header">
-        <button id="dr-close">×</button>
-        <div id="dr-deck"></div>
+      <div id="dh">
+        <div id="ddeck"></div>
+        <button id="dclose">×</button>
       </div>
-      <div id="dr-body">
-        <div id="dr-q"></div>
-        <div class="ds" id="dr-desc-wrap">
-          <div class="dl">Context</div>
-          <div id="dr-desc" class="dr-desc"></div>
-        </div>
-        <div class="ds">
-          <div class="dl">Boccagni Dimensions</div>
-          <div class="tags" id="dr-boc"></div>
-        </div>
-        <div class="ds">
-          <div class="dl">Keywords</div>
-          <div class="tags" id="dr-kw"></div>
-        </div>
-        <hr class="dr-divider">
-        <div class="ds">
-          <div class="dl">Research Moments</div>
-          <div id="dr-mom"></div>
-        </div>
-        <div class="ds">
-          <div class="dl">Theoretical Sources</div>
-          <div id="dr-th"></div>
-        </div>
-        <hr class="dr-divider">
-        <div class="ds">
-          <div class="dl">Contaminated by</div>
-          <div class="conn-pills" id="dr-conn"></div>
-        </div>
+      <div id="dbody">
+        <div id="dq"></div>
+        <div class="ds" id="ddescwrap"><div class="dl">Context</div><div id="ddesc" class="ddesc"></div></div>
+        <div class="ds"><div class="dl">Boccagni Dimensions</div><div class="dtags" id="dboc"></div></div>
+        <div class="ds"><div class="dl">Keywords</div><div class="dtags" id="dkw"></div></div>
+        <div class="dhr"></div>
+        <div class="ds"><div class="dl">Research Moments</div><div id="dmom"></div></div>
+        <div class="ds"><div class="dl">Theoretical Sources</div><div id="dth"></div></div>
+        <div class="dhr"></div>
+        <div class="ds"><div class="dl">Contaminated by</div><div class="dcps" id="dconn"></div></div>
       </div>
     </div>
   </div>
 </div>
 
-<div id="tip"></div>
-
-<script>
-// @ts-nocheck
+<script is:inline>
 (async () => {
+  const Q_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoJAmUIxX-uvjWWTeWVheKeuaCu-o4KcKfOkc96WS2dGtegyiVfwyBf202tsVJmjNFsj41ooboxMLb/pub?gid=38610428&single=true&output=csv";
+  const C_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoJAmUIxX-uvjWWTeWVheKeuaCu-o4KcKfOkc96WS2dGtegyiVfwyBf202tsVJmjNFsj41ooboxMLb/pub?gid=2026582461&single=true&output=csv";
 
-const Q_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoJAmUIxX-uvjWWTeWVheKeuaCu-o4KcKfOkc96WS2dGtegyiVfwyBf202tsVJmjNFsj41ooboxMLb/pub?gid=38610428&single=true&output=csv";
-const C_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoJAmUIxX-uvjWWTeWVheKeuaCu-o4KcKfOkc96WS2dGtegyiVfwyBf202tsVJmjNFsj41ooboxMLb/pub?gid=2026582461&single=true&output=csv";
+  const DECK_COLOR = { Past:"#8B7355", Present:"#4A6741", Future:"#3D5A80" };
+  const DECK_LIGHT = { Past:"#e8e0d4", Present:"#d4e0d3", Future:"#d3dce8" };
+  const CARD_W = 160, CARD_H = 80;
 
-const DECK_COLOR  = { Past:"#8B7355", Present:"#4A6741", Future:"#3D5A80" };
-const CARD_W = 180, CARD_H = 110;
-
-function parseCSV(txt) {
-  const lines = txt.trim().split(/\r?\n/);
-  const headers = splitRow(lines[0]);
-  return lines.slice(1).filter(l => l.trim()).map(l => {
-    const vals = splitRow(l);
-    const o = {};
-    headers.forEach((h,i) => { o[h.trim()] = (vals[i]||"").trim(); });
-    return o;
-  });
-}
-function splitRow(line) {
-  const res = []; let cur = "", inQ = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') { inQ = !inQ; continue; }
-    if (c === ',' && !inQ) { res.push(cur); cur = ""; continue; }
-    cur += c;
+  function parseCSV(txt) {
+    const lines = txt.trim().split(/\r?\n/);
+    const headers = splitRow(lines[0]);
+    return lines.slice(1).filter(l => l.trim()).map(l => {
+      const vals = splitRow(l);
+      const o = {};
+      headers.forEach((h,i) => { o[h.trim()] = (vals[i]||"").trim(); });
+      return o;
+    });
   }
-  res.push(cur);
-  return res;
-}
-
-let rawQ, rawC;
-try {
-  const [rQ, rC] = await Promise.all([fetch(Q_URL), fetch(C_URL)]);
-  rawQ = parseCSV(await rQ.text());
-  rawC = parseCSV(await rC.text());
-} catch(e) {
-  document.getElementById("loading").innerHTML = `<span style="color:#c55">Failed to load data. Make sure the sheet is published publicly.</span>`;
-  return;
-}
-
-function f(row, ...keys) {
-  for (const k of keys) if (row[k] !== undefined && row[k] !== "") return row[k];
-  return "";
-}
-
-const questions = rawQ.map(r => ({
-  id:       f(r,"ID","id"),
-  question: f(r,"Question","question"),
-  deck:     f(r,"Deck","deck"),
-  boc1:     f(r,"Boccagni Dimension 1","boccagni_dimension"),
-  boc2:     f(r,"Boccagni Dimension 2","boccagni_dimension_2"),
-  type1:    f(r,"Research Type 1","research_type"),
-  type2:    f(r,"Research Type 2","research_type_2"),
-  mom1:     f(r,"Research Moment 1","research_moment"),
-  mom2:     f(r,"Research Moment 2","research_moment_2"),
-  mom3:     f(r,"Research Moment 3","research_moment_3"),
-  th1:      f(r,"Theoretical Source 1","theoretical_source"),
-  th2:      f(r,"Theoretical Source 2","theoretical_source_2"),
-  th3:      f(r,"Theoretical Source 3","theoretical_source_3"),
-  connIds:  f(r,"Connected Question IDs","contaminated_by_question_ids"),
-  keywords: f(r,"Keywords","keywords"),
-  desc:     f(r,"Short Description","short_description"),
-  image:    f(r,"Image URL","image_url"),
-})).filter(q => q.id && q.question);
-
-const connections = rawC.map(r => ({
-  src:  f(r,"Source ID","source_id"),
-  tgt:  f(r,"Target ID","target_id"),
-  type: f(r,"Connection Type","connection_type"),
-  note: f(r,"Connection Note","connection_note"),
-})).filter(c => c.src && c.tgt);
-
-const qMap = new Map(questions.map(q => [q.id, q]));
-
-const adj = new Map(questions.map(q => [q.id, []]));
-const edgeSet = new Set();
-connections.forEach(c => {
-  if (!qMap.has(c.src) || !qMap.has(c.tgt)) return;
-  const key = [c.src,c.tgt].sort().join("||");
-  if (edgeSet.has(key)) return;
-  edgeSet.add(key);
-  adj.get(c.src).push({ id: c.tgt, type: c.type, note: c.note });
-  adj.get(c.tgt).push({ id: c.src, type: c.type, note: c.note });
-});
-
-document.getElementById("loading").style.display = "none";
-
-const wrap = document.getElementById("canvas-wrap");
-const NS   = "http://www.w3.org/2000/svg";
-
-function svgEl(tag, attrs) {
-  const e = document.createElementNS(NS, tag);
-  for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, String(v));
-  return e;
-}
-
-// Wait one frame so wrap has measured dimensions
-await new Promise(r => requestAnimationFrame(r));
-let W = wrap.clientWidth || 1200;
-let H = wrap.clientHeight || 700;
-
-const nodes = questions.map((q,i) => {
-  const baseX = q.deck === "Past" ? W*0.2 : q.deck === "Present" ? W*0.5 : W*0.78;
-  return {
-    id: q.id,
-    q,
-    x: baseX + (Math.random()-0.5)*260 - CARD_W/2,
-    y: H*0.1 + Math.random()*H*0.8 - CARD_H/2,
-    vx: 0, vy: 0,
-    w: CARD_W, h: CARD_H,
-  };
-});
-
-const nodeMap = new Map(nodes.map(n => [n.id, n]));
-
-const edges = [];
-edgeSet.forEach(key => {
-  const [a,b] = key.split("||");
-  const na = nodeMap.get(a), nb = nodeMap.get(b);
-  if (na && nb) {
-    const conn = connections.find(c =>
-      (c.src===a&&c.tgt===b)||(c.src===b&&c.tgt===a));
-    edges.push({ a: na, b: nb, type: conn?.type||"", note: conn?.note||"" });
-  }
-});
-
-function tick() {
-  const cx = W/2, cy = H/2;
-  const REST = 180;
-  const K_LINK = 0.022;
-  const K_REP  = 28000;
-  const K_CTR  = 0.0015;
-  const K_DECK = 0.006;
-  const DAMP   = 0.82;
-
-  const deckX = { Past: W*0.22, Present: W*0.5, Future: W*0.78 };
-
-  for (let i = 0; i < nodes.length; i++) {
-    for (let j = i+1; j < nodes.length; j++) {
-      const a = nodes[i], b = nodes[j];
-      const dx = (b.x+CARD_W/2) - (a.x+CARD_W/2);
-      const dy = (b.y+CARD_H/2) - (a.y+CARD_H/2);
-      const d2 = dx*dx + dy*dy + 1;
-      const fv = K_REP / d2;
-      const d  = Math.sqrt(d2);
-      a.vx -= fv*dx/d; a.vy -= fv*dy/d;
-      b.vx += fv*dx/d; b.vy += fv*dy/d;
+  function splitRow(line) {
+    const res = []; let cur = "", inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"') { inQ = !inQ; continue; }
+      if (c === ',' && !inQ) { res.push(cur); cur = ""; continue; }
+      cur += c;
     }
+    res.push(cur);
+    return res;
+  }
+  function f(row, ...keys) {
+    for (const k of keys) if (row[k] !== undefined && row[k] !== "") return row[k];
+    return "";
   }
 
-  edges.forEach(e => {
-    const ax = e.a.x+CARD_W/2, ay = e.a.y+CARD_H/2;
-    const bx = e.b.x+CARD_W/2, by = e.b.y+CARD_H/2;
-    const dx = bx-ax, dy = by-ay;
-    const d  = Math.sqrt(dx*dx+dy*dy)||1;
-    const diff = (d-REST)*K_LINK;
-    const fx = dx/d*diff, fy = dy/d*diff;
-    e.a.vx += fx; e.a.vy += fy;
-    e.b.vx -= fx; e.b.vy -= fy;
+  // Load D3
+  await new Promise((res, rej) => {
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js";
+    s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
   });
 
-  nodes.forEach(n => {
-    n.vx += (cx - (n.x+CARD_W/2)) * K_CTR;
-    n.vy += (cy - (n.y+CARD_H/2)) * K_CTR;
-    n.vx += (deckX[n.q.deck] - (n.x+CARD_W/2)) * K_DECK;
-    n.vx *= DAMP; n.vy *= DAMP;
-    const VMAX = 12;
-    n.vx = Math.max(-VMAX, Math.min(VMAX, n.vx));
-    n.vy = Math.max(-VMAX, Math.min(VMAX, n.vy));
-    n.x += n.vx;
-    n.y += n.vy;
-  });
-}
+  // Fetch data
+  let questions, connections;
+  try {
+    const [rQ, rC] = await Promise.all([fetch(Q_URL), fetch(C_URL)]);
+    const rawQ = parseCSV(await rQ.text());
+    const rawC = parseCSV(await rC.text());
 
-let tx = 0, ty = 0, scale = 1;
-let pan = false, panSX = 0, panSY = 0, panTX0 = 0, panTY0 = 0;
-let dragging = null, dragOX = 0, dragOY = 0;
+    questions = rawQ.map(r => ({
+      id:    f(r,"ID","id"),
+      question: f(r,"Question","question"),
+      deck:  f(r,"Deck","deck"),
+      boc1:  f(r,"Boccagni Dimension 1","boccagni_dimension"),
+      boc2:  f(r,"Boccagni Dimension 2","boccagni_dimension_2"),
+      type1: f(r,"Research Type 1","research_type"),
+      type2: f(r,"Research Type 2","research_type_2"),
+      mom1:  f(r,"Research Moment 1","research_moment"),
+      mom2:  f(r,"Research Moment 2","research_moment_2"),
+      mom3:  f(r,"Research Moment 3","research_moment_3"),
+      th1:   f(r,"Theoretical Source 1","theoretical_source"),
+      th2:   f(r,"Theoretical Source 2","theoretical_source_2"),
+      th3:   f(r,"Theoretical Source 3","theoretical_source_3"),
+      keywords: f(r,"Keywords","keywords"),
+      desc:  f(r,"Short Description","short_description"),
+      conn:  f(r,"Connected Question IDs","contaminated_by_question_ids"),
+    })).filter(q => q.id && q.question);
 
-wrap.addEventListener("mousedown", e => {
-  if (e.target.closest(".qcard")) return;
-  pan = true;
-  panSX = e.clientX; panSY = e.clientY;
-  panTX0 = tx; panTY0 = ty;
-});
-window.addEventListener("mousemove", e => {
-  if (dragging) {
-    const n = dragging;
-    n.x = (e.clientX - wrap.getBoundingClientRect().left - tx) / scale - dragOX;
-    n.y = (e.clientY - wrap.getBoundingClientRect().top  - ty) / scale - dragOY;
-    n.vx = 0; n.vy = 0;
+    const edgeSet = new Set();
+    connections = rawC.map(r => ({
+      source: f(r,"Source ID","source_id"),
+      target: f(r,"Target ID","target_id"),
+      type:   f(r,"Connection Type","connection_type"),
+      note:   f(r,"Connection Note","connection_note"),
+    })).filter(c => {
+      if (!c.source || !c.target) return false;
+      const key = [c.source,c.target].sort().join("||");
+      if (edgeSet.has(key)) return false;
+      edgeSet.add(key); return true;
+    });
+
+  } catch(e) {
+    document.getElementById("loading").innerHTML = `<span style="color:#c55;font-size:11px">Could not load data. Check the sheet is published publicly.</span>`;
     return;
   }
-  if (!pan) return;
-  tx = panTX0 + (e.clientX - panSX);
-  ty = panTY0 + (e.clientY - panSY);
-  applyTf();
-});
-window.addEventListener("mouseup", () => { pan = false; dragging = null; });
 
-wrap.addEventListener("wheel", e => {
-  e.preventDefault();
-  const rect = wrap.getBoundingClientRect();
-  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
-  const delta = e.deltaY < 0 ? 1.1 : 0.91;
-  const newScale = Math.max(0.25, Math.min(3, scale * delta));
-  tx = mx - (mx - tx) * (newScale / scale);
-  ty = my - (my - ty) * (newScale / scale);
-  scale = newScale;
-  applyTf();
-}, { passive: false });
+  document.getElementById("loading").style.display = "none";
 
-const htmlLayer = document.createElement("div");
-htmlLayer.style.cssText = "position:absolute;top:0;left:0;width:0;height:0;overflow:visible;";
-wrap.appendChild(htmlLayer);
-
-const svgOverlay = document.createElementNS(NS, "svg");
-svgOverlay.style.cssText = "position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;overflow:visible;";
-wrap.insertBefore(svgOverlay, htmlLayer);
-
-const svgGroup = svgEl("g", {});
-svgOverlay.appendChild(svgGroup);
-
-function applyTf() {
-  const tf = `translate(${tx},${ty}) scale(${scale})`;
-  svgGroup.setAttribute("transform", tf);
-  htmlLayer.style.transform = tf;
-  htmlLayer.style.transformOrigin = "0 0";
-}
-
-const cardEls = new Map();
-nodes.forEach(n => {
-  const div = document.createElement("div");
-  div.className = "qcard";
-  div.dataset.id = n.id;
-  div.style.cssText = `position:absolute;width:${CARD_W}px;left:${n.x}px;top:${n.y}px;`;
-
-  const color = DECK_COLOR[n.q.deck] || "#999";
-  div.innerHTML = `
-    <div class="qcard-deck">
-      <div class="qcard-deck-dot" style="background:${color}"></div>
-      <span style="color:${color}">${n.q.deck}</span>
-    </div>
-    <div class="qcard-text">${n.q.question}</div>
-    <div class="qcard-id">${n.id}</div>
-  `;
-
-  div.addEventListener("mousedown", e => {
-    dragging = n;
-    const rect = wrap.getBoundingClientRect();
-    dragOX = (e.clientX - rect.left - tx) / scale - n.x;
-    dragOY = (e.clientY - rect.top  - ty) / scale - n.y;
-    e.stopPropagation();
+  const qMap = new Map(questions.map(q => [q.id, q]));
+  const adj  = new Map(questions.map(q => [q.id, new Set()]));
+  connections.forEach(c => {
+    if (qMap.has(c.source) && qMap.has(c.target)) {
+      adj.get(c.source).add(c.target);
+      adj.get(c.target).add(c.source);
+    }
   });
 
-  div.addEventListener("click", e => {
-    if (Math.abs(n.vx) > 1 || Math.abs(n.vy) > 1) return;
-    openDrawer(n);
-    e.stopPropagation();
+  const wrap = document.getElementById("canvas-wrap");
+  const W = wrap.clientWidth, H = wrap.clientHeight;
+
+  const svg = d3.select("#canvas")
+    .attr("width", W).attr("height", H);
+
+  const g = svg.append("g");
+
+  const zoom = d3.zoom()
+    .scaleExtent([0.15, 4])
+    .on("zoom", e => g.attr("transform", e.transform));
+  svg.call(zoom);
+
+  const connCountMax = Math.max(...questions.map(q => (adj.get(q.id)||new Set()).size), 1);
+  function nodeR(d) { return 4 + ((adj.get(d.id)||new Set()).size / connCountMax) * 9; }
+
+  const nodes = questions.map(q => ({ ...q }));
+  const links = connections.filter(c => qMap.has(c.source) && qMap.has(c.target))
+                            .map(c => ({ ...c }));
+
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id)
+      .distance(d => {
+        const s = qMap.get(d.source.id||d.source);
+        const t = qMap.get(d.target.id||d.target);
+        return (s && t && s.deck === t.deck) ? 130 : 210;
+      })
+      .strength(0.35))
+    .force("charge", d3.forceManyBody().strength(-260))
+    .force("center", d3.forceCenter(W/2, H/2))
+    .force("collide", d3.forceCollide().radius(d => nodeR(d) + CARD_W/2 + 8))
+    .force("x", d3.forceX().x(d => d.deck==="Past" ? W*0.24 : d.deck==="Present" ? W*0.5 : W*0.76).strength(0.07))
+    .alphaDecay(0.016);
+
+  // Edges
+  const linkEls = g.append("g").attr("class","links")
+    .selectAll("line").data(links).join("line")
+    .attr("stroke", d => {
+      const s = qMap.get(d.source.id||d.source);
+      const t = qMap.get(d.target.id||d.target);
+      return (s && t && s.deck === t.deck) ? DECK_LIGHT[s.deck]||"#ddd" : "#e0ddd8";
+    })
+    .attr("stroke-width", 0.8)
+    .attr("stroke-opacity", 0.45);
+
+  const edgeLabelG = g.append("g").attr("pointer-events","none");
+
+  // Card group
+  const cardG = g.append("g").attr("class","cards");
+
+  const cardEls = cardG.selectAll("g").data(nodes).join("g")
+    .attr("cursor","pointer")
+    .call(d3.drag()
+      .on("start",(e,d)=>{ if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on("drag", (e,d)=>{ d.fx=e.x; d.fy=e.y; })
+      .on("end",  (e,d)=>{ if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; })
+    );
+
+  // Card background
+  cardEls.append("rect")
+    .attr("x", -CARD_W/2).attr("y", -CARD_H/2)
+    .attr("width", CARD_W).attr("height", CARD_H)
+    .attr("rx", 2)
+    .attr("fill","#ffffff")
+    .attr("stroke","#e0e0e0")
+    .attr("stroke-width", 0.5);
+
+  // Colored left accent bar
+  cardEls.append("rect")
+    .attr("x", -CARD_W/2).attr("y", -CARD_H/2)
+    .attr("width", 3).attr("height", CARD_H)
+    .attr("fill", d => DECK_COLOR[d.deck]||"#999");
+
+  // Deck label
+  cardEls.append("text")
+    .text(d => d.deck.toUpperCase())
+    .attr("x", -CARD_W/2+8).attr("y", -CARD_H/2+11)
+    .attr("font-size", 7).attr("font-weight","700")
+    .attr("letter-spacing","0.12em")
+    .attr("fill", d => DECK_COLOR[d.deck]||"#999");
+
+  // Question text — wrapped manually
+  cardEls.each(function(d) {
+    const el = d3.select(this);
+    const maxLineW = CARD_W - 16;
+    const words = d.question.split(" ");
+    const lines = [];
+    let line = "";
+    words.forEach(word => {
+      const test = line ? line + " " + word : word;
+      if (test.length * 5.0 > maxLineW && line) {
+        lines.push(line); line = word;
+      } else { line = test; }
+    });
+    if (line) lines.push(line);
+    const maxLines = 3;
+    const shown = lines.slice(0, maxLines);
+    if (lines.length > maxLines) shown[maxLines-1] = shown[maxLines-1] + "…";
+
+    const textEl = el.append("text")
+      .attr("font-size", 9).attr("font-weight","400")
+      .attr("fill","#141414");
+
+    shown.forEach((l, i) => {
+      textEl.append("tspan")
+        .text(l)
+        .attr("x", -CARD_W/2+8)
+        .attr("y", -CARD_H/2+22 + i*13);
+    });
+
+    // ID badge bottom-right
+    el.append("text")
+      .text(d.id)
+      .attr("x", CARD_W/2-6).attr("y", CARD_H/2-7)
+      .attr("text-anchor","end")
+      .attr("font-size", 7).attr("font-weight","700")
+      .attr("letter-spacing","0.08em")
+      .attr("fill","#ccc");
   });
-  div.addEventListener("mouseenter", () => hoverNode(n.id));
-  div.addEventListener("mouseleave", () => hoverNode(null));
 
-  htmlLayer.appendChild(div);
-  cardEls.set(n.id, div);
-});
+  // State
+  let activeId = null;
+  const activeDeckFilters = new Set();
+  let dimFilter = "", typeFilter = "", searchQuery = "";
 
-const edgeEls = [];
-
-edges.forEach(e => {
-  const pathEl = svgEl("path", { class:"edge-path", "pointer-events":"stroke" });
-  svgGroup.appendChild(pathEl);
-
-  const bgEl = svgEl("rect", { class:"edge-label-bg", rx:"2" });
-  svgGroup.appendChild(bgEl);
-
-  const labelEl = svgEl("text", { class:"edge-label", "text-anchor":"middle", "dominant-baseline":"middle" });
-  labelEl.textContent = e.type || "";
-  svgGroup.appendChild(labelEl);
-
-  edgeEls.push({ pathEl, bgEl, labelEl, a: e.a, b: e.b, type: e.type });
-});
-
-let activeId = null;
-
-function hoverNode(id) {
-  if (activeId) return;
-  applyHighlight(id);
-}
-
-function applyHighlight(id) {
-  const connectedIds = new Set();
-  if (id) {
-    connectedIds.add(id);
-    (adj.get(id)||[]).forEach(c => connectedIds.add(c.id));
+  function isVisible(d) {
+    if (activeDeckFilters.size > 0 && !activeDeckFilters.has(d.deck)) return false;
+    if (dimFilter && d.boc1 !== dimFilter && d.boc2 !== dimFilter) return false;
+    if (typeFilter && d.type1 !== typeFilter && d.type2 !== typeFilter) return false;
+    if (searchQuery) {
+      const s = searchQuery.toLowerCase();
+      if (!(d.question + d.keywords + (d.desc||"")).toLowerCase().includes(s)) return false;
+    }
+    return true;
   }
 
-  cardEls.forEach((el, nid) => {
-    if (!id) { el.classList.remove("dimmed","active"); }
-    else if (nid === id) { el.classList.add("active"); el.classList.remove("dimmed"); }
-    else if (connectedIds.has(nid)) { el.classList.remove("dimmed","active"); }
-    else { el.classList.add("dimmed"); el.classList.remove("active"); }
-  });
-
-  edgeEls.forEach(e => {
-    const aId = e.a.id, bId = e.b.id;
-    const isLit = id && (aId === id || bId === id);
-    e.pathEl.classList.toggle("lit",   !!isLit);
-    e.pathEl.classList.toggle("faded", !!id && !isLit);
-    e.labelEl.classList.toggle("lit",  !!isLit);
-    e.bgEl.classList.toggle("lit",     !!isLit);
-  });
-
-  applyFilterDim();
-}
-
-const activeDeckFilters = new Set();
-let dimFilter = "", typeFilter = "", searchQuery = "";
-
-function isVisible(q) {
-  if (activeDeckFilters.size > 0 && !activeDeckFilters.has(q.deck)) return false;
-  if (dimFilter && q.boc1 !== dimFilter && q.boc2 !== dimFilter) return false;
-  if (typeFilter && q.type1 !== typeFilter && q.type2 !== typeFilter) return false;
-  if (searchQuery) {
-    const s = searchQuery.toLowerCase();
-    if (!(q.question+q.keywords+q.desc).toLowerCase().includes(s)) return false;
+  function getConnected(id) {
+    const s = new Set([id]);
+    (adj.get(id)||new Set()).forEach(x => s.add(x));
+    return s;
   }
-  return true;
-}
 
-function applyFilterDim() {
-  let vis = 0;
-  cardEls.forEach((el, id) => {
-    const n = nodeMap.get(id);
-    if (!n) return;
-    if (!isVisible(n.q)) {
-      el.classList.add("dimmed");
-    } else {
-      vis++;
+  function applyState() {
+    const connected = activeId ? getConnected(activeId) : null;
+    const visIds = new Set(nodes.filter(d => isVisible(d)).map(d => d.id));
+
+    cardEls.attr("opacity", d => {
+      if (!isVisible(d)) return 0.06;
+      if (connected && !connected.has(d.id)) return 0.08;
+      return 1;
+    });
+    cardEls.select("rect:first-child")
+      .attr("stroke", d => d.id === activeId ? "#141414" : "#e0e0e0")
+      .attr("stroke-width", d => d.id === activeId ? 1.5 : 0.5);
+
+    linkEls
+      .attr("stroke-opacity", d => {
+        const sid = d.source.id||d.source, tid = d.target.id||d.target;
+        if (!visIds.has(sid) || !visIds.has(tid)) return 0.03;
+        if (!connected) return 0.4;
+        return (sid === activeId || tid === activeId) ? 0.9 : 0.04;
+      })
+      .attr("stroke-width", d => {
+        const sid = d.source.id||d.source, tid = d.target.id||d.target;
+        if (!connected) return 0.8;
+        return (sid === activeId || tid === activeId) ? 2 : 0.5;
+      })
+      .attr("stroke", d => {
+        const sid = d.source.id||d.source, tid = d.target.id||d.target;
+        if (connected && (sid === activeId || tid === activeId)) return "#141414";
+        const s = qMap.get(sid), t = qMap.get(tid);
+        return (s && t && s.deck === t.deck) ? DECK_LIGHT[s.deck]||"#ddd" : "#e0ddd8";
+      });
+
+    edgeLabelG.selectAll("*").remove();
+    if (activeId) {
+      links.forEach(d => {
+        const sid = d.source.id||d.source, tid = d.target.id||d.target;
+        if (sid !== activeId && tid !== activeId) return;
+        if (!d.type) return;
+        const sx = d.source.x||0, sy = d.source.y||0;
+        const tx = d.target.x||0, ty = d.target.y||0;
+        const mx = (sx+tx)/2, my = (sy+ty)/2;
+        const lbl = d.type.toUpperCase();
+        const bw = lbl.length * 5.8 + 8;
+        edgeLabelG.append("rect")
+          .attr("x", mx - bw/2).attr("y", my - 8)
+          .attr("width", bw).attr("height", 13)
+          .attr("rx", 1).attr("fill","#ffffff")
+          .attr("stroke","#e0e0e0").attr("stroke-width",0.5);
+        edgeLabelG.append("text")
+          .text(lbl)
+          .attr("x", mx).attr("y", my + 3)
+          .attr("text-anchor","middle")
+          .attr("font-size", 7).attr("font-weight","700")
+          .attr("letter-spacing","0.1em")
+          .attr("fill","#141414");
+      });
     }
-  });
-  document.getElementById("qcount").textContent = `${vis} / ${questions.length}`;
 
-  edgeEls.forEach(e => {
-    const aVis = isVisible(e.a.q), bVis = isVisible(e.b.q);
-    if (!aVis || !bVis) {
-      e.pathEl.classList.add("faded");
-      e.labelEl.classList.remove("lit");
-      e.bgEl.classList.remove("lit");
-    }
-  });
-}
-
-function fullApply() {
-  cardEls.forEach(el => el.classList.remove("dimmed","active"));
-  edgeEls.forEach(e => {
-    e.pathEl.classList.remove("lit","faded");
-    e.labelEl.classList.remove("lit");
-    e.bgEl.classList.remove("lit");
-  });
-
-  if (activeId) applyHighlight(activeId);
-
-  let vis = 0;
-  cardEls.forEach((el, id) => {
-    const n = nodeMap.get(id);
-    if (!n) return;
-    if (!isVisible(n.q)) {
-      el.classList.add("dimmed");
-    } else {
-      vis++;
-    }
-  });
-  document.getElementById("qcount").textContent = `${vis} / ${questions.length}`;
-
-  edgeEls.forEach(e => {
-    if (!isVisible(e.a.q) || !isVisible(e.b.q)) {
-      e.pathEl.classList.add("faded");
-    }
-  });
-}
-
-document.querySelectorAll("[data-deck]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const d = btn.dataset.deck;
-    const classMap = { Past:"ap", Present:"apr", Future:"af" };
-    if (activeDeckFilters.has(d)) {
-      activeDeckFilters.delete(d);
-      btn.className = "pill";
-    } else {
-      activeDeckFilters.add(d);
-      btn.className = `pill ${classMap[d]}`;
-    }
-    fullApply();
-  });
-});
-
-document.getElementById("dim-sel").addEventListener("change", e => {
-  dimFilter = e.target.value; fullApply();
-});
-document.getElementById("type-sel").addEventListener("change", e => {
-  typeFilter = e.target.value; fullApply();
-});
-document.getElementById("search").addEventListener("input", e => {
-  searchQuery = e.target.value.trim(); fullApply();
-});
-document.getElementById("reset").addEventListener("click", () => {
-  activeDeckFilters.clear(); dimFilter = ""; typeFilter = ""; searchQuery = "";
-  document.getElementById("search").value = "";
-  document.getElementById("dim-sel").value = "";
-  document.getElementById("type-sel").value = "";
-  document.querySelectorAll("[data-deck]").forEach(b => b.className = "pill");
-  activeId = null;
-  closeDrawer();
-  fullApply();
-});
-
-wrap.addEventListener("click", e => {
-  if (!e.target.closest(".qcard") && !e.target.closest("#drawer")) {
-    closeDrawer();
+    const vis = nodes.filter(d => isVisible(d)).length;
+    document.getElementById("qcount").textContent = vis + " / " + nodes.length;
   }
-});
 
-function openDrawer(n) {
-  const q = n.q;
-  activeId = q.id;
-  const color = DECK_COLOR[q.deck] || "#273859";
+  // Hover
+  cardEls
+    .on("mouseenter", (_, d) => {
+      if (activeId) return;
+      const c = getConnected(d.id);
+      cardEls.attr("opacity", n => c.has(n.id) ? 1 : 0.08);
+      linkEls
+        .attr("stroke-opacity", l => {
+          const sid = l.source.id||l.source, tid = l.target.id||l.target;
+          return (sid===d.id||tid===d.id) ? 0.9 : 0.04;
+        })
+        .attr("stroke-width", l => {
+          const sid = l.source.id||l.source, tid = l.target.id||l.target;
+          return (sid===d.id||tid===d.id) ? 2 : 0.5;
+        })
+        .attr("stroke", l => {
+          const sid = l.source.id||l.source, tid = l.target.id||l.target;
+          if (sid===d.id||tid===d.id) return "#141414";
+          const s = qMap.get(sid), t = qMap.get(tid);
+          return (s&&t&&s.deck===t.deck) ? DECK_LIGHT[s.deck]||"#ddd" : "#e0ddd8";
+        });
+    })
+    .on("mouseleave", () => {
+      if (activeId) return;
+      applyState();
+    })
+    .on("click", (e, d) => {
+      e.stopPropagation();
+      if (activeId === d.id) { activeId = null; closeDrawer(); applyState(); return; }
+      activeId = d.id;
+      applyState();
+      openDrawer(d);
+      const t = d3.zoomTransform(svg.node());
+      svg.transition().duration(500).call(
+        zoom.transform,
+        d3.zoomIdentity.translate(W/2 - t.k*d.x, H/2 - t.k*d.y).scale(t.k)
+      );
+    });
 
-  const deckEl = document.getElementById("dr-deck");
-  deckEl.textContent = q.deck;
-  deckEl.style.background = color;
+  svg.on("click", () => { activeId = null; closeDrawer(); applyState(); });
 
-  document.getElementById("dr-q").textContent = q.question;
+  // Drawer
+  function openDrawer(d) {
+    const color = DECK_COLOR[d.deck]||"#273859";
+    document.getElementById("ddeck").textContent = d.deck;
+    document.getElementById("ddeck").style.background = color;
+    document.getElementById("dq").textContent = d.question;
 
-  const descWrap = document.getElementById("dr-desc-wrap");
-  const descEl   = document.getElementById("dr-desc");
-  if (q.desc) { descEl.textContent = q.desc; descWrap.style.display = "block"; }
-  else descWrap.style.display = "none";
+    const dw = document.getElementById("ddescwrap");
+    document.getElementById("ddesc").textContent = d.desc||"";
+    dw.style.display = d.desc ? "block" : "none";
 
-  const bocEl = document.getElementById("dr-boc");
-  bocEl.innerHTML = "";
-  [q.boc1, q.boc2].filter(Boolean).forEach(b => {
-    const s = document.createElement("span");
-    s.className = "tag"; s.textContent = b; bocEl.appendChild(s);
+    const bocEl = document.getElementById("dboc"); bocEl.innerHTML = "";
+    [d.boc1,d.boc2].filter(Boolean).forEach(b => {
+      const s = document.createElement("span"); s.className="dtag"; s.textContent=b; bocEl.appendChild(s);
+    });
+
+    const kwEl = document.getElementById("dkw"); kwEl.innerHTML = "";
+    (d.keywords||"").split(",").map(k=>k.trim()).filter(Boolean).forEach(k => {
+      const s = document.createElement("span"); s.className="dkw"; s.textContent=k; kwEl.appendChild(s);
+    });
+
+    const momEl = document.getElementById("dmom"); momEl.innerHTML = "";
+    [d.mom1,d.mom2,d.mom3].filter(Boolean).forEach(m => {
+      const div = document.createElement("div"); div.className="dmi";
+      div.innerHTML = `<div class="dmb" style="background:${color}"></div><span>${m}</span>`;
+      momEl.appendChild(div);
+    });
+
+    const thEl = document.getElementById("dth"); thEl.innerHTML = "";
+    [d.th1,d.th2,d.th3].filter(Boolean).forEach(t => {
+      const div = document.createElement("div"); div.className="dti"; div.textContent=t; thEl.appendChild(div);
+    });
+
+    const connEl = document.getElementById("dconn"); connEl.innerHTML = "";
+    (adj.get(d.id)||new Set()).forEach(cid => {
+      const nq = qMap.get(cid); if (!nq) return;
+      const btn = document.createElement("button");
+      btn.className = "dcp"; btn.textContent = cid; btn.title = nq.question;
+      btn.style.borderColor = DECK_COLOR[nq.deck]||"#ddd";
+      btn.style.color = DECK_COLOR[nq.deck]||"#555";
+      btn.onclick = () => {
+        activeId = cid; applyState(); openDrawer(nq);
+        const nd = nodes.find(n => n.id===cid);
+        if (nd) {
+          const t = d3.zoomTransform(svg.node());
+          svg.transition().duration(400).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(W/2 - t.k*nd.x, H/2 - t.k*nd.y).scale(t.k)
+          );
+        }
+      };
+      connEl.appendChild(btn);
+    });
+
+    document.getElementById("drawer").classList.add("open");
+  }
+
+  function closeDrawer() {
+    document.getElementById("drawer").classList.remove("open");
+  }
+
+  document.getElementById("dclose").addEventListener("click", () => {
+    activeId = null; closeDrawer(); applyState();
   });
 
-  const kwEl = document.getElementById("dr-kw");
-  kwEl.innerHTML = "";
-  q.keywords.split(",").map(k=>k.trim()).filter(Boolean).forEach(k => {
-    const s = document.createElement("span");
-    s.className = "kw"; s.textContent = k; kwEl.appendChild(s);
+  // Filters
+  document.querySelectorAll(".fp[data-deck]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const d = btn.dataset.deck;
+      const cls = `on-${d.toLowerCase()}`;
+      if (activeDeckFilters.has(d)) { activeDeckFilters.delete(d); btn.classList.remove(cls); }
+      else { activeDeckFilters.add(d); btn.classList.add(cls); }
+      applyState();
+    });
+  });
+  document.getElementById("dimsel").addEventListener("change", e => { dimFilter=e.target.value; applyState(); });
+  document.getElementById("typesel").addEventListener("change", e => { typeFilter=e.target.value; applyState(); });
+  document.getElementById("search").addEventListener("input", e => { searchQuery=e.target.value.trim(); applyState(); });
+  document.getElementById("resetbtn").addEventListener("click", () => {
+    activeDeckFilters.clear(); dimFilter=""; typeFilter=""; searchQuery=""; activeId=null;
+    document.getElementById("search").value="";
+    document.getElementById("dimsel").value="";
+    document.getElementById("typesel").value="";
+    document.querySelectorAll(".fp[data-deck]").forEach(b => b.className="fp");
+    closeDrawer(); applyState();
   });
 
-  const momEl = document.getElementById("dr-mom");
-  momEl.innerHTML = "";
-  [q.mom1,q.mom2,q.mom3].filter(Boolean).forEach(m => {
-    const d = document.createElement("div");
-    d.className = "mi";
-    d.innerHTML = `<div class="mb" style="background:${color}"></div><span>${m}</span>`;
-    momEl.appendChild(d);
+  // Simulation tick
+  sim.on("tick", () => {
+    linkEls
+      .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+    cardEls.attr("transform", d => `translate(${d.x},${d.y})`);
+    if (activeId) applyState();
   });
 
-  const thEl = document.getElementById("dr-th");
-  thEl.innerHTML = "";
-  [q.th1,q.th2,q.th3].filter(Boolean).forEach(t => {
-    const d = document.createElement("div");
-    d.className = "ti"; d.textContent = t; thEl.appendChild(d);
-  });
+  new ResizeObserver(() => {
+    const nW = wrap.clientWidth, nH = wrap.clientHeight;
+    svg.attr("width", nW).attr("height", nH);
+    sim.force("center", d3.forceCenter(nW/2, nH/2)).alpha(0.05).restart();
+  }).observe(wrap);
 
-  const connEl = document.getElementById("dr-conn");
-  connEl.innerHTML = "";
-  (adj.get(q.id)||[]).forEach(c => {
-    const nq = qMap.get(c.id);
-    if (!nq) return;
-    const btn = document.createElement("button");
-    btn.className = "cp";
-    btn.textContent = c.id;
-    btn.title = nq.question;
-    btn.style.borderColor = DECK_COLOR[nq.deck] || "#ddd";
-    btn.style.color        = DECK_COLOR[nq.deck] || "#555";
-    btn.onclick = () => { const nn = nodeMap.get(c.id); if(nn) openDrawer(nn); };
-    connEl.appendChild(btn);
-  });
-
-  document.getElementById("drawer").classList.add("open");
-  document.getElementById("canvas-wrap").classList.add("drawer-open");
-  applyHighlight(q.id);
-}
-
-function closeDrawer() {
-  activeId = null;
-  document.getElementById("drawer").classList.remove("open");
-  document.getElementById("canvas-wrap").classList.remove("drawer-open");
-  applyHighlight(null);
-  fullApply();
-}
-
-document.getElementById("dr-close").addEventListener("click", closeDrawer);
-
-let frame = 0;
-const MAX_FRAMES = 600;
-
-function updateEdgePaths() {
-  edgeEls.forEach(e => {
-    const ax = e.a.x + CARD_W/2, ay = e.a.y + CARD_H/2;
-    const bx = e.b.x + CARD_W/2, by = e.b.y + CARD_H/2;
-
-    const mx = (ax+bx)/2, my = (ay+by)/2;
-    const dx = bx-ax, dy = by-ay;
-    const len = Math.sqrt(dx*dx+dy*dy)||1;
-    const off = Math.min(55, len*0.22);
-    const cx1 = mx - dy/len*off, cy1 = my + dx/len*off;
-
-    e.pathEl.setAttribute("d", `M${ax},${ay} Q${cx1},${cy1} ${bx},${by}`);
-
-    const lx = 0.25*ax + 0.5*cx1 + 0.25*bx;
-    const ly = 0.25*ay + 0.5*cy1 + 0.25*by;
-
-    const tdx = bx - ax, tdy = by - ay;
-    let angle = Math.atan2(tdy, tdx) * 180 / Math.PI;
-    if (angle > 90 || angle < -90) angle += 180;
-
-    e.labelEl.setAttribute("x", lx);
-    e.labelEl.setAttribute("y", ly);
-    e.labelEl.setAttribute("transform", `rotate(${angle},${lx},${ly})`);
-
-    try {
-      const bb = e.labelEl.getBBox();
-      e.bgEl.setAttribute("x", bb.x - 3);
-      e.bgEl.setAttribute("y", bb.y - 2);
-      e.bgEl.setAttribute("width",  bb.width  + 6);
-      e.bgEl.setAttribute("height", bb.height + 4);
-    } catch(_) {}
-  });
-}
-
-function updateCardPositions() {
-  nodes.forEach(n => {
-    const el = cardEls.get(n.id);
-    if (!el) return;
-    el.style.left = Math.round(n.x) + "px";
-    el.style.top  = Math.round(n.y) + "px";
-  });
-}
-
-function loop() {
-  requestAnimationFrame(loop);
-  if (frame < MAX_FRAMES) { tick(); frame++; }
-  updateCardPositions();
-  updateEdgePaths();
-  applyTf();
-}
-
-document.getElementById("qcount").textContent = `${questions.length} / ${questions.length}`;
-
-new ResizeObserver(() => {
-  W = wrap.clientWidth; H = wrap.clientHeight;
-}).observe(wrap);
-
-loop();
-
+  applyState();
 })();
 </script>
 
