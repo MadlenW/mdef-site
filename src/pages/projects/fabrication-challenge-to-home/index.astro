@@ -1,0 +1,273 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Fabrication Challenge: to home · Madlen von Wulffen"
+  description="What Does It Mean to Make Home? Reflections on the evolution of to home — a design methodology for domestic practice."
+>
+  <div class="proj-layout">
+
+    <div class="col-diagram">
+      <div class="diagram-inner">
+
+        <div class="diagram-label">Flow Diagram — System Overview</div>
+        <div class="flow-diagram-wrap">
+          <img
+            src={`${base}images/Screenshot%202026-06-20%20at%2013.17.31.png`}
+            alt="to home — flow diagram showing the full system architecture"
+            class="flow-diagram"
+          />
+        </div>
+
+        <div class="photo-grid-label diagram-label">Documentation</div>
+        <div class="photo-grid">
+          <img
+            src={`${base}images/DSC06784%20(1).jpg`}
+            alt="Tabletop spread — to home workshop materials"
+          />
+          <img
+            src={`${base}images/IMG_7492.jpeg`}
+            alt="Hand holding a to home postcard"
+          />
+          <img
+            src={`${base}images/DSC06773%20copy.jpg`}
+            alt="Hands with envelope — to home correspondence"
+          />
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+        <div class="proj-category">
+          <span>Fabrication Challenge · 2026</span>
+        </div>
+        <h1>What Does It Mean to Make Home? Reflections on the Evolution of <em>to home</em></h1>
+
+        <p class="lede">Home is not a place. It is something you do.</p>
+
+        <p><em>to home</em> began as an exploration on the meaning of the concept home and turned into something closer to a methodology, a way of practicing home rather than just thinking about it.</p>
+
+        <p>The first instinct was infrastructural: a Telegram bot, an automated archive, a live canvas where homing practices from anywhere could be collected and mapped in real time. A system designed to hold the data of how we make home.</p>
+
+        <p>The workshops changed that. When people held a question card, or embroidered a single word onto a shared bedsheet, or spoke about loss and the small rituals that keep them grounded, the project's real question came into focus. It was never about collecting practices at scale. It was about making them visible, nameable, shareable.</p>
+
+        <p>That meant letting the technology recede. The archive, the website, the printable cards still exist, but as quiet infrastructure, not the goal. The archive became one place traces could land, not the point of the work. The most charged moments happened off-screen: a group sitting on a bed, embroidering answers into cloth.</p>
+
+        <p>The project also sits inside a tension it doesn't try to resolve: it was developed from a position of relative privilege with time, mobility and access. Homing is not neutral. For some it's survival, for others resistance, for others a distant luxury. <em>to home</em> doesn't offer solutions to housing precarity or domicide. It offers language, attention, and a small set of tools, and an insistence that even from comfort, home should be practiced consciously.</p>
+
+        <p>What will stay with me from the learning process:<br/>
+        — Slowness is attention, not inefficiency.<br/>
+        — Embodiment matters more than the interface.<br/>
+        — The simplest tools, here I used paper, needle, thread, and questions, sometimes do the most work.<br/>
+        — Design's job is sometimes not to build something new, but to make existing knowledge easier to receive.</p>
+
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-key">Date</span><span class="meta-val">June 22, 2026</span></div>
+          <div class="meta-row"><span class="meta-key">Type</span><span class="meta-val">Fabrication Challenge · Design Methodology</span></div>
+          <div class="meta-row"><span class="meta-key">Context</span><span class="meta-val">MDEF Research Project, Elisava / IAAC</span></div>
+          <div class="meta-row"><span class="meta-key">Project</span><span class="meta-val"><em>to home</em> — a design methodology for domestic practice</span></div>
+        </div>
+
+        <a
+          class="hackster-link"
+          href="https://www.hackster.io/madlenelisevonwulffen/to-home-a-design-methodology-for-domestic-practice-ed1619"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Read the full development process on Hackster.io →</a>
+
+        <a class="back-link" href={`${base}projects`}>← Back to Projects</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
+
+  .col-diagram {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+    border-right: 0.5px solid #e0e0e0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: #faf9f7;
+  }
+
+  .diagram-inner {
+    padding: 2rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 860px;
+  }
+
+  .diagram-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    align-self: center;
+  }
+
+  .flow-diagram-wrap {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  .flow-diagram {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .photo-grid-label {
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .photo-grid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  .col-text {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+  }
+
+  .text-inner {
+    padding: 3rem 2.2rem 4rem;
+  }
+
+  .proj-category {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
+  }
+
+  .lede {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    border-bottom: 0.5px solid #e0e0e0;
+    padding-bottom: 1.4rem;
+  }
+
+  .col-text p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 1em;
+  }
+
+  .meta-table {
+    margin-top: 2.4rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    font-size: 0.8rem;
+  }
+
+  .meta-key {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+
+  .meta-val {
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .hackster-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: #bbb;
+  }
+
+  .hackster-link:hover {
+    text-decoration-color: var(--ink);
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 1.4rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .back-link:hover { color: var(--ink); }
+
+  :global(body:has(.proj-layout) footer) { display: none; }
+
+  @media (max-width: 860px) {
+    .proj-layout { grid-template-columns: 1fr; height: auto; overflow: visible; }
+    .col-diagram, .col-text { height: auto; overflow-y: visible; }
+    .col-diagram { border-right: none; border-bottom: 0.5px solid #e0e0e0; }
+    .photo-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .photo-grid { grid-template-columns: 1fr; }
+  }
+</style>

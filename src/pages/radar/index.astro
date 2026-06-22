@@ -89,6 +89,7 @@ import Layout from '../../layouts/Layout.astro';
     #modal-btns { display:flex; gap:8px; justify-content:flex-end; margin-top:18px; }
     #modal-cancel { padding:7px 14px; border:0.5px solid #ddd; border-radius:6px; background:white; font-size:12px; cursor:pointer; font-family:inherit; }
     #modal-add { padding:7px 14px; border:none; border-radius:6px; background:#111; color:white; font-size:12px; cursor:pointer; font-family:inherit; }
+    #modal-error { font-size:11px; color:#e879a0; margin-top:8px; display:none; }
   </style>
 
   <div id="radar-page">
@@ -156,6 +157,7 @@ import Layout from '../../layouts/Layout.astro';
       <label>Your Name<input id="m-name" type="text" placeholder="e.g. Madlen von Wulffen"/></label>
       <label>Sector<select id="m-sector"><option>Technological</option><option>Economical</option><option>Socio-Demographic</option><option>Governance</option><option>Environmental</option><option>Values</option></select></label>
       <label>Scale<select id="m-ring"><option>Body</option><option>Domestic Space</option><option>Social Systems</option><option>Ecosystems</option><option>Planetary Boundaries</option></select></label>
+      <p id="modal-error"></p>
       <div id="modal-btns"><button id="modal-cancel">Cancel</button><button id="modal-add">Add Signal</button></div>
     </div>
   </div>
@@ -189,6 +191,25 @@ import Layout from '../../layouts/Layout.astro';
     el('circle',{cx,cy,r:22,fill:'white',stroke:'#d0d0d0','stroke-width':'0.75'},svg);
     txt('BODY',{x:cx,y:cy+1,'font-size':'7',fill:'#bbb','font-family':'sans-serif','text-anchor':'middle','dominant-baseline':'middle'},svg);
     const ringColors={'Body':'#e879a0','Domestic Space':'#a78bfa','Social Systems':'#60a5fa','Ecosystems':'#f59e0b','Planetary Boundaries':'#10b981'};
+    const APPS_SCRIPT_URL='YOUR_APPS_SCRIPT_EXEC_URL_HERE';
+    const sectorBisectors={'Technological':30,'Economical':90,'Socio-Demographic':150,'Governance':210,'Environmental':270,'Values':330};
+    const ringRadii={'Body':11,'Domestic Space':37,'Social Systems':112,'Ecosystems':187,'Planetary Boundaries':255};
+    async function fetchRemoteSignals(){
+      try{
+        const res=await fetch(APPS_SCRIPT_URL,{mode:'cors'});
+        if(!res.ok)throw new Error('bad response');
+        const data=await res.json();
+        return data.filter(s=>s.status==='approved').map(s=>({
+          title:s.title,sector:s.sector,ring:s.ring,
+          deg:(sectorBisectors[s.sector]||0)+(Math.random()-0.5)*16,
+          r:(ringRadii[s.ring]||112)+(Math.random()-0.5)*18,
+          desc:s.description||'No description.',
+          refs:s.sourceUrl?[{label:'Source',url:s.sourceUrl}]:[],
+          addedBy:s.submittedBy||'Anonymous',
+          addedOn:s.timestamp?new Date(s.timestamp).toLocaleString('en-GB',{month:'long',year:'numeric'}):'',
+        }));
+      }catch(e){return[];}
+    }
     function pos(deg,r){const rad=deg*Math.PI/180;return[cx+r*Math.sin(rad),cy-r*Math.cos(rad)];}
     let signals=[
       {title:'Home as Surveillance Site',sector:'Technological',ring:'Social Systems',deg:30,r:112,desc:'Smart home data extraction by platforms, employers and insurers normalises the home as a site of continuous monitoring.',refs:[{label:'Shoshana Zuboff — The Age of Surveillance Capitalism',url:'https://www.surveillancecapitalism.com'},{label:'Mozilla Foundation — Privacy Not Included',url:'https://foundation.mozilla.org/en/privacynotincluded/'}],addedBy:'Madlen von Wulffen',addedOn:'May 2026'},
@@ -217,7 +238,11 @@ import Layout from '../../layouts/Layout.astro';
         c.addEventListener('click',handleDotClick);
       });
     }
-    renderSignals();
+    (async()=>{
+      const remote=await fetchRemoteSignals();
+      signals=[...signals,...remote];
+      renderSignals();
+    })();
     const sp=document.getElementById('sp');
     const svgWrap=document.getElementById('radar-svg-wrap');
     function handleDotClick(e){
@@ -266,18 +291,28 @@ import Layout from '../../layouts/Layout.astro';
     document.getElementById('add-btn').addEventListener('click',()=>modalBg.classList.add('on'));
     document.getElementById('modal-cancel').addEventListener('click',()=>modalBg.classList.remove('on'));
     modalBg.addEventListener('click',e=>{if(e.target===modalBg)modalBg.classList.remove('on');});
-    const sectorBisectors={'Technological':30,'Economical':90,'Socio-Demographic':150,'Governance':210,'Environmental':270,'Values':330};
-    const ringRadii={'Body':11,'Domestic Space':37,'Social Systems':112,'Ecosystems':187,'Planetary Boundaries':255};
-    document.getElementById('modal-add').addEventListener('click',()=>{
+    document.getElementById('modal-add').addEventListener('click',async()=>{
       const title=document.getElementById('m-title').value.trim();
       const desc=document.getElementById('m-desc').value.trim();
       const url=document.getElementById('m-url').value.trim();
       const name=document.getElementById('m-name').value.trim()||'Anonymous';
       const sector=document.getElementById('m-sector').value;
       const ring=document.getElementById('m-ring').value;
+      const errEl=document.getElementById('modal-error');
+      errEl.style.display='none';
+      if(!title)return;
+      try{
+        const res=await fetch(APPS_SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({title,description:desc,sourceUrl:url,submittedBy:name,sector,ring})});
+        if(!res.ok)throw new Error('server error');
+        const data=await res.json();
+        if(!data.success)throw new Error('not saved');
+      }catch(e){
+        errEl.textContent='Could not save your signal — please try again.';
+        errEl.style.display='block';
+        return;
+      }
       const now=new Date();
       const addedOn=now.toLocaleString('en-GB',{month:'long',year:'numeric'});
-      if(!title)return;
       signals.push({title,sector,ring,deg:sectorBisectors[sector]+(Math.random()-0.5)*16,r:ringRadii[ring]+(Math.random()-0.5)*18,desc:desc||'No description.',refs:url?[{label:'Source',url}]:[],addedBy:name,addedOn});
       renderSignals(document.querySelector('.pill.active').dataset.filter);
       modalBg.classList.remove('on');
