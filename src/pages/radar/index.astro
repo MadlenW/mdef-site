@@ -90,6 +90,9 @@ import Layout from '../../layouts/Layout.astro';
     #modal-cancel { padding:7px 14px; border:0.5px solid #ddd; border-radius:6px; background:white; font-size:12px; cursor:pointer; font-family:inherit; }
     #modal-add { padding:7px 14px; border:none; border-radius:6px; background:#111; color:white; font-size:12px; cursor:pointer; font-family:inherit; }
     #modal-error { font-size:11px; color:#e879a0; margin-top:8px; display:none; }
+    #toast { position:fixed; top:72px; left:50%; transform:translateX(-50%); background:white; border:0.5px solid #111; border-radius:6px; padding:8px 16px; font-size:12px; font-family:inherit; color:#111; display:flex; align-items:center; gap:7px; z-index:200; opacity:0; pointer-events:none; transition:opacity 0.25s; box-shadow:0 4px 20px rgba(0,0,0,0.08); white-space:nowrap; }
+    #toast.on { opacity:1; }
+    #toast .toast-check { color:#10b981; font-size:14px; font-weight:700; line-height:1; }
   </style>
 
   <div id="radar-page">
@@ -147,6 +150,8 @@ import Layout from '../../layouts/Layout.astro';
     </div>
 
   </div>
+
+  <div id="toast"><span class="toast-check">✓</span><span class="toast-msg"></span></div>
 
   <div id="modal-bg">
     <div id="modal">
@@ -287,6 +292,14 @@ import Layout from '../../layouts/Layout.astro';
         renderSignals(this.dataset.filter);
       });
     });
+    let toastTimer=null;
+    function showToast(msg){
+      const t=document.getElementById('toast');
+      t.querySelector('.toast-msg').textContent=msg;
+      t.classList.add('on');
+      if(toastTimer)clearTimeout(toastTimer);
+      toastTimer=setTimeout(()=>t.classList.remove('on'),2750);
+    }
     const modalBg=document.getElementById('modal-bg');
     document.getElementById('add-btn').addEventListener('click',()=>modalBg.classList.add('on'));
     document.getElementById('modal-cancel').addEventListener('click',()=>modalBg.classList.remove('on'));
@@ -316,6 +329,7 @@ import Layout from '../../layouts/Layout.astro';
       signals.push({title,sector,ring,deg:sectorBisectors[sector]+(Math.random()-0.5)*16,r:ringRadii[ring]+(Math.random()-0.5)*18,desc:desc||'No description.',refs:url?[{label:'Source',url}]:[],addedBy:name,addedOn});
       renderSignals(document.querySelector('.pill.active').dataset.filter);
       modalBg.classList.remove('on');
+      showToast('Driver of Change added');
       document.getElementById('m-title').value='';
       document.getElementById('m-desc').value='';
       document.getElementById('m-url').value='';
