@@ -102,6 +102,8 @@ const base = import.meta.env.BASE_URL;
 
         <p class="mirror-note">This project was originally documented on Hackster.io. It is mirrored here temporarily while that page is unavailable.</p>
 
+        <a class="pdf-download" href={`${base}files/to-home-design-methodology-report.pdf`} download>↓ Download PDF report</a>
+
         <p class="lede">"Home is not a place. It is something you do."</p>
 
         <p>This single sentence became the guiding principle of <strong>"to home,"</strong> my final Master's project in Design for Emergent Futures. What started as a relatively straightforward plan to build a digital collective archive of homing practices transformed, through research, workshops, and deep reflection, into a rich, multi-layered methodology that lives across digital, analog, and physical realms.</p>
@@ -346,8 +348,27 @@ const base = import.meta.env.BASE_URL;
     border: 0.5px solid #e0e0e0;
     border-radius: 4px;
     padding: 0.6rem 0.9rem;
-    margin-bottom: 1.4rem;
+    margin-bottom: 0.75rem;
     line-height: 1.5;
+  }
+
+  .pdf-download {
+    display: inline-block;
+    margin-bottom: 1.4rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+    border: 0.5px solid #111;
+    border-radius: 4px;
+    padding: 0.4rem 0.8rem;
+    transition: background 0.12s, color 0.12s;
+  }
+
+  .pdf-download:hover {
+    background: #111;
+    color: white;
   }
 
   .col-text p {
