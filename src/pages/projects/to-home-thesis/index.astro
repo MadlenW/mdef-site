@@ -1,0 +1,455 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="to home — a design methodology for domestic practice · Madlen von Wulffen"
+  description="Master's thesis project documenting the full evolution of to home — from a digital archive infrastructure to a hybrid methodology of letters, question cards, and embroidered bedsheets."
+>
+  <div class="proj-layout">
+
+    <div class="col-diagram">
+      <div class="diagram-inner">
+
+        <div class="diagram-label">The Initial Vision</div>
+        <div class="img-group">
+          <figure>
+            <img src={`${base}images/to-home/01-archive-setup.png`} alt="Initial setup for the digital archive contributions." />
+            <figcaption>Initial setup for the digital archive contributions.</figcaption>
+          </figure>
+          <figure>
+            <img src={`${base}images/to-home/02-canopy-prototype.png`} alt="Early prototype for the exhibition installation." />
+            <figcaption>Early prototype for the exhibition installation.</figcaption>
+          </figure>
+          <figure>
+            <img src={`${base}images/to-home/03-moodboard.png`} alt="Inspiration mood board for the textile canopy." />
+            <figcaption>Inspiration mood board for the textile canopy.</figcaption>
+          </figure>
+        </div>
+
+        <div class="diagram-label" style="margin-top:3rem;">Workshops</div>
+        <div class="img-group">
+          <figure>
+            <img src={`${base}images/to-home/04-workshop-1.jpeg`} alt="An initial workshop testing the hypothesis and question cards, embroidering bedsheets." />
+            <figcaption>An initial workshop testing the hypothesis and question cards, embroidering bedsheets.</figcaption>
+          </figure>
+          <figure>
+            <img src={`${base}images/to-home/05-workshop-2.jpg`} alt="Workshop embroidery detail." />
+            <figcaption>Workshop embroidery detail.</figcaption>
+          </figure>
+        </div>
+
+        <div class="diagram-label" style="margin-top:3rem;">System Architecture</div>
+        <div class="img-group">
+          <figure>
+            <img src={`${base}images/to-home/06-systems-architecture.png`} alt="Systems architecture of the methodology." />
+            <figcaption>Systems architecture of the methodology.</figcaption>
+          </figure>
+        </div>
+
+        <div class="diagram-label" style="margin-top:3rem;">Digital Layer</div>
+        <div class="img-group">
+          <figure>
+            <img src={`${base}images/to-home/07-landing-page.png`} alt="The landing page with three hidden doors that are revealed by hovering over them." />
+            <figcaption>The landing page with three hidden doors revealed by hovering.</figcaption>
+          </figure>
+          <figure>
+            <img src={`${base}images/to-home/08-archive-entrance.png`} alt="Entrance to the digital archive." />
+            <figcaption>Entrance to the digital archive.</figcaption>
+          </figure>
+          <figure>
+            <img src={`${base}images/to-home/09-archive-rooms.png`} alt="Distinct rooms in texture and mood, with contributions floating around." />
+            <figcaption>Distinct rooms in texture and mood, with contributions floating around.</figcaption>
+          </figure>
+        </div>
+
+        <div class="diagram-label" style="margin-top:3rem;">Publication &amp; Artefacts</div>
+        <div class="img-group">
+          <figure>
+            <img src={`${base}images/to-home/10-publication-1.jpg`} alt="Publication spread, page 1." />
+            <figcaption>Publication spread, page 1.</figcaption>
+          </figure>
+          <figure>
+            <img src={`${base}images/to-home/11-publication-2.jpg`} alt="Publication spread, page 2." />
+            <figcaption>Publication spread, page 2.</figcaption>
+          </figure>
+          <figure>
+            <img src={`${base}images/to-home/12-postcard.jpg`} alt="Postcard with a link to the landing page." />
+            <figcaption>Postcard with a link to the landing page.</figcaption>
+          </figure>
+        </div>
+
+        <div class="diagram-label" style="margin-top:3rem;">Exhibition</div>
+        <div class="img-group">
+          <figure>
+            <img src={`${base}images/to-home/13-exhibition-final.jpeg`} alt="Final exhibition setup with the artefacts." />
+            <figcaption>Final exhibition setup with the artefacts.</figcaption>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-text">
+      <div class="text-inner">
+
+        <div class="proj-category">
+          <span>Thesis · Design Methodology · 2026</span>
+        </div>
+
+        <h1>to home — a design methodology for domestic practice</h1>
+
+        <p class="lede">"Home is not a place. It is something you do."</p>
+
+        <p class="mirror-note">This project was originally documented on Hackster.io. It is mirrored here temporarily while that page is unavailable.</p>
+
+        <p>This single sentence became the guiding principle of <strong>"to home,"</strong> my final Master's project in Design for Emergent Futures. What started as a relatively straightforward plan to build a digital collective archive of homing practices transformed, through research, workshops, and deep reflection, into a rich, multi-layered methodology that lives across digital, analog, and physical realms.</p>
+
+        <p>This page documents the full evolution of the project, from early technical ambitions to the final hybrid system of weekly letters, question cards, embroidered bedsheets, and a living archive.</p>
+
+        <h2>The Initial Vision</h2>
+
+        <p>The project began with a strong systems-thinking approach. I wanted to create a global, accessible platform where people could document their everyday practices of making home. The early architecture included:</p>
+
+        <ul>
+          <li>A Telegram bot for structured contributions across Paolo Boccagni's five dimensions of homing</li>
+          <li>Automated logging into a database</li>
+          <li>A dynamic live archive with filtering capabilities</li>
+          <li>A canopy-like installation at the graduation exhibition acting as a physical portal to the digital system</li>
+        </ul>
+
+        <p>The goal was ambitious: build a scalable, always-on infrastructure that could capture homing practices at scale using simple, accessible technology.</p>
+
+        <h2>Why Everything Changed</h2>
+
+        <p>As I dove deeper into the literature (Boccagni, Coccia, Haraway, bell hooks, Brun &amp; Fábos) and ran early workshops, I realized something critical: <strong>home resists optimization</strong>.</p>
+
+        <p>The more I worked with people, the clearer it became that the real value wasn't in collecting large amounts of data, but in creating conditions for slow, reflective, embodied practice. The project shifted from "How do we scale archiving?" to "How do we make homing practices more visible, nameable, and shareable?"</p>
+
+        <p>This evolution moved the project from:</p>
+
+        <ul>
+          <li>Digital-first → Hybrid (digital serving analog)</li>
+          <li>Automated → Situated and intentional</li>
+          <li>Data collection → Facilitating personal and collective practice</li>
+          <li>Global scale → Intimate, local, and meaningful encounters</li>
+        </ul>
+
+        <p>Additionally, I abandoned the idea of building a physical canopy, as it was not really <em>my</em> project but more a representation of it. That's why I decided to focus on the actual components of the project.</p>
+
+        <h2>Final System Architecture</h2>
+
+        <h3>1. Digital Layer</h3>
+
+        <ul>
+          <li><strong>to-home.org</strong> — The calm, poetic landing page serving as the main threshold. It presents three clear doors: Letters, Cards, and Archive.</li>
+          <li><strong>Door 1, Letters</strong> — Five progressive emails, each focused on one dimension of homing (Territorializing, Bubbling, Outboxing, Connecting, Sensory Re-evocation). Built with a simple, privacy-first subscription form.</li>
+          <li><strong>Door 2, Question Cards</strong> — Open-source printable cards divided into Past, Present, and Future. Available as a high-quality PDF for home printing.</li>
+          <li><strong>Door 3, Living Archive (archive.to-home.org)</strong> — A growing public collection of contributions. Submissions are anonymous and lightweight (text + images).</li>
+        </ul>
+
+        <p>The entire web stack was built with <strong>vanilla HTML, CSS, and JavaScript</strong> to ensure longevity, performance, and alignment with the project's critique of standardization.</p>
+
+        <h3>2. Physical &amp; Spatial Layer (Exhibition Installation)</h3>
+
+        <p>The exhibition booth became an active site of practice rather than passive display. Key elements include:</p>
+
+        <ul>
+          <li><strong>Embroidered Bedsheets</strong> from the workshop as the emotional and visual centerpiece, created during workshops where participants stitched answers to the question cards onto shared fabric.</li>
+          <li><strong>Artifact Islands:</strong>
+            <ul>
+              <li>Stacks of physical Question Cards</li>
+              <li>Open Publication Booklet (the full methodology)</li>
+              <li>Take-away Postcards with a link to the landing page</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2>The Publication</h2>
+
+        <p>The printed booklet brings everything together. It contains:</p>
+
+        <ul>
+          <li>The poetic Manifesto: <em>Home Embodied</em></li>
+          <li>Theoretical framework</li>
+          <li>Five Ways of Homing modules with the exercises from the letters</li>
+          <li>Documentation of the methodology and its evolution</li>
+        </ul>
+
+        <h2>Key Lessons Learned</h2>
+
+        <ul>
+          <li><strong>Technology should disappear</strong> — The most meaningful moments happened when people touched fabric, read a question aloud, or stitched one word.</li>
+          <li><strong>Slowness is radical</strong> — Fighting the pressure to "scale" allowed the project to become deeper and more honest.</li>
+          <li><strong>Home is political</strong> — Questions of privilege, access, and domicide remained central throughout.</li>
+          <li><strong>Hybrid systems are powerful</strong> — The digital archive now serves as quiet infrastructure rather than the main attraction.</li>
+        </ul>
+
+        <h2>Future Directions</h2>
+
+        <ul>
+          <li>Continue growing the archive organically through workshops and letters</li>
+          <li>Develop open-source workshop kits for other facilitators</li>
+          <li>Explore new hybrid formats (physical letters paired with digital contributions)</li>
+          <li>Deepen research into unequal access to homing practices</li>
+        </ul>
+
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-key">Year</span><span class="meta-val">2026</span></div>
+          <div class="meta-row"><span class="meta-key">Type</span><span class="meta-val">Thesis · Design Methodology</span></div>
+          <div class="meta-row"><span class="meta-key">Context</span><span class="meta-val">Master's thesis, Design for Emergent Futures (MDEF), IAAC × Elisava</span></div>
+          <div class="meta-row"><span class="meta-key">Author</span><span class="meta-val">Madlen Elise von Wulffen</span></div>
+        </div>
+
+        <div class="project-links">
+          <div class="diagram-label">Project Links</div>
+          <a href="https://www.to-home.org/" target="_blank" rel="noopener noreferrer">to-home.org — Main Site →</a>
+          <a href="https://archive.to-home.org/" target="_blank" rel="noopener noreferrer">archive.to-home.org — Living Archive →</a>
+        </div>
+
+        <a class="back-link" href={`${base}projects`}>← Back to Projects</a>
+
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .proj-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
+
+  .col-diagram {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+    border-right: 0.5px solid #e0e0e0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: #faf9f7;
+  }
+
+  .diagram-inner {
+    padding: 2rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 860px;
+  }
+
+  .diagram-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    align-self: center;
+  }
+
+  .img-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .img-group figure {
+    margin: 0;
+    padding: 0;
+  }
+
+  .img-group img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .img-group figcaption {
+    font-size: 0.6rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+  }
+
+  .col-text {
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+  }
+
+  .text-inner {
+    padding: 3rem 2.2rem 4rem;
+  }
+
+  .proj-category {
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.9rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+
+  h2 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-top: 2rem;
+    margin-bottom: 0.7rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.2rem;
+  }
+
+  h3 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #333;
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lede {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    font-style: italic;
+    border-bottom: 0.5px solid #e0e0e0;
+    padding-bottom: 1rem;
+  }
+
+  .mirror-note {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: #888;
+    font-style: italic;
+    background: #f7f6f3;
+    border: 0.5px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 1.4rem;
+    line-height: 1.5;
+  }
+
+  .col-text p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 0.8em;
+  }
+
+  .col-text ul {
+    margin: 0 0 0.8em 0;
+    padding-left: 1.2em;
+  }
+
+  .col-text ul li {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 0.25em;
+  }
+
+  .col-text ul ul {
+    margin-top: 0.25em;
+    margin-bottom: 0;
+  }
+
+  .meta-table {
+    margin-top: 2.4rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    font-size: 0.8rem;
+  }
+
+  .meta-key {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+
+  .meta-val {
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .project-links {
+    margin-top: 2rem;
+    border-top: 0.5px solid #e0e0e0;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-links .diagram-label {
+    align-self: flex-start;
+    margin-bottom: 0.6rem;
+  }
+
+  .project-links a {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: #bbb;
+    letter-spacing: 0.02em;
+  }
+
+  .project-links a:hover {
+    text-decoration-color: var(--ink);
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .back-link:hover { color: var(--ink); }
+
+  :global(body:has(.proj-layout) footer) { display: none; }
+
+  @media (max-width: 860px) {
+    .proj-layout { grid-template-columns: 1fr; height: auto; overflow: visible; }
+    .col-diagram, .col-text { height: auto; overflow-y: visible; }
+    .col-diagram { border-right: none; border-bottom: 0.5px solid #e0e0e0; }
+  }
+</style>
